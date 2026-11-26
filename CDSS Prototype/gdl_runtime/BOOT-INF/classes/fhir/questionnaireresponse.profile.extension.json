@@ -1,0 +1,14 @@
+{
+  "resourceType": "StructureDefinitionExtension",
+  "id": "QuestionnaireResponse",
+  "snapshot": {
+    "element": [
+      {
+        "id": "QuestionnaireResponse.item.item.answer",
+        "path": "QuestionnaireResponse.item.item.answer",
+        "min": 0,
+        "max": "*"
+      }
+    ]
+  }
+}

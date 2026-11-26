@@ -1,0 +1,536 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_baseline_tumor_factors.v0
+
+concept
+	[at0000]	-- Ichom baseline tumor factors
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"joana.vicente@cambio.se">
+		["date"] = <"2016-07-12">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register baseline tumor factors variables for the ICHOM data collection standards.">
+			use = <"To register baseline tumor factors variablesfor the ICHOM data collection standards.">
+			keywords = <"baseline tumor factors", ...>
+			misuse = <"Do not use to register data outside the ICHOM measures. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"ICHOM Lung Cancer Data Collection Reference Guide. International Consortium for Health Outcome Measurement. Version 2.1. Revised April 24th, 2015. ">
+		["MD5-CAM-1.0.1"] = <"DA57037058F4D3D7DFADD9FF1D83691D">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Ichom baseline tumor factors
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Review Date/Time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Method of diagnosis
+										value matches {
+											0|[local::at0006], 	-- Clinical assessment 
+											1|[local::at0007], 	-- Histological assessment 
+											2|[local::at0008], 	-- Cytological assessment
+											999|[local::at0009]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Histology
+										value matches {
+											0|[local::at0011], 	-- Adenocarcinoma
+											1|[local::at0012], 	-- Adenocarcinoma with lepidic pattern
+											2|[local::at0013], 	-- Invasive mucinous adenocarcinoma
+											3|[local::at0014], 	-- Squamous cell carcinoma
+											4|[local::at0015], 	-- Small-cell carcinoma
+											5|[local::at0016], 	-- Non‐small cell lung cancer (NSCLC) – favor adenocarcioma
+											6|[local::at0017], 	-- NSCLC – favor squamous cell carcinoma 
+											7|[local::at0018], 	-- NSCLC with neuroendocrine (NE) morphology and positive NE markers; possible large-¬‐cell neuroendocrine carcinoma 
+											8|[local::at0019], 	-- NSCLC with NE morphology 
+											9|[local::at0020], 	-- NSCLC with spindle and/or giant cell carcinoma
+											10|[local::at0021], 	-- NSCLC-not otherwise specified 
+											11|[local::at0022], 	-- Atypical adenomatous hyperplasia 
+											12|[local::at0023], 	-- Adenocarcinoma in situ
+											13|[local::at0024], 	-- Minimally invasive adenocarcinoma 
+											14|[local::at0025], 	-- Carcinoid typical (NET grade 1) 
+											15|[local::at0026], 	-- Carcinoid atypical (NET grade 2)
+											999|[local::at0027]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {	-- Mutation status: ALK translocation
+										value matches {
+											0|[local::at0029], 	-- No 
+											1|[local::at0030], 	-- Yes 
+											2|[local::at0031], 	-- Failed analysis 
+											999|[local::at0032]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {	-- Mutation status: Activating EGFR
+										value matches {
+											0|[local::at0034], 	-- No 
+											1|[local::at0035], 	-- Yes 
+											2|[local::at0036], 	-- Failed analysis 
+											999|[local::at0037]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0038] occurrences matches {0..1} matches {	-- Clinical tumor stage
+										value matches {
+											0|[local::at0039], 	-- c T0 
+											1|[local::at0040], 	-- cT1
+											2|[local::at0041], 	-- cT1a 
+											3|[local::at0042], 	-- cT1b
+											4|[local::at0043], 	-- cT2 
+											5|[local::at0044], 	-- cT2a 
+											6|[local::at0045], 	-- cT2b 
+											7|[local::at0046], 	-- cT3 
+											8|[local::at0047], 	-- cT4 
+											9|[local::at0048], 	-- cTX 
+											999|[local::at0049]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0050] occurrences matches {0..1} matches {	-- Clinical nodal stage
+										value matches {
+											0|[local::at0051], 	-- cN0 
+											1|[local::at0052], 	-- cN1 
+											2|[local::at0053], 	-- cN2 
+											3|[local::at0054], 	-- cN3 
+											4|[local::at0055], 	-- cNX 
+											999|[local::at0056]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0057] occurrences matches {0..1} matches {	-- Clinical metastatic stage
+										value matches {
+											0|[local::at0058], 	-- cM0 
+											1|[local::at0059], 	-- cM1 
+											2|[local::at0060], 	-- cM1a 
+											3|[local::at0061], 	-- cM1b 
+											4|[local::at0062], 	-- cMX 
+											999|[local::at0063]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0064] occurrences matches {0..1} matches {	-- Pathological tumor stage
+										value matches {
+											0|[local::at0065], 	-- pT0 
+											1|[local::at0066], 	-- pT1 
+											2|[local::at0067], 	-- pT1a 
+											3|[local::at0068], 	-- pT1b 
+											4|[local::at0069], 	-- pT2 
+											5|[local::at0070], 	-- pT2a 
+											6|[local::at0071], 	-- pT2b 
+											7|[local::at0072], 	-- pT3 
+											8|[local::at0073], 	-- pT4 
+											9|[local::at0074], 	-- pTX 
+											999|[local::at0075]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0076] occurrences matches {0..1} matches {	-- Pathological nodal stage
+										value matches {
+											0|[local::at0077], 	-- pN0 
+											1|[local::at0078], 	-- pN1 
+											2|[local::at0079], 	-- pN2 
+											3|[local::at0080], 	-- pN3 
+											4|[local::at0081], 	-- pNX 
+											999|[local::at0082]  	-- Unknown 
+										}
+									}
+									ELEMENT[at0083] occurrences matches {0..1} matches {	-- Pathological metastatic stage
+										value matches {
+											0|[local::at0084], 	-- pM0 
+											1|[local::at0085], 	-- pM1 
+											2|[local::at0086], 	-- pM1a 
+											3|[local::at0087], 	-- pM1b 
+											4|[local::at0088], 	-- pMX 
+											999|[local::at0089]  	-- Unknown 
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ichom baseline tumor factors">
+					description = <"Register baseline tumor factors for ICHOM lung cancer.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Review Date/Time">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Method of diagnosis">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Clinical assessment ">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Histological assessment ">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Cytological assessment">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Histology">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Adenocarcinoma">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Adenocarcinoma with lepidic pattern">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Invasive mucinous adenocarcinoma">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Squamous cell carcinoma">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Small-cell carcinoma">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Non‐small cell lung cancer (NSCLC) – favor adenocarcioma">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"NSCLC – favor squamous cell carcinoma ">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"NSCLC with neuroendocrine (NE) morphology and positive NE markers; possible large-¬‐cell neuroendocrine carcinoma ">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"NSCLC with NE morphology ">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"NSCLC with spindle and/or giant cell carcinoma">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"NSCLC-not otherwise specified ">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Atypical adenomatous hyperplasia ">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Adenocarcinoma in situ">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Minimally invasive adenocarcinoma ">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Carcinoid typical (NET grade 1) ">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Carcinoid atypical (NET grade 2)">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Mutation status: ALK translocation">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"No ">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Yes ">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Failed analysis ">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Mutation status: Activating EGFR">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"No ">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Yes ">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Failed analysis ">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Clinical tumor stage">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"c T0 ">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"cT1">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"cT1a ">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"cT1b">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"cT2 ">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"cT2a ">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"cT2b ">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"cT3 ">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"cT4 ">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"cTX ">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Clinical nodal stage">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"cN0 ">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"cN1 ">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"cN2 ">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"cN3 ">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"cNX ">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"Clinical metastatic stage">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"cM0 ">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"cM1 ">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"cM1a ">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"cM1b ">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"cMX ">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"Pathological tumor stage">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <"pT0 ">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"pT1 ">
+					description = <"*">
+				>
+				["at0067"] = <
+					text = <"pT1a ">
+					description = <"*">
+				>
+				["at0068"] = <
+					text = <"pT1b ">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"pT2 ">
+					description = <"*">
+				>
+				["at0070"] = <
+					text = <"pT2a ">
+					description = <"*">
+				>
+				["at0071"] = <
+					text = <"pT2b ">
+					description = <"*">
+				>
+				["at0072"] = <
+					text = <"pT3 ">
+					description = <"*">
+				>
+				["at0073"] = <
+					text = <"pT4 ">
+					description = <"*">
+				>
+				["at0074"] = <
+					text = <"pTX ">
+					description = <"*">
+				>
+				["at0075"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0076"] = <
+					text = <"Pathological nodal stage">
+					description = <"*">
+				>
+				["at0077"] = <
+					text = <"pN0 ">
+					description = <"*">
+				>
+				["at0078"] = <
+					text = <"pN1 ">
+					description = <"*">
+				>
+				["at0079"] = <
+					text = <"pN2 ">
+					description = <"*">
+				>
+				["at0080"] = <
+					text = <"pN3 ">
+					description = <"*">
+				>
+				["at0081"] = <
+					text = <"pNX ">
+					description = <"*">
+				>
+				["at0082"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <"Pathological metastatic stage">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"pM0 ">
+					description = <"*">
+				>
+				["at0085"] = <
+					text = <"pM1 ">
+					description = <"*">
+				>
+				["at0086"] = <
+					text = <"pM1a ">
+					description = <"*">
+				>
+				["at0087"] = <
+					text = <"pM1b ">
+					description = <"*">
+				>
+				["at0088"] = <
+					text = <"pMX ">
+					description = <"*">
+				>
+				["at0089"] = <
+					text = <"Unknown ">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#14161a" />
+    <meta name="description" content="Interactive 3D atlas of human oral anatomy — 28 individually selectable permanent teeth, jaws, gingiva, pulp, periodontal ligament and nerve supply, all segmented from one cone-beam CT. Takes a simulated periapical radiograph of any tooth, computed from that same anatomy." />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>3Dentes — Interactive Oral Anatomy</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+    <div id="status" class="status">Loading anatomy…</div>
+
+    <header class="topbar">
+      <h1>3Dentes</h1>
+      <div class="topbar-actions">
+        <button id="isolate" class="btn" disabled title="Show only the selected structure">Isolate</button>
+        <button id="reset" class="btn" title="Reset camera and selection">Reset</button>
+        <button id="xray" class="btn" aria-pressed="false"
+                title="Simulate a periapical radiograph of the selected tooth">Radiograph</button>
+        <button id="chrome" class="btn btn-chrome" aria-expanded="true"
+                aria-controls="layers chart detail"
+                title="Show or hide the panels">
+          <span class="chrome-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="chrome-label">Panels</span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="panel panel-left">
+      <section>
+        <h2 class="panel-title">Layers</h2>
+        <div id="layers"></div>
+      </section>
+      <section>
+        <h2 class="panel-title">Notation</h2>
+        <div id="notation" class="segmented"></div>
+      </section>
+      <!-- Invariant 4 (CLAUDE.md): this must describe the build that ships. It
+           used to be rewritten at runtime because there were two builds; there
+           is one now, so it is static and correct before any script runs. -->
+      <p class="caveat" id="caveat">
+        <strong>Source data limits.</strong> Hard tissue, pulp and periodontal ligament
+        are segmented from one CBCT of a single individual at 0.16 mm. The mandibular
+        canal is measured; its nerve content and every maxillary nerve are schematic —
+        the superior alveolar canals are not resolved at this voxel size. No third
+        molars. Pulp is traced by hand from the slices, because no threshold separates
+        it from dentin at this resolution; apical deltas and canals under about 0.5 mm
+        are below the voxel size, and each apical foramen is the apical end of a
+        tracing. The mental and incisive branches and the whole maxillary nerve supply
+        are schematic. Gingiva is derived from the measured CEJ, not seen. The two
+        zirconia crowns are measured in OUTLINE only — this scan saturates and
+        cannot measure their density, which comes from the literature — and the
+        lamina dura is drawn continuous at an exaggerated thickness wherever the
+        socket runs, not only where cortex was resolved. The simulated
+        radiograph is computed from these meshes and published tissue densities,
+        not from the scan: it carries no trabecular pattern, and restorations
+        clip to flat white. Not a clinical reference.
+      </p>
+    </aside>
+
+    <aside class="panel panel-right">
+      <h2 class="panel-title">Selection</h2>
+      <div id="detail"></div>
+    </aside>
+
+    <!-- Radiograph mode. Hidden until asked for: it is a second way of looking
+         at the same anatomy, not a thing the atlas is about. -->
+    <aside class="panel panel-xray" id="xray-panel" hidden>
+      <h2 class="panel-title">Radiograph — tooth <span id="rg-tooth">30</span></h2>
+      <canvas id="rg-film"></canvas>
+      <p id="rg-readout" class="rg-note"></p>
+      <div class="rg-controls">
+        <label>Receptor tilt <span id="rg-tiltv">0&deg;</span>
+          <input id="rg-tilt" type="range" min="0" max="40" step="1" value="0" /></label>
+        <label>Tube vertical <span id="rg-vertv">0&deg;</span>
+          <input id="rg-vert" type="range" min="-15" max="40" step="1" value="0" /></label>
+        <label>Tube horizontal <span id="rg-horizv">0&deg;</span>
+          <input id="rg-horiz" type="range" min="-25" max="25" step="1" value="0" /></label>
+        <label>Framing <span id="rg-vshiftv">-4.0 mm</span>
+          <input id="rg-vshift" type="range" min="-12" max="6" step="0.5" value="-4" /></label>
+        <label>Tube potential <span id="rg-kvpv">70 kVp</span>
+          <input id="rg-kvp" type="range" min="50" max="90" step="1" value="70" /></label>
+        <label>Field &oslash; <span id="rg-fieldv">60 mm</span>
+          <input id="rg-field" type="range" min="25" max="80" step="1" value="60" /></label>
+      </div>
+      <div class="rg-presets">
+        <button class="btn btn-sm" id="rg-ideal">Ideal</button>
+        <button class="btn btn-sm" id="rg-par">Paralleling</button>
+        <button class="btn btn-sm" id="rg-bis">Bisecting</button>
+      </div>
+      <p class="rg-note rg-caveat">Ray-integrated from the atlas's own meshes with
+        density per tissue from the literature — not a rendering of the scan.
+        Bone carries no trabecular pattern and the crowns clip to flat white;
+        both are consequences of choices recorded in <code>docs/drr-plan.md</code>.</p>
+    </aside>
+
+    <footer class="chartbar">
+      <div id="chart"></div>
+    </footer>
+
+    <small class="credits">Nate Saindon · 2026</small>
+    <a class="version" href="https://github.com/NateSaindon/3Dentes/blob/main/CHANGELOG.md"
+       target="_blank" rel="noopener">v<span id="version"></span></a>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

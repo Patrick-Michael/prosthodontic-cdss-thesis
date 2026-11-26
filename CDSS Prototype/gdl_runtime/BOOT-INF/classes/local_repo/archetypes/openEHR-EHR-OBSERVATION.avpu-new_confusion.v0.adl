@@ -1,0 +1,135 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.avpu-new_confusion.v0
+specialize
+	openEHR-EHR-OBSERVATION.avpu.v1
+
+concept
+	[at0000.1]	-- AVPU with New confusion
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2014-10-21">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record a patient's level of consciousness as well as additional information about confusion for MEWS">
+			use = <"Use to record as part of screening for MEWS">
+			keywords = <"avpu", "alert", "voice", "pain", "unresponsive", "new confusion">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Heather Leslie, Ocean Informatics, heather.leslie@oceaninformatics.com", "Dr Niklas Skyttberg">
+	other_details = <
+		["references"] = <"1. Modified Early Warning Scale, MEWS. Capio S:t Görans Sjukhus. Version 4.0. 2011-09-05">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"D9FFC907194926604A099BAE7CB0D6DC">
+	>
+
+definition
+	OBSERVATION[at0000.1] matches {	-- AVPU with New confusion
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- AVPU Observation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Alert
+													at0006, 	-- Voice
+													at0007, 	-- Pain
+													at0008]	-- Unresponsive
+												}
+											}
+										}
+									}
+									ELEMENT[at0004.2] occurrences matches {0..1} matches {	-- New Confusion
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0004.3, 	-- Absent
+													at0004.4]	-- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"AVPU">
+					description = <"Simple scale used as part of an assessment to measure and record a patient's responsiveness, indicating their level of consciousness. AVPU is an acronym for 'Alert', 'Voice', 'Pain', 'Unresponsive'.">
+				>
+				["at0000.1"] = <
+					text = <"AVPU with New confusion">
+					description = <"Alert, Voice, Pain, Unresponsive (AVPU) scale with additional data for new confusion as part of assesing and a patient's responsiveness for use in the Modified Early Warning Score (MEWS)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"Default, unspecified point in time or interval event which may be explicitly defined in a template or at run-time.">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"AVPU Observation">
+					description = <"The observation of the patient's responsiveness.">
+				>
+				["at0004.2"] = <
+					text = <"New Confusion">
+					description = <"*">
+				>
+				["at0004.3"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0004.4"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Alert">
+					description = <"The patient is fully awake and alert.">
+				>
+				["at0006"] = <
+					text = <"Voice">
+					description = <"The patient responds in any way to a voice stimulus.">
+				>
+				["at0007"] = <
+					text = <"Pain">
+					description = <"The patient responds in any way to a pain stimulus.">
+				>
+				["at0008"] = <
+					text = <"Unresponsive">
+					description = <"The patient does not respond in any way to voice or pain stimuli.">
+				>
+			>
+		>
+	>

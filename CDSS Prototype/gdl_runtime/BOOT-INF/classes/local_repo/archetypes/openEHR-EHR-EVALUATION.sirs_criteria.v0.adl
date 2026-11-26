@@ -1,0 +1,179 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.sirs_criteria.v0
+
+concept
+	[at0000]	-- Sirs criteria
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2013-12-18">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information regarding the SIRS criteria">
+			use = <"">
+			keywords = <"systemic inflammatory response syndrome", "SIRS", "sepsis">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Brink M, Cronqvist J, Furebring M, Gårdlund B, Lanbeck P, Ljungström L, et al. Vårdprogram Svår sepsis och septisk chock - tidig identifiering och initial handläggning. Svenska Infektionsläkarföreningen; 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"ACB54E73EB0AA25A3919FCC88B70E350">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Sirs criteria
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Type of SIRS criteria
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0005, 	-- Temperature >38°C or < 36°C
+									at0006, 	-- Heart rate > 90 /min
+									at0007, 	-- PaCO2 < 4.3 kPa or Respiratory rate > 20/min
+									at0008]	-- WBC < 4 10*9/L or >12 10*9/L
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {	-- SIRS respiration criteria
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010, 	-- PaCO2 < 4.3 kPa
+									at0011]	-- Respiratory rate > 20/min
+								}
+							}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Quantity
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::118]>
+								list = <
+									["1"] = <
+										units = <"°C">
+									>
+									["2"] = <
+										units = <"/min">
+									>
+									["3"] = <
+										units = <"kPa">
+									>
+									["4"] = <
+										units = <"10*9/l">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Date (time) of SIRS criteria
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {	-- SIRS event
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015, 	-- Absent
+									at0016]	-- Present
+								}
+							}
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {	-- Date (time) of SIRS event
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sirs criteria">
+					description = <"Vital parameters for evaluating for SIRS">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Type of SIRS criteria">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Temperature >38°C or < 36°C">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Heart rate > 90 /min">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"PaCO2 < 4.3 kPa or Respiratory rate > 20/min">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"WBC < 4 10*9/L or >12 10*9/L">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"SIRS respiration criteria">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"PaCO2 < 4.3 kPa">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Respiratory rate > 20/min">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Quantity">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Date (time) of SIRS criteria">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"SIRS event">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Date (time) of SIRS event">
+					description = <"*">
+				>
+			>
+		>
+	>

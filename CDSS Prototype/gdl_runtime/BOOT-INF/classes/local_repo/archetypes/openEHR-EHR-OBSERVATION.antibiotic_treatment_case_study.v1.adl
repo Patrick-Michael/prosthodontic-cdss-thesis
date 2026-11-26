@@ -1,0 +1,240 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.antibiotic_treatment_case_study.v1
+
+concept
+	[at0000]	-- Antibiotic treatment study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet vid körning av antibiotikastudiens riktlinjer.">
+			use = <"Använd endast i förhållande till antibiotikastudien. Den information som produceras av riktlinjerna är resultatet av specifika studiekriterier.">
+			keywords = <"öppna jämförelser", "antibiotika", "Penicillin V", "luftvägsantibiotika", "urinvägsantibiotika", "urinvägsinfektion", "Ciprofloxacin", "Norfloxacin">
+			misuse = <"Använd inte i andra studier eller sammanhang utom i de fall då kriterierna är identiska med dem som definieras i antibiotikastudien.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the antibiotics study guidelines.">
+			use = <"Use only in relation to the antibiotics study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"healthcare indicators", "antibiotics", "Penicillin V", "respiratory antibiotics", "urinary tract antibiotics", "urinary tract infection", "Ciprofloxacin", "Norfloxacin">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the antibiotics study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Socialstyrelsen. Öppna jämförelser 2013 – Hälso- och sjukvård – Jämförelser mellan landsting. Västerås: Edita Västra Aros AB; 2013.
+2. Socialstyrelsen. Bilaga 1 Beskrivning av indikatorer- Öppna jämförelser 2013: Hälso och sjukvård. 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"113C57C061E687EF91A7F0748759FE4C">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Antibiotic treatment study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Antibiotic prescription
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Phenoxymethylpenicillin (Penicillin V) prescription
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Phenoxymethylpenicillin (Penicillin V) prescription in children 0-6
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Ciprofloxacin/Norfloxacin prescriptions
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Ciprofloxacin prescription
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Norfloxacin prescription
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- Absent
+													at0011]	-- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Antibiotic treatment study">
+					description = <"Prescription of antibiotics in patients">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Antibiotic prescription">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Phenoxymethylpenicillin (Penicillin V) prescription">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Phenoxymethylpenicillin (Penicillin V) prescription in children 0-6">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Ciprofloxacin/Norfloxacin prescriptions">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Ciprofloxacin prescription">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Norfloxacin prescription">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Antibiotikastudien">
+					description = <"Förskrivning av antibiotika till patienter">
+				>
+				["at0001"] = <
+					text = <"Event Series?">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Any event?">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Antibiotikaförskrivning">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Fenoximetylpenicillin (Penicillin V) förskrivning">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Fenoximetylpenicillin (Penicillin V) förskrivning till barn 0-6">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Ciprofloxacin/Norfloxacin förskrivning">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Ciprofloxacin förskrivning">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Norfloxacin förskrivning">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

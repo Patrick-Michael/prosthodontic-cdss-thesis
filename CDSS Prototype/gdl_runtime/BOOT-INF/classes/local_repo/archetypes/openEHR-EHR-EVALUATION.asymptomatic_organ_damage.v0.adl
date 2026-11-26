@@ -1,0 +1,160 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.asymptomatic_organ_damage.v0
+
+concept
+	[at0000]	-- Asymptomatic organ damage
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"0BF2831D8765712DAC86C1396F58BD74">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Asymptomatic organ damage
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Pulse pressure too high
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Electrocardiographic LVH Sokolow-Lyon index abnormal
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- Echocardiographic LVH LVM index abnormal
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Carotid wall thickening or plague
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {	-- Carotid-femoral PWV too hgih
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {	-- Ankle-brachial index too low
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0010] occurrences matches {0..1} matches {	-- CKD stage 3
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Microalbuminuria or abnormal albumin-creatinine ratio
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Organ damage
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Total asymptomatic organ damage
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Asymptomatic organ damage">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Pulse pressure too high">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Electrocardiographic LVH Sokolow-Lyon index abnormal">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Echocardiographic LVH LVM index abnormal">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Carotid wall thickening or plague">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Carotid-femoral PWV too hgih">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Ankle-brachial index too low">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"CKD stage 3">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Microalbuminuria or abnormal albumin-creatinine ratio">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Organ damage">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Total asymptomatic organ damage">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,170 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_death.v0
+
+concept
+	[at0000]	-- Lung cancer death
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"blanca.flores@cambio.se">
+		["date"] = <"2015-11-26">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register death data for the ICHOM data collection standards.">
+			use = <"To register death data in patients.">
+			keywords = <"lung cancer", "death", "ICHOM">
+			misuse = <"Do not use to register data outside the ICHOM measures.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"ICHOM Lung Cancer Data Collection Reference Guide. International Consortium for Health Outcome Measurement. Version 2.1. Revised April 24th, 2015.">
+		["MD5-CAM-1.0.1"] = <"12C05FCBF073F14A4031E5A5B5320386">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Lung cancer death
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- DEATHPLACE
+										value matches {
+											1|[local::at0005], 	-- Hospital
+											2|[local::at0006], 	-- Own residence
+											3|[local::at0007], 	-- Care home
+											4|[local::at0008], 	-- Hospice
+											888|[local::at0009]  	-- Other
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- INHOSPITAL
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- Days in hospital
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0013, 	-- 0
+													at0014, 	-- 1-5
+													at0015, 	-- 6-10
+													at0016, 	-- 11-15
+													at0017, 	-- 16-20
+													at0018, 	-- 21-25
+													at0019]	-- more than 25
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Lung cancer death">
+					description = <"To register quality of death in lung cancer patients. ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"DEATHPLACE">
+					description = <"Location of death">
+				>
+				["at0005"] = <
+					text = <"Hospital">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Own residence">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Care home">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Hospice">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Other">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"INHOSPITAL">
+					description = <"Days spent in hospital in the last 30 days of life">
+				>
+				["at0012"] = <
+					text = <"Days in hospital">
+					description = <"Days spent in hospital in the last 30 days of life">
+				>
+				["at0013"] = <
+					text = <"0">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"1-5">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"6-10">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"11-15">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"16-20">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"21-25">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"more than 25">
+					description = <"*">
+				>
+			>
+		>
+	>

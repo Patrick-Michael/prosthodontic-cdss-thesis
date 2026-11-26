@@ -1,0 +1,119 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.reaction_level_scale_rls85.v0
+
+concept
+	[at0000]	-- Reaction level scale rls85
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Rong Chen">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"rong.chen@cambio.se">
+		["date"] = <"2013-03-19">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record Reaction Level Scale (RLS85)">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Starmark, J. E., D. Stalhammar, E. Holmgren and B. Rosander (1988). \"A comparison of the Glasgow Coma Scale and the Reaction Level Scale (RLS85).\" J Neurosurg 69(5): 699-706.">
+		["MD5-CAM-1.0.1"] = <"8434A39C58274A4076BF59BD567F2C9D">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Reaction level scale rls85
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- vilken händelse som helst
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Träd
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Responsiveness
+										value matches {
+											1|[local::at0005], 	-- No delay in response
+											2|[local::at0006], 	-- Responsive to light stimulation
+											3|[local::at0007], 	-- Responsive to strong stimulation
+											4|[local::at0008], 	-- Localizes but does not ward of pain
+											5|[local::at0009], 	-- Withdrawing movements on pain stimulation
+											6|[local::at0010], 	-- Stereotype flexion movements on pain stimulation
+											7|[local::at0011], 	-- Stereotype extension movements on pain stimulation stimulation
+											8|[local::at0012]  	-- No response on pain stimulation
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Reaction level scale rls85">
+					description = <"Reaction Level Scale">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"vilken händelse som helst">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Responsiveness">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No delay in response">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Responsive to light stimulation">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Responsive to strong stimulation">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Localizes but does not ward of pain">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Withdrawing movements on pain stimulation">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Stereotype flexion movements on pain stimulation">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Stereotype extension movements on pain stimulation stimulation">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"No response on pain stimulation">
+					description = <"*">
+				>
+			>
+		>
+	>

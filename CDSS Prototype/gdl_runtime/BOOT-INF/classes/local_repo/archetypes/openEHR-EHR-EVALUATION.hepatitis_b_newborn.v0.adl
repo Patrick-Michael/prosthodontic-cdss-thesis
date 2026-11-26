@@ -1,0 +1,110 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.hepatitis_b_newborn.v0
+
+concept
+	[at0000]	-- Hepatit B nyfödd
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Medical Informatics Group (MIG)">
+		["email"] = <"mig@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2017-03-29">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record when a vaccination for hepatitis B in a newborn baby has been done when the mother is a hepatitis B patient.">
+			use = <"">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record when a vaccination for hepatitis B in a newborn baby has been done when the mother is a hepatitis B patient.(en)">
+			use = <"*(en)">
+			misuse = <"*(en)">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Medical Informatics Group (MIG), Cambio Healthcare Systems<mig@cambiocds.com>">
+		["MD5-CAM-1.0.1"] = <"BEAFE78B508F32F24F1F1847C88DB5CF">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Hepatit B nyfödd
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Vaccin administrerat
+						value matches {
+							DV_BOOLEAN matches {
+								value matches {True, False; False}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Datum/Tid för översyn
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatitis B newborn">
+					description = <"Vaccination of a newborn baby for hepatitis B">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Vaccination administered">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hepatit B nyfödd">
+					description = <"*Vaccination of a newborn baby for hepatitis B(en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Vaccin administrerat">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Datum/Tid för översyn">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

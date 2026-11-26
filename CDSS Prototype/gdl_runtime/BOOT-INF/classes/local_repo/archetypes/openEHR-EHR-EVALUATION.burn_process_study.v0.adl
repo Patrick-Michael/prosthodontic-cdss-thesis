@@ -1,0 +1,561 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.burn_process_study.v0
+
+concept
+	[at0000]	-- Burn process study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["email"] = <"blanca.flores@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-01-14">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet av brännskador process studien.">
+			use = <"Används för att registrera data i Dashboard för brännskador studien processen.">
+			keywords = <"VBH", "brännskador process">
+			misuse = <"Används inte för att registrera data annat än brännskador processenen.
+">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results for the burn process dashboard study.">
+			use = <"Use to register patient data into Dashboard categories for the burn process case study.">
+			keywords = <"VBH", "value based healthcare", "burn process">
+			misuse = <"Do not use to register data for a process other than the burn process.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Grundmall Jorunaltabell. (2009). Mallnamn: Bräannskador. Systemförvaltning EPJ.">
+		["MD5-CAM-1.0.1"] = <"4C88EA1B5D88DCDB7B7E8B8DA65666B9">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Burn process study
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Lower extremities
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- 0-10
+									at0004, 	-- 11-20
+									at0005, 	-- 21-30
+									at0006]	-- 31-40
+								}
+							}
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Shoulder-arm
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0008, 	-- 10-20
+									at0005, 	-- 21-30
+									at0006, 	-- 31-40
+									at0009, 	-- 41-50
+									at0010]	-- 51-60
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- General movement and muscle function
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0012, 	-- 0
+									at0013, 	-- 1
+									at0014, 	-- 2
+									at0015, 	-- 3
+									at0016, 	-- 4
+									at0017, 	-- 5
+									at0018]	-- 6
+								}
+							}
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {	-- Muscular strength
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- 0-2
+									at0021, 	-- 3-5
+									at0022, 	-- 6-8
+									at0023, 	-- 9-11
+									at0024]	-- 12-14
+								}
+							}
+						}
+					}
+					ELEMENT[at0025] occurrences matches {0..1} matches {	-- Balance and coordination
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- 0-2
+									at0021, 	-- 3-5
+									at0022, 	-- 6-8
+									at0026]	-- 9-10
+								}
+							}
+						}
+					}
+					ELEMENT[at0027] occurrences matches {0..1} matches {	-- Endurance
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- 0-2
+									at0021, 	-- 3-5
+									at0022, 	-- 6-8
+									at0026]	-- 9-10
+								}
+							}
+						}
+					}
+					ELEMENT[at0028] occurrences matches {0..1} matches {	-- Function right
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0029, 	-- 5-10
+									at0030, 	-- 11-15
+									at0031, 	-- 16-20
+									at0032, 	-- 21-25
+									at0033]	-- 26-30
+								}
+							}
+						}
+					}
+					ELEMENT[at0034] occurrences matches {0..1} matches {	-- Function left
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0029, 	-- 5-10
+									at0030, 	-- 11-15
+									at0031, 	-- 16-20
+									at0032, 	-- 21-25
+									at0033]	-- 26-30
+								}
+							}
+						}
+					}
+					ELEMENT[at0035] occurrences matches {0..1} matches {	-- Pain when in motion
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- 0-2
+									at0021, 	-- 3-5
+									at0022, 	-- 6-8
+									at0026]	-- 9-10
+								}
+							}
+						}
+					}
+					ELEMENT[at0036] occurrences matches {0..1} matches {	-- If you have itching from the burn, how severe is it?
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- 0-2
+									at0021, 	-- 3-5
+									at0022, 	-- 6-8
+									at0026]	-- 9-10
+								}
+							}
+						}
+					}
+					ELEMENT[at0037] occurrences matches {0..1} matches {	-- Overall health
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- 0-10
+									at0004, 	-- 11-20
+									at0005, 	-- 21-30
+									at0006, 	-- 31-40
+									at0009, 	-- 41-50
+									at0010, 	-- 51-60
+									at0038, 	-- 61-70
+									at0039, 	-- 71-80
+									at0040, 	-- 81-90
+									at0041]	-- 91-100
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Burn process study">
+					description = <"Dashboard categories for the Burn process study for value-based healthcare.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Lower extremities">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"0-10">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"11-20">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"21-30">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"31-40">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Shoulder-arm">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"10-20">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"41-50">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"51-60">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"General movement and muscle function">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"0">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"1">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"2">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"3">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"4">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"5">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"6">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Muscular strength">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"0-2">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"3-5">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"6-8">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"9-11">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"12-14">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Balance and coordination">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"9-10">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Endurance">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Function right">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"5-10">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"11-15">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"16-20">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"21-25">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"26-30">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Function left">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Pain when in motion">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"If you have itching from the burn, how severe is it?">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Overall health">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"61-70">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"71-80">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"81-90">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"91-100">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Brännskador process studie">
+					description = <"Dashboard kategorier för Brännskador process studie för Värdebaserad Sjukvård.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Nedre extremiteter">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"0-10">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"11-20">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"21-30">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"31-40">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Skuldra-arm">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"10-20">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"41-50">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"51-60">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Allmän rörelse och muskelfunktion">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"0">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"1">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"2">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"3">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"4">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"5">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"6">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Muskelstyrka">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"0-2">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"3-5">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"6-8">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"9-11">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"12-14">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Balans och koordination">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"9-10">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Uthållighet">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Funktion höger">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"5-10">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"11-15">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"16-20">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"21-25">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"26-30">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"Funktion vänster">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"Smärta i rörelse">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"Om du har klåda, hur svår är din klåda från brännskadan?">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"Allmänna hälsa">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"61-70">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"71-80">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <"81-90">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"91-100">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

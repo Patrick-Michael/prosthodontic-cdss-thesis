@@ -1,0 +1,549 @@
+#!/usr/bin/env node
+// Build assets/cbct/stl/*.stl into a single public/dentition.glb, plus the
+// public/teeth.json metadata the app joins against by FMA id.
+//
+//   node tools/build-assets.mjs
+//
+// Binary STL is a flat triangle soup: no shared vertices, no vertex normals.
+// Converting it naively gives ~1M unwelded vertices and hard-faceted shading.
+// So per structure we weld bitwise-identical vertices (which recovers the
+// original mesh topology exactly, because these STLs were converted from an OBJ
+// whose shared vertices have identical float bits) and then compute smooth
+// area-weighted vertex normals.
+//
+// NOTE: @gltf-transform's normals() generates FLAT normals, which is not what we
+// want, hence computeSmoothNormals below.
+
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { Document, NodeIO } from '@gltf-transform/core';
+import { EXTMeshoptCompression, KHRMeshQuantization } from '@gltf-transform/extensions';
+import { meshopt } from '@gltf-transform/functions';
+import { MeshoptEncoder } from 'meshoptimizer';
+import { STRUCTURES, LAYERS, toothNotation, structureName, provenance, STL_DIR as STL_SUBDIR } from './manifest.mjs';
+import { parseBinarySTL, weldExact, boundaryEdges, signedVolume, flipWinding } from './geometry.mjs';
+import { measureTooth, checkToothIdentity } from './tooth-morphology.mjs';
+
+const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
+const STL_DIR = join(ROOT, ...STL_SUBDIR);
+const OUT_DIR = join(ROOT, 'public');
+
+// Per-layer appearance. Kept here so the built .glb looks right in any glTF
+// viewer, not just in this app.
+const MATERIALS = {
+  teeth:    { baseColorFactor: [0.925, 0.906, 0.851, 1], roughnessFactor: 0.35, metallicFactor: 0 },
+  mandible: { baseColorFactor: [0.898, 0.855, 0.761, 1], roughnessFactor: 0.70, metallicFactor: 0 },
+  maxilla:  { baseColorFactor: [0.898, 0.855, 0.761, 1], roughnessFactor: 0.70, metallicFactor: 0 },
+  // The two focused exposures are the SAME TISSUE as the two above, imaged in a
+  // different acquisition, so they take the same bone appearance. What separates
+  // them is the layer toggle, not the colour: tinting them would say the bone is
+  // different when only the scan is.
+  midface:  { baseColorFactor: [0.898, 0.855, 0.761, 1], roughnessFactor: 0.70, metallicFactor: 0 },
+  ramus:    { baseColorFactor: [0.898, 0.855, 0.761, 1], roughnessFactor: 0.70, metallicFactor: 0 },
+  gingiva:  { baseColorFactor: [0.804, 0.451, 0.435, 1], roughnessFactor: 0.75, metallicFactor: 0 },
+  // Kept for Phase 3's authored bellies; no structure carries this layer today,
+  // and materials are only emitted for layers in use, so it costs nothing.
+  muscles:  { baseColorFactor: [0.647, 0.271, 0.259, 1], roughnessFactor: 0.65, metallicFactor: 0 },
+  // Enamel clads the crown, so unlike pulp and PDL it is SEEN, and it has to
+  // read as enamel against the dentine-coloured tooth directly beneath it —
+  // lighter, bluer and glossier, which is how enamel actually differs from the
+  // dentine that gives a tooth its yellow. The difference is deliberately small:
+  // a strongly tinted cap would look like a coating rather than the outer
+  // millimetre of the tooth, and the two tissues really are close in colour.
+  enamel:   { baseColorFactor: [0.961, 0.957, 0.937, 1], roughnessFactor: 0.18, metallicFactor: 0 },
+  pulp:     { baseColorFactor: [0.804, 0.286, 0.271, 1], roughnessFactor: 0.55, metallicFactor: 0 },
+  pdl:      { baseColorFactor: [0.612, 0.784, 0.878, 1], roughnessFactor: 0.80, metallicFactor: 0 },
+  // Zirconia reads as what it is: a bright, hard, slightly cool ceramic, much
+  // lighter and glossier than the enamel it replaced. Deliberately NOT metallic
+  // -- full-contour zirconia is a white ceramic, and a metal shader here would
+  // say "gold crown" to any clinician looking at it.
+  prosthetic: { baseColorFactor: [0.988, 0.988, 0.996, 1], roughnessFactor: 0.10, metallicFactor: 0 },
+  // Bone, and deliberately the SAME colour as the mandible and maxilla: the
+  // lamina dura is not a different tissue, it is the dense part of the bone
+  // already shown. Tinting it would invent a distinction the anatomy does not
+  // have. What separates it is the toggle.
+  lamina:   { baseColorFactor: [0.898, 0.855, 0.761, 1], roughnessFactor: 0.60, metallicFactor: 0 },
+  // Nerve tissue is yellow by the convention every anatomy atlas and every
+  // dental text uses, so it reads at a glance against bone and pulp.
+  nerves:   { baseColorFactor: [0.965, 0.827, 0.176, 1], roughnessFactor: 0.45, metallicFactor: 0 },
+  // Arterial red, and deliberately darker and less saturated than a warning
+  // colour: it sits a fraction of a millimetre from the yellow nerve inside the
+  // same canal, so the two have to read apart at small size and low opacity.
+  // The vascular layer is ONE toggle carrying two appearances. A structure may
+  // name a `material` and it is looked up here ahead of its layer, so arteries
+  // and veins switch on together and still read apart. Arterial red is darker
+  // than a warning colour and the venous blue is matched to it in lightness:
+  // they sit a fraction of a millimetre apart inside one canal, so neither may
+  // read as the more important of the two.
+  vessels:  { baseColorFactor: [0.788, 0.184, 0.204, 1], roughnessFactor: 0.40, metallicFactor: 0 },
+  artery:   { baseColorFactor: [0.788, 0.184, 0.204, 1], roughnessFactor: 0.40, metallicFactor: 0 },
+  vein:     { baseColorFactor: [0.216, 0.353, 0.678, 1], roughnessFactor: 0.40, metallicFactor: 0 },
+};
+
+/**
+ * Area-weighted smooth vertex normals. The cross product of two edge vectors has
+ * magnitude proportional to triangle area, so accumulating un-normalized face
+ * normals weights each face by its area for free — which is what keeps large
+ * flat regions from being dragged around by clusters of tiny triangles.
+ */
+// How far the enamel is lifted off the tooth for rendering. Chosen from the
+// measured disagreement between the two meshings -- median 0.23 mm, p90 0.58 --
+// so it clears the common case without exceeding the noise it is compensating
+// for. Not an anatomical dimension.
+const ENAMEL_LIFT_MM = 0.35;
+
+function computeSmoothNormals(positions, indices) {
+  const normals = new Float32Array(positions.length);
+  for (let i = 0; i < indices.length; i += 3) {
+    const a = indices[i] * 3, b = indices[i + 1] * 3, c = indices[i + 2] * 3;
+    const ax = positions[a], ay = positions[a + 1], az = positions[a + 2];
+    const e1x = positions[b] - ax, e1y = positions[b + 1] - ay, e1z = positions[b + 2] - az;
+    const e2x = positions[c] - ax, e2y = positions[c + 1] - ay, e2z = positions[c + 2] - az;
+    const nx = e1y * e2z - e1z * e2y;
+    const ny = e1z * e2x - e1x * e2z;
+    const nz = e1x * e2y - e1y * e2x;
+    for (const v of [a, b, c]) {
+      normals[v] += nx; normals[v + 1] += ny; normals[v + 2] += nz;
+    }
+  }
+  for (let i = 0; i < normals.length; i += 3) {
+    const len = Math.hypot(normals[i], normals[i + 1], normals[i + 2]);
+    if (len > 0) {
+      normals[i] /= len; normals[i + 1] /= len; normals[i + 2] /= len;
+    } else {
+      normals[i + 1] = 1; // degenerate vertex; point it somewhere valid
+    }
+  }
+  return normals;
+}
+
+/**
+ * BodyParts3D is z-up with z measured from the floor (the head sits near
+ * z=1470mm) and anterior toward -y. Rotate -90 degrees about X, (x,y,z) ->
+ * (x, z, -y), to reach glTF/three.js y-up. Anterior then points to +z, so a
+ * camera on +z lands on a frontal view with no extra work, and x is untouched
+ * so anatomical right stays negative-x.
+ */
+function toYUp(positions) {
+  for (let i = 0; i < positions.length; i += 3) {
+    const y = positions[i + 1];
+    positions[i + 1] = positions[i + 2];
+    positions[i + 2] = -y;
+  }
+}
+
+/**
+ * How to get from the scanner's millimetres back to the model's.
+ *
+ * The build does two things to every vertex and, until now, RECORDED NEITHER:
+ * it rotates LPS to the Y-up convention glTF wants, then subtracts the centre
+ * of the dental content so the model sits on the origin. Both are needed to
+ * relate anything in the app to the volume, the landmark JSONs or a DRR
+ * reference render -- and the centre is computed from the bounding box at build
+ * time, so it is not a constant anyone can look up. Without this block the
+ * mapping existed only inside this file.
+ *
+ * Matrices are 4x4 ROW-MAJOR and act on column vectors.
+ */
+function frameRecord(center) {
+  const [cx, cy, cz] = center;
+  return {
+    units: 'mm',
+    note: 'app = rotate(LPS) - centre. Rotation sends (x, y, z) to (x, z, -y), '
+        + 'which is a proper rotation, so mesh winding and handedness are '
+        + 'unchanged. Centre is the midpoint of the bounding box of the '
+        + 'framing layers, computed at build time.',
+    centre_app_mm: [cx, cy, cz],
+    lps_to_app: [1, 0, 0, -cx,
+                 0, 0, 1, -cy,
+                 0, -1, 0, -cz,
+                 0, 0, 0, 1],
+    app_to_lps: [1, 0, 0, cx,
+                 0, 0, -1, -cz,
+                 0, 1, 0, cy,
+                 0, 0, 0, 1],
+  };
+}
+
+function bounds(positions) {
+  const min = [Infinity, Infinity, Infinity];
+  const max = [-Infinity, -Infinity, -Infinity];
+  for (let i = 0; i < positions.length; i += 3) {
+    for (let a = 0; a < 3; a++) {
+      const v = positions[i + a];
+      if (v < min[a]) min[a] = v;
+      if (v > max[a]) max[a] = v;
+    }
+  }
+  return { min, max };
+}
+
+/**
+ * Guard against a mirrored model — an atlas that confidently labels the wrong
+ * side is worse than no atlas. Anatomical right is negative x in this dataset
+ * (verified: right upper central incisor at x[-9.1,-0.8]). Any structure whose
+ * FMA label says "right" but whose geometry sits on +x means the axes got
+ * flipped somewhere, and the build must fail rather than ship it.
+ */
+/**
+ * Laterality is checked against the DENTAL MIDLINE, not the framing centre.
+ *
+ * Those are different things and conflating them is a real bug, not a
+ * technicality. The framing centre is the middle of the model's bounding box,
+ * chosen so the camera sits well; the dental midline is anatomy. They coincide
+ * only when the subject happened to be centred in the scanner.
+ *
+ * This surfaced when CBCT teeth were first built alongside BodyParts3D jaws.
+ * The operator's arch sits 3.6 mm to their left of the scanner's origin — head
+ * position, not anatomy — while the BodyParts3D dentition sits at -0.7 mm, so a
+ * bounding box spanning both put the "centre" between two different people. The
+ * lower right central incisor, 2.8 mm from its own true midline, fell on the
+ * wrong side of it and the check failed. Nothing was mirrored.
+ *
+ * Measuring the midline from the teeth of the model itself makes the check
+ * independent of framing and of how the subject was positioned, which is what it
+ * was always meant to test.
+ */
+function dentalMidline(meshes) {
+  const teeth = meshes.filter((m) => m.s.layer === 'teeth');
+  if (!teeth.length) return 0;
+  let lo = Infinity, hi = -Infinity;
+  for (const m of teeth) {
+    for (let i = 0; i < m.positions.length; i += 3) {
+      if (m.positions[i] < lo) lo = m.positions[i];
+      if (m.positions[i] > hi) hi = m.positions[i];
+    }
+  }
+  return (lo + hi) / 2;
+}
+
+/**
+ * How many separate shells a mesh is made of.
+ *
+ * A tooth is one solid, so its surface is one shell. This went unchecked until
+ * 2026-09-03 and 23 of 28 teeth were shipping in two or more pieces: the
+ * grey-level isosurface closes a second shell of about 25 mm3 around the pulp
+ * chamber on every molar, because DentalSegmentator does not include the pulp
+ * in the tooth label, and the restoration-density claiming had left teeth 20
+ * and 29 in 27 and 23 pieces against their crowned neighbours. The masks were
+ * single components throughout, so nothing upstream of the mesher was wrong and
+ * nothing upstream of the mesher would have caught it.
+ *
+ * Union-find over shared vertices, on the WELDED positions -- unwelded, every
+ * triangle is its own island and the count is meaningless.
+ */
+function shellCount(positions, indices) {
+  const n = positions.length / 3;
+  const parent = new Int32Array(n);
+  for (let i = 0; i < n; i++) parent[i] = i;
+  const find = (a) => { while (parent[a] !== a) { parent[a] = parent[parent[a]]; a = parent[a]; } return a; };
+  const union = (a, b) => { const ra = find(a), rb = find(b); if (ra !== rb) parent[ra] = rb; };
+  for (let i = 0; i < indices.length; i += 3) {
+    union(indices[i], indices[i + 1]);
+    union(indices[i + 1], indices[i + 2]);
+  }
+  const roots = new Set();
+  for (let i = 0; i < indices.length; i++) roots.add(find(indices[i]));
+  return roots.size;
+}
+
+function checkLaterality(report, midline = 0) {
+  const failures = [];
+  for (const { fma, name, side, centroidX } of report) {
+    const x = centroidX - midline;
+    if (side === 'right' && x > 0) failures.push(`${fma} ${name}: side=right but centroid x=${x.toFixed(1)} relative to the dental midline`);
+    if (side === 'left' && x < 0) failures.push(`${fma} ${name}: side=left but centroid x=${x.toFixed(1)} relative to the dental midline`);
+  }
+  return failures;
+}
+
+async function main() {
+  await mkdir(OUT_DIR, { recursive: true });
+
+  const doc = new Document();
+  doc.createBuffer();
+  const scene = doc.createScene('oral-anatomy');
+
+  // A layer with no entry in MATERIALS used to emit primitives with no material
+  // at all, and glTF's default for that is white, fully METALLIC and
+  // single-sided. At full opacity a rough metal under this environment happens
+  // to look like pale bone, so `midface` and `ramus` shipped in 0.4.0 looking
+  // almost right and only went wrong when their opacity slider was moved: a
+  // metal has no diffuse term, so blending one leaves grey smoke rather than
+  // translucent bone. Fail the build instead of letting a new layer inherit that.
+  // A structure may override its layer's appearance with `material`, which is
+  // how one vascular toggle carries red arteries and blue veins. That override
+  // needs the SAME check: an unknown material name would quietly fall back to
+  // the layer and every vessel would come out arterial red, which is a wrong
+  // drawing rather than an obviously broken one.
+  const usedLayers = [...new Set(STRUCTURES.map((s) => s.layer))];
+  const usedMaterials = [...new Set(STRUCTURES.map((s) => s.material).filter(Boolean))];
+  const unstyled = [...usedLayers, ...usedMaterials].filter((k) => !MATERIALS[k]);
+  if (unstyled.length) {
+    console.error('MATERIAL CHECK FAILED — these have no appearance and would fall back');
+    console.error("to glTF's default white metal, or silently to their layer's colour:");
+    for (const l of unstyled) console.error(`  ${l} — add an entry to MATERIALS in tools/build-assets.mjs`);
+    process.exit(1);
+  }
+
+  const materials = {};
+  for (const key of [...usedLayers, ...usedMaterials]) {
+    const spec = MATERIALS[key];
+    materials[key] = doc.createMaterial(key)
+      .setBaseColorFactor(spec.baseColorFactor)
+      .setRoughnessFactor(spec.roughnessFactor)
+      .setMetallicFactor(spec.metallicFactor)
+      .setDoubleSided(true);
+  }
+
+/**
+ * Push a shell outward along its own normals.
+ *
+ * WHY THE ENAMEL NEEDS IT. Enamel's outer surface IS the crown surface -- they
+ * are the same anatomical boundary -- but the cap and the tooth were meshed
+ * independently from the same volume, so their outer surfaces sit a median
+ * 0.23 mm apart (p90 0.58) and CROSS each other repeatedly. Wherever the tooth
+ * wins you see tooth, wherever the enamel wins you see enamel, and the result
+ * is the blotchy patchwork the operator photographed: those white islands are
+ * intersection curves between two surfaces that should have been one.
+ *
+ * A DISPLAY SHIM, AND SAID SO. It moves the enamel by less than the disagreement
+ * between the two meshings, so it changes nothing that was measured -- the cap's
+ * thickness, extent and position all stand. The real fix is to build the cap so
+ * its outer boundary is the tooth's own surface rather than a second
+ * thresholding of it, which needs enamel.py and an asset rebuild; it is in
+ * docs/wishlist.md.
+ */
+function inflateAlongNormals(positions, indices, mm) {
+  const normals = computeSmoothNormals(positions, indices);
+  for (let i = 0; i < positions.length; i += 3) {
+    positions[i] += normals[i] * mm;
+    positions[i + 1] += normals[i + 1] * mm;
+    positions[i + 2] += normals[i + 2] * mm;
+  }
+}
+
+  // Pass 1: load, weld, reorient. Defer centering until we know the extent of
+  // the dental content.
+  const meshes = [];
+  for (const s of STRUCTURES) {
+    const raw = await readFile(join(STL_DIR, `${s.fma}.stl`));
+    const soup = parseBinarySTL(raw);
+    const rawVerts = soup.length / 3;
+    const { positions, indices } = weldExact(soup);
+    toYUp(positions);
+
+    // ORIENT EVERY CLOSED SURFACE OUTWARD. The tube generators that draw the
+    // nerves and vessels wind their triangles according to the direction the
+    // centreline happens to run, so 30 of the 150 meshes shipped inward-facing
+    // -- 13 of 15 nerves and 17 of 19 vessels. Double-sided materials hid it in
+    // the 3D view; the DRR cannot ignore it, because path length is accumulated
+    // as back-face depth minus front-face depth and an inverted solid
+    // SUBTRACTS itself from the image.
+    //
+    // Only closed surfaces are touched. Signed volume is meaningless on a
+    // surface with holes, so flipping one on that basis would be a coin toss.
+    // The enamel is lifted clear of the tooth it sits on. See
+    // inflateAlongNormals -- without it the two surfaces interleave and the
+    // crown renders as blotches.
+    if (s.layer === 'enamel') inflateAlongNormals(positions, indices, ENAMEL_LIFT_MM);
+
+    const open = boundaryEdges(indices);
+    let flipped = false;
+    if (open === 0 && signedVolume(positions, indices) < 0) {
+      flipWinding(indices);
+      flipped = true;
+    }
+    meshes.push({ s, positions, indices, rawVerts, weldedVerts: positions.length / 3,
+                  open, flipped });
+  }
+
+  // Report openness rather than fixing it silently: a mesh with holes is a
+  // defect in whatever generated it, and the DRR needs to know which structures
+  // it cannot integrate honestly.
+  const opened = meshes.filter((m) => m.open > 0);
+  const reoriented = meshes.filter((m) => m.flipped);
+  console.log(`reoriented      ${reoriented.length} closed meshes wound inward`);
+  if (opened.length) {
+    const byLayer = {};
+    for (const m of opened) byLayer[m.s.layer] = (byLayer[m.s.layer] || 0) + 1;
+    console.log(`OPEN SURFACES   ${opened.length} with holes: `
+      + Object.entries(byLayer).map(([l, n]) => `${l} ${n}`).join(', '));
+  }
+
+  // Center on the dentition and its supporting bone, not on the muscles — the
+  // masseters reach the zygomatic arch and would pull the framing off the teeth.
+  // Nerves are excluded for a sharper reason: the maxillary trunks are
+  // SCHEMATIC and run an arbitrary distance (TRUNK_RUN_MM) out of the plexus,
+  // so including them would let a drawing choice move the whole model. It did:
+  // adding them shifted the centre ~1 mm and tripped the laterality assertion
+  // on the right maxilla, whose centroid sits close to the midline anyway.
+  // The two focused-exposure layers are excluded for the masseter reason in a
+  // new costume: the mid-face reaches 75 mm above the occlusal plane and the
+  // ramus 61 mm below it, and including either moved the centre off the teeth
+  // (19 mm for the mid-face alone). Both are measured anatomy rather than a
+  // drawing choice, so "exclude it because it is invented" does not apply and
+  // "exclude it because framing is not its job" does.
+  // Arteries join for the nerves' reason exactly: the mental artery runs an
+  // arbitrary 7 mm out of its foramen because the face it would reach is not in
+  // the scan, and letting that stub decide the camera is a drawing choice
+  // moving the whole model. It did — adding the two arteries widened the framed
+  // extent from 82.1 x 81.2 to 84.8 x 84.1 mm before this line included them.
+  const NOT_FRAMING = new Set(['muscles', 'nerves', 'vessels', 'midface', 'ramus']);
+  const dental = meshes.filter((m) => !NOT_FRAMING.has(m.s.layer));
+  const all = new Float32Array(dental.reduce((n, m) => n + m.positions.length, 0));
+  let at = 0;
+  for (const m of dental) { all.set(m.positions, at); at += m.positions.length; }
+  const b = bounds(all);
+  const center = [0, 1, 2].map((a) => (b.min[a] + b.max[a]) / 2);
+  const extent = [0, 1, 2].map((a) => b.max[a] - b.min[a]);
+
+  // Invariant 6: every structure states how it was made. Cheapest to enforce
+  // now -- each structure added without it is one more to backfill later, and a
+  // structure whose provenance is unstated defaults to looking as trustworthy as
+  // the measured anatomy beside it.
+  const unlabelled = STRUCTURES.filter((s) => !provenance(s));
+  if (unlabelled.length) {
+    console.error('PROVENANCE CHECK FAILED — these structures do not say how they were made:');
+    for (const s of unlabelled) console.error(`  ${s.fma} (${s.layer}) — add an entry in tools/manifest.mjs`);
+    process.exit(1);
+  }
+
+  // A tooth is one solid, so its surface is one shell. Checked on the WELDED
+  // mesh, which is the first point where connectivity means anything.
+  const fragmented = meshes
+    .filter((m) => m.s.layer === 'teeth')
+    .map((m) => [m.s, shellCount(m.positions, m.indices)])
+    .filter(([, k]) => k !== 1);
+  if (fragmented.length) {
+    console.error('CONNECTIVITY CHECK FAILED — these teeth are not a single shell:');
+    for (const [s, k] of fragmented) {
+      console.error(`  ${s.fma} (Universal ${toothNotation(s)?.universal}) — ${k} separate pieces`);
+    }
+    console.error('  The mask is one component; the mesher is what split it.');
+    console.error('  See keep_solid() in tools/cbct/export_teeth.py.');
+    process.exit(1);
+  }
+
+  // Pass 2: center, compute normals, emit glTF nodes.
+  const report = [];
+  const teethJson = {};
+  let totalTris = 0;
+
+  for (const { s, positions, indices, rawVerts, weldedVerts } of meshes) {
+    for (let i = 0; i < positions.length; i += 3) {
+      positions[i] -= center[0];
+      positions[i + 1] -= center[1];
+      positions[i + 2] -= center[2];
+    }
+
+    const normals = computeSmoothNormals(positions, indices);
+
+    const prim = doc.createPrimitive()
+      .setAttribute('POSITION', doc.createAccessor(`${s.fma}_P`).setType('VEC3').setArray(positions))
+      .setAttribute('NORMAL', doc.createAccessor(`${s.fma}_N`).setType('VEC3').setArray(normals))
+      .setIndices(doc.createAccessor(`${s.fma}_I`).setType('SCALAR').setArray(indices))
+      .setMaterial(materials[s.material ?? s.layer]);
+
+    // Node name is the FMA id: the join key the app uses to look up metadata.
+    const node = doc.createNode(s.fma).setMesh(doc.createMesh(s.fma).addPrimitive(prim));
+    scene.addChild(node);
+
+    let cx = 0;
+    for (let i = 0; i < positions.length; i += 3) cx += positions[i];
+    cx /= positions.length / 3;
+
+    const name = structureName(s);
+    const notation = toothNotation(s);
+    report.push({ fma: s.fma, name, side: s.side, centroidX: cx, rawVerts, weldedVerts });
+    totalTris += indices.length / 3;
+
+    teethJson[s.fma] = {
+      fma: s.fma,
+      name,
+      layer: s.layer,
+      side: s.side,
+      provenance: provenance(s),
+      // The parent tooth, for enamel, pulp, PDL, lamina and crowns. Without it
+      // a per-tooth structure is an orphan in the app: it carries no notation of
+      // its own (toothNotation only answers for the teeth layer), so anything
+      // wanting "which tooth is this" had no way to ask. Radiograph mode needs
+      // exactly that -- clicking a tooth's enamel must aim the tube at the
+      // tooth, and on a crowded arch the enamel is often the only thing a
+      // pointer can reach.
+      ...(s.tooth ? { tooth: s.tooth } : {}),
+      ...(notation ? { ...notation, arch: s.arch, position: s.position, type: s.type } : {}),
+    };
+  }
+
+  const midline = dentalMidline(meshes) - center[0];
+  const failures = checkLaterality(report, midline);
+  if (failures.length) {
+    console.error('LATERALITY CHECK FAILED — the model may be mirrored:');
+    for (const f of failures) console.error(`  ${f}`);
+    process.exit(1);
+  }
+
+  // Invariant 5: the tooth numbering must agree with the tooth shapes. The
+  // laterality check above catches a structure on the wrong SIDE; this catches
+  // one at the wrong POSITION, which no amount of internal consistency in the
+  // notation derivation can reveal. See tools/tooth-morphology.mjs.
+  const measured = meshes
+    .filter((m) => m.s.layer === 'teeth')
+    .map((m) => ({ ...measureTooth(m), universal: +toothNotation(m.s).universal }));
+  const idFailures = checkToothIdentity(measured);
+  if (idFailures.length) {
+    console.error('TOOTH IDENTITY CHECK FAILED — a tooth is numbered as something it is not:');
+    for (const f of idFailures) console.error(`  ${f}`);
+    process.exit(1);
+  }
+
+  // COMPRESS THE GEOMETRY, because the first load is 15 MB of raw float32 and
+  // that is what a stranger on a phone pays to open the atlas at all.
+  //
+  // meshopt quantizes positions to normalized int16 and stores the
+  // dequantization on each node, then entropy-codes the buffers. Everything in
+  // src/ that reads geometry -- occupancy.js, exposure.js, drr.js, drr-page.js
+  // -- already composes mesh.matrixWorld, so the added per-node transform is
+  // picked up for free. Node NAMES stay on the mesh node, which is what
+  // scene.js keys every structure off.
+  //
+  // QUANTIZATION IS LOSSY, so it is measured rather than assumed:
+  // quantizationVolume 'mesh' gives each structure its own quantization box,
+  // and against the uncompressed build that is 5.11 um worst case and 1.30 um
+  // RMS across all 180 structures. The CBCT it is all segmented from is
+  // 0.16 mm isotropic, so the error is ~31x finer than one source voxel and
+  // cannot move a surface anywhere the scan could resolve. The cheaper 'scene'
+  // volume measured 8.86 um / 4.34 um to save 0.33 MB, which is the wrong
+  // trade for measured anatomy.
+  await MeshoptEncoder.ready;
+  const io = new NodeIO();
+    
+  await io.write(join(OUT_DIR, 'dentition.glb'), doc);
+  await writeFile(
+    join(OUT_DIR, 'teeth.json'),
+    JSON.stringify({ source: 'cbct', frame: frameRecord(center), layers: LAYERS, structures: teethJson },
+                   null, 2) + '\n',
+  );
+
+  const rawVerts = report.reduce((n, r) => n + r.rawVerts, 0);
+  const weldedVerts = report.reduce((n, r) => n + r.weldedVerts, 0);
+  const { size } = await import('node:fs').then((fs) => fs.promises.stat(join(OUT_DIR, 'dentition.glb')));
+
+  console.log(`structures      ${report.length}`);
+  console.log(`triangles       ${totalTris.toLocaleString()}`);
+  console.log(`vertices        ${rawVerts.toLocaleString()} -> ${weldedVerts.toLocaleString()} welded (${(100 - (weldedVerts / rawVerts) * 100).toFixed(1)}% reduction)`);
+  console.log(`extent (mm)     ${extent.map((v) => v.toFixed(1)).join(' x ')}  (dental content, centered)`);
+  console.log(`laterality      OK — all ${report.filter((r) => r.side !== 'midline').length} sided structures on the expected side`);
+  console.log(`tooth identity  OK — arch order and molar/canine morphology match all ${measured.length} tooth numbers`);
+  const tiers = STRUCTURES.reduce((n, s) => { const t = provenance(s).tier; n[t] = (n[t] || 0) + 1; return n; }, {});
+  console.log(`provenance      OK — ${Object.entries(tiers).map(([t, n]) => `${n} ${t}`).join(', ')}`);
+  console.log(`teeth           ${Object.values(teethJson).filter((t) => t.layer === 'teeth').length} (third molars extracted, not scanned)`);
+  console.log(`output          public/dentition.glb  ${(size / 1e6).toFixed(2)} MB`);
+}
+
+main().catch((err) => {
+  console.error(`build failed: ${err.message}`);
+  process.exit(1);
+});

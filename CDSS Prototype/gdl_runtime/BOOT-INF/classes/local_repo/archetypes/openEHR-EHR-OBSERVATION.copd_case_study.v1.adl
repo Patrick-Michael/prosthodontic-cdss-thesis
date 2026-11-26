@@ -1,0 +1,275 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.copd_case_study.v1
+
+concept
+	[at0000]	-- COPD study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet vid körning av KOL-studiens riktlinjer.">
+			use = <"Använd endast i samband med KOL-studien. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"kronisk obstruktiv lungsjukdom", "KOL", "body mass index", "BMI", "öppna jämförelser", "vårdtid", "sjukhusvård", "spirometri">
+			misuse = <"Använd inte i andra studier eller sammanhang utom när kriterierna är identiska med dem som definieras i KOL-studien">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the COPD study guidelines.">
+			use = <"Use only in relation to the COPD study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"chronic obstructive pulmonary disease", "COPD", "body mass index", "BMI", "healthcare indicators", "length of stay", "hospitalization", "spirometry">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the COPD study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"60D580CF7602AF4FC49AE1A303BBFC3E">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- COPD study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- COPD patients with completed spirometry within the last 12 months
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- Absent
+													at0009]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- BMI > 20 kg/m2
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- Absent
+													at0009]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- COPD patients that got hospitalized within the last 12 months
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- Absent
+													at0009]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Number of hospitalized days for patients with COPD
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- < 3 days
+													at0011, 	-- 3-5 days
+													at0012, 	-- 6-10 days
+													at0013, 	-- 11-20 days
+													at0014, 	-- 21-30 days
+													at0015]	-- > 30 days
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {	-- Length of stay
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+													>
+													["2"] = <
+														units = <"millisec">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"COPD study">
+					description = <"Quality indicators for chronic obstructive pulmonary disease care">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"COPD patients with completed spirometry within the last 12 months">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"BMI > 20 kg/m2">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"COPD patients that got hospitalized within the last 12 months">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Number of hospitalized days for patients with COPD">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"< 3 days">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"3-5 days">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"6-10 days">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"11-20 days">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"21-30 days">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"> 30 days">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Length of stay">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"KOL-studien">
+					description = <"Kvalitetsindikatorer för vård vid kronisk obstruktiv lungsjukdom">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"KOL-patienter med utförd spirometri inom de senaste 12 månaderna">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"BMI > 20 kg/m2">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"KOL-patienter som lagts in på sjukhus inom de senaste 12 månaderna">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Antal vårddagar för patienter med KOL">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"< 3 dagar">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"3-5 dagar">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"6-10 dagar">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"11-20 dagar">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"21-30 dagar">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"> 30 dagar">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Vårdtid">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

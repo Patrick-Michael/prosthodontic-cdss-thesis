@@ -1,0 +1,111 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.therapeutic_time_in_range.v0
+
+concept
+	[at0000]	-- Therapeutic time in range
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record therapeutic time in range">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"040EB21AFDA6DCA3DF30BD0B6E27A836">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Therapeutic time in range
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Therapeutic time in range
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::507]>
+												list = <
+													["1"] = <
+														units = <"%">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Method
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0007, 	-- Traditional
+													at0008, 	-- Cross Section Method
+													at0009]	-- Rosendaal
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Therapeutic time in range">
+					description = <"Recording of Therapeutic time in range">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Therapeutic time in range">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Method">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Traditional">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Cross Section Method">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Rosendaal">
+					description = <"*">
+				>
+			>
+		>
+	>

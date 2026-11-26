@@ -1,0 +1,128 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.sepsis_basic_demographic.v0
+
+concept
+	[at0000]	-- Sepsis basic demographic
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"CDS archetype to record demographic data for sepsis">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"605519A1D410702269D65FB2784D99E1">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Sepsis basic demographic
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Gender
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Male
+													at0006]	-- Female
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Age
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- 0-11 years
+													at0009, 	-- 12-18 years
+													at0010, 	-- 19-34 years
+													at0011, 	-- 35-65 years
+													at0012]	-- > 65 years
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sepsis basic demographic">
+					description = <"CDS archetype to record demographic data for sepsis">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Gender">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Male">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Female">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Age">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"0-11 years">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"12-18 years">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"19-34 years">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"35-65 years">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"> 65 years">
+					description = <"*">
+				>
+			>
+		>
+	>

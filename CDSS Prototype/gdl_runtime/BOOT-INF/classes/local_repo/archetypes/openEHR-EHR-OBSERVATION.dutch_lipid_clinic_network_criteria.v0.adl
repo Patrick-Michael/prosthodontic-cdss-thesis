@@ -1,0 +1,258 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.dutch_lipid_clinic_network_criteria.v0
+
+concept
+	[at0000]	-- Dutch lipid clinic network criteria
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2014-03-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the criteria for familial hypercholesterolemia that a patient has met based on the dutch lipid clinic network criteria.">
+			use = <"Use for recording information about FH in a specialized setting.">
+			keywords = <"Dutch Lipid Clinic Network Criteria", "DLCNC", "familial hypercholesterolemia">
+			misuse = <"Do not use to record information in a general practitioner's setting. Use instead openEHR-EHR-OBSERVATION.screening_criteria_for_familial_hypercholesteroloemia.v1.adl">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Ackermann E, Harris M, Alexander K, Arcus M, Bailey L, Bennet J, et al. Guidelines for preventive activities in general practice, 8th edn - Appendix 1 : Dutch Lipid Clinic Network Criteria for making a diagnosis of Familial Hypercholesteroloemia ( FH ) in adults. East Melbourne; 2012. p. 115–6.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"C80F4B69A1FED525D7FAEE53F6E3B32A">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Dutch lipid clinic network criteria
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0004] occurrences matches {0..1} matches {	-- Family history
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0005] occurrences matches {0..1} matches {	-- First-degree relative with known premature coronary and/or vascular disease or LDL-cholesterol above the 95th percentile for age and sex
+												value matches {
+													0|[local::at0007], 	-- Absent
+													1|[local::at0008]  	-- Present
+												}
+											}
+											ELEMENT[at0006] occurrences matches {0..1} matches {	-- First-degree relative with tendinous xanthomata and/or arcus cornealis or Children aged less than 18 years with LDL-cholesterol above the 95th percentile for age and
+												value matches {
+													0|[local::at0007], 	-- Absent
+													2|[local::at0008]  	-- Present
+												}
+											}
+										}
+									}
+									CLUSTER[at0011] occurrences matches {0..1} matches {	-- Clinical History
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Patient with premature coronary artery disease
+												value matches {
+													0|[local::at0007], 	-- Absent
+													2|[local::at0008]  	-- Present
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..1} matches {	-- Patient with premature cerebral or peripheral vascular disease
+												value matches {
+													0|[local::at0007], 	-- Absent
+													1|[local::at0008]  	-- Present
+												}
+											}
+										}
+									}
+									CLUSTER[at0018] occurrences matches {0..1} matches {	-- Physical examination
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0019] occurrences matches {0..1} matches {	-- Tendinous xanthomata
+												value matches {
+													0|[local::at0007], 	-- Absent
+													6|[local::at0008]  	-- Present
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {	-- Arcus cornealis prior to age 45 years
+												value matches {
+													0|[local::at0007], 	-- Absent
+													4|[local::at0008]  	-- Present
+												}
+											}
+										}
+									}
+									CLUSTER[at0025] occurrences matches {0..1} matches {	-- Lab tests
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0026] occurrences matches {0..1} matches {	-- LDL-cholesterol (mmol/L)
+												value matches {
+													0|[local::at0007], 	-- Absent
+													1|[local::at0029], 	-- LDL-C 4.0–4.9
+													3|[local::at0030], 	-- LDL-C 5.0–6.4
+													5|[local::at0031], 	-- LDL-C 6.5–8.4
+													8|[local::at0032]  	-- LDL-C ≥8.5
+												}
+											}
+											ELEMENT[at0027] occurrences matches {0..1} matches {	-- DNA analysis
+												value matches {
+													0|[local::at0007], 	-- Absent
+													8|[local::at0034]  	-- Functional mutation in the LDLR, APOB or PCSK9 gene
+												}
+											}
+										}
+									}
+									ELEMENT[at0041] occurrences matches {0..1} matches {	-- Total score
+										value matches {
+											DV_COUNT matches {*}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {	-- Stratification
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037, 	-- Definite FH
+													at0038, 	-- Probable FH
+													at0039, 	-- Possible FH
+													at0040]	-- Unlikely FH
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dutch lipid clinic network criteria">
+					description = <"Dutch lipid clinic network criteria for Familial Hypercholesterolemia">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Family history">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"First-degree relative with known premature coronary and/or vascular disease or LDL-cholesterol above the 95th percentile for age and sex">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"First-degree relative with tendinous xanthomata and/or arcus cornealis or Children aged less than 18 years with LDL-cholesterol above the 95th percentile for age and">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Clinical History">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Patient with premature coronary artery disease">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Patient with premature cerebral or peripheral vascular disease">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Physical examination">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Tendinous xanthomata">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Arcus cornealis prior to age 45 years">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Lab tests">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"LDL-cholesterol (mmol/L)">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"DNA analysis">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"LDL-C 4.0–4.9">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"LDL-C 5.0–6.4">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"LDL-C 6.5–8.4">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"LDL-C ≥8.5">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Functional mutation in the LDLR, APOB or PCSK9 gene">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Stratification">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Definite FH">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Probable FH">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Possible FH">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Unlikely FH">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Total score">
+					description = <"*">
+				>
+			>
+		>
+	>

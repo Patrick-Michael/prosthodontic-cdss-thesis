@@ -1,0 +1,83 @@
+
+extends Control
+
+@onready var odontogram = $MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld/Odontogram3D
+@onready var dental_camera: Camera3D = $MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld/DentalCamera
+
+@onready var viewport_container: Control = $MainLayout/VisualizationPanel/ViewportContainer
+@onready var bottom_toolbar: Control = $MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar
+@onready var rotation_gizmo: Control = $MainLayout/VisualizationPanel/RotationGizmo
+
+@export var pan_sensitivity: float = 0.08
+
+var panning: bool = false
+
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				var mouse_position: Vector2 = event.position
+
+				var inside_viewport: bool = (
+					viewport_container.get_global_rect().has_point(mouse_position)
+				)
+
+				var over_toolbar: bool = (
+					bottom_toolbar.get_global_rect().has_point(mouse_position)
+				)
+
+				var over_gizmo: bool = (
+					rotation_gizmo.get_global_rect().has_point(mouse_position)
+				)
+
+				panning = (
+					inside_viewport
+					and not over_toolbar
+					and not over_gizmo
+				)
+			else:
+				panning = false
+
+	if event is InputEventMouseMotion and panning:
+		var drag: Vector2 = event.relative
+
+		var camera_right: Vector3 = dental_camera.global_basis.x
+		var camera_up: Vector3 = dental_camera.global_basis.y
+
+		dental_camera.global_position += (
+			-camera_right * drag.x
+			+ camera_up * drag.y
+		) * pan_sensitivity
+
+
+func _on_jaw_opening_slider_value_changed(value: float) -> void:
+	odontogram.set_jaw_opening(value / 100.0)
+
+
+func _on_jaw_visibility_selector_item_selected(index: int) -> void:
+	match index:
+		0:
+			odontogram.show_both_jaws()
+		1:
+			odontogram.show_upper_jaw()
+		2:
+			odontogram.show_lower_jaw()
+
+
+func _on_reset_camera_button_pressed() -> void:
+	dental_camera.reset_camera()
+
+
+func _on_controls_help_button_pressed() -> void:
+	var popup: PanelContainer = $MainLayout/VisualizationPanel/ControlsPopup
+	var panel: Control = $MainLayout/VisualizationPanel
+
+	if popup.visible:
+		popup.hide()
+		return
+
+	popup.size = Vector2(520, 500)
+	popup.position = (panel.size - popup.size) / 2.0
+
+	popup.show()

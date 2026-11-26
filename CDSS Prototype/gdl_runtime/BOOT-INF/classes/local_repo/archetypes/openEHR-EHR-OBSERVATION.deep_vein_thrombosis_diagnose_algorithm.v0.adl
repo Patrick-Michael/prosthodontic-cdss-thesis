@@ -1,0 +1,160 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.deep_vein_thrombosis_diagnose_algorithm.v0
+
+concept
+	[at0000]	-- Dvt diagnose algorithm
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Associates the risk for having a deep venous thrombosis with the result of  the D-dimer laboratory test and provides reccomendations for performing ultrasound examination or not. ">
+			use = <"To associated the  risk calculation for deep venous trhombosis and relate it to the result of the D-dimer laboratiory test. To suggest wether an ultrasound examination is adequate or not in patients where deep venous thombosis is suspected. ">
+			keywords = <"D-dimer", "DVT", "deep vein thrombosis", "ultrsound ">
+			misuse = <"Do not use for other than deep venous thrombosis suspection patients. Use the resulsts as a complement for the clinical examination of the patient. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Eriksson H., et al. Djup Ventrombos. From www.internetmedicin.se, November 2015. 
+Socialstyrelsen. Socialstyrelsens riktlinjer för vård av blodpropp/venös tromboembolism 2004. Stockholm 2004. 
+Wells PS, Hirsh J, Anderson DR, et al. Accuracy of clinical assessment of deep-vein thrombosis. Lancet 1995;345:1326-30">
+		["MD5-CAM-1.0.1"] = <"C44E80E476D619135A0EC4A5DC76C38A">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Dvt diagnose algorithm
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- D-dimer lab test
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- Positive
+													at0009, 	-- Negative
+													at0010]	-- Not performed 
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- Proximal ultrasound
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Positive
+													at0013]	-- Negative
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Negative proximal ultrasound
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015, 	-- Perform ultrasound of the under leg veins and Phlebography or repeat proxiaml ultrasound in a week 
+													at0017]	-- Stop
+												}
+											}
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- Perform proximal ultrasound
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {[local::at0020]}		-- Yes
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Dvt diagnose algorithm">
+					description = <"Diagnose algorithm for deep vein thrombosis ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0006"] = <
+					text = <"D-dimer lab test">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Positive">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Negative">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Not performed ">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Proximal ultrasound">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Positive">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Negative">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Negative proximal ultrasound">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Perform ultrasound of the under leg veins and Phlebography or repeat proxiaml ultrasound in a week ">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Stop">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Perform proximal ultrasound">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,328 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ischemic_heart_disease_case_study.v1
+
+concept
+	[at0000]	-- Ischemic heart disease study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet vid körning av studien ischemisk hjärtsjukdoms riktlinjer.">
+			use = <"Använd bara i förhållande till studien ischemisk hjärtsjukdom. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"öppna jämförelser", "vårtid", "sjukhusvård", "ischemisk hjärtsjukdom", "dödlighet", "överlevnad", "statiner", "antikoagulantia", "Socialstyrelsen">
+			misuse = <"Använd inte i andra studier eller sammanhang utom när kriterierna är identiska med dem som definieras i studien ischemisk hjärtsjukdom.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the ischemic heart disease study guidelines.">
+			use = <"Use only in relation to the ischemic heart disease study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"healthcare indicators", "length of stay", "hospitalization", "ischemic heart disease", "mortality", "survival", "statins", "anticoagulants", "Socialstyrelsen">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the ischemic heart disease study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"F05834F5C836BF334A923B119D60CFA9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Ischemic heart disease study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Anticoagulants in ischemic heart disease
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Absent
+													at0006]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Statins in ischemic heart disease
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Absent
+													at0006]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Ischemic heart disease patients that got hospitalized within the last 12 months
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Absent
+													at0006]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Number of hospitalized days for patients with ischemic heart disease
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- < 3 days
+													at0011, 	-- 3-5 days
+													at0012, 	-- 6-10 days
+													at0013, 	-- 11-20 days
+													at0014, 	-- 21-30 days
+													at0015]	-- > 30 days
+												}
+											}
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {	-- Length of stay
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+													>
+													["2"] = <
+														units = <"millisec">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- Ischemic heart disease mortality
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018, 	-- Died within 28 days
+													at0019, 	-- Died within 29-90 days
+													at0020, 	-- Died after 90 days
+													at0021]	-- Alive
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ischemic heart disease study">
+					description = <"Quality indicators for the care and treatment of ischemic heart disease.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Anticoagulants in ischemic heart disease">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Statins in ischemic heart disease">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Ischemic heart disease patients that got hospitalized within the last 12 months">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Number of hospitalized days for patients with ischemic heart disease">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"< 3 days">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"3-5 days">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"6-10 days">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"11-20 days">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"21-30 days">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"> 30 days">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Length of stay">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Ischemic heart disease mortality">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Died within 28 days">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Died within 29-90 days">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Died after 90 days">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Alive">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Studien ischemisk hjärtsjukdom">
+					description = <"Kvalitetsindikatorer för vård och behandling vid ischemisk hjärtsjukdom">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Antikoagulantia vid ischemisk hjärtsjukdom">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Statiner vid ischemisk hjärtsjukdom">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Patienter med ischemisk hjärtsjukdom som lagts in på sjukhus inom de senaste 12 månaderna">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Antal vårddagar för patienter med ischemisk hjärtsjukdom">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"< 3 dagar">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"3-5 dagar">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"6-10 dagar">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"11-20 dagar">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"21-30 dagar">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"> 30 dagar">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Vårdtid">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Dödlighet vid ischemisk hjärtsjukdom">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Avliden inom 28 dagar">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Avliden inom 29-90 dagar">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Avliden efter 90 dagar">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Levande">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

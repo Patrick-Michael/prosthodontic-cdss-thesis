@@ -1,0 +1,38 @@
+{
+  "guideline": ".\\ruleset\\prosthetic_cdss_demo_guidelines.v0.gdl2.json",
+  "inputs": [
+    {
+      "element_id": "gt0006",
+      "type": "boolean",
+      "value": true
+    },
+    {
+      "element_id": "gt0007",
+      "type": "boolean",
+      "value": true
+    },
+    {
+      "element_id": "gt0008",
+      "type": "boolean",
+      "value": true
+    },
+    {
+      "element_id": "gt0009",
+      "type": "boolean",
+      "value": true
+    },
+    {
+      "element_id": "gt0010",
+      "type": "count",
+      "value": 1
+    },
+    {
+      "element_id": "gt0038",
+      "type": "quantity",
+      "value": 8.14,
+      "unit": "%",
+      "precision": 2
+    }
+    
+  ]
+}

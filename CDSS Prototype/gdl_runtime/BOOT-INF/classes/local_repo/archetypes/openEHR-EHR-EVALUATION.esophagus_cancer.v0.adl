@@ -1,0 +1,763 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.esophagus_cancer.v0
+
+concept
+	[at0000]	-- Esophagus cancer
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-06-17">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för Esofagus- och Kardiacancer. Patientens egna rapporterad och klinisk data registreras i denna archetype.">
+			use = <"Används för patienter med esofaguscancer eller kardiacancer.">
+			keywords = <"VBH", "värdebaserad sjukvård", "esophaguscancer", "kardiacancer", "cancer">
+			misuse = <"Används inte för annat än för att registrera information för esophagus och kardiacancer.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patient information for esophagus and cardia cancer. Both clinical data and patient-evaluation reported data are registred throught this archetype.">
+			use = <"Use for patients with esophagus cancer or cardia cancer.">
+			keywords = <"VBH", "value based healthcare", "esophagus cancer", "cardiac cancer", "cancer">
+			misuse = <"Do not use for other than to register patient data related to the cardia and esophagus cancer.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Mall för journaltabell Esofaguscancer\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"6E8BAFD227045AB3EF59E463CDA7D7E1">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Esophagus cancer
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date (time)
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Complications
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Oncology - Mucositis
+								value matches {
+									0|[local::at0005], 	-- Grade 0
+									1|[local::at0006], 	-- Grade 1
+									2|[local::at0007], 	-- Grade 2
+									3|[local::at0008], 	-- Grade 3
+									4|[local::at0009]  	-- Grade 4
+								}
+							}
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- Oncology - Esophagitis
+								value matches {
+									0|[local::at0011], 	-- Grade 0
+									1|[local::at0012], 	-- Grade 1
+									2|[local::at0013], 	-- Grade 2
+									3|[local::at0014], 	-- Grade 3
+									4|[local::at0015]  	-- Grade 4
+								}
+							}
+							ELEMENT[at0016] occurrences matches {0..1} matches {	-- Oncology - Neuropathy
+								value matches {
+									0|[local::at0017], 	-- Grade 0
+									1|[local::at0018], 	-- Grade 1
+									2|[local::at0019], 	-- Grade 2
+									3|[local::at0020], 	-- Grade 3
+									4|[local::at0021]  	-- Grade 4
+								}
+							}
+							ELEMENT[at0022] occurrences matches {0..1} matches {	-- Surgery
+								value matches {
+									0|[local::at0023], 	-- Grade 0
+									1|[local::at0024], 	-- Grade 1
+									2|[local::at0025], 	-- Grade 2
+									3|[local::at0026], 	-- Grade 3a
+									4|[local::at0027], 	-- Grade 3b
+									5|[local::at0028], 	-- Grade 4a
+									6|[local::at0029], 	-- Grade 4b
+									7|[local::at0030]  	-- Grade 5
+								}
+							}
+						}
+					}
+					ELEMENT[at0031] occurrences matches {0..1} matches {	-- Planned treatment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0032, 	-- Oncological and surgical
+									at0033, 	-- Oncological
+									at0034, 	-- Surgical
+									at0035]	-- Palliative
+								}
+							}
+						}
+					}
+					ELEMENT[at0036] occurrences matches {0..1} matches {	-- Care contact
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0037, 	-- Very good
+									at0038, 	-- Quite good
+									at0039, 	-- Quite bad
+									at0040, 	-- Very bad
+									at0041]	-- Not applicable
+								}
+							}
+						}
+					}
+					ELEMENT[at0042] occurrences matches {0..1} matches {	-- Do you have a contact nurse?
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0043, 	-- All the time
+									at0044, 	-- Partly
+									at0045, 	-- Never
+									at0046]	-- Do not know
+								}
+							}
+						}
+					}
+					ELEMENT[at0047] occurrences matches {0..1} matches {	-- Do you need some kind of support?
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0048, 	-- Yes
+									at0049, 	-- No
+									at0050]	-- Does not have any need for support
+								}
+							}
+						}
+					}
+					ELEMENT[at0051] occurrences matches {0..1} matches {	-- Have you understood the information you got?
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0052, 	-- Always
+									at0053, 	-- Often
+									at0054, 	-- Sometimes
+									at0055, 	-- Rarely
+									at0056]	-- Never
+								}
+							}
+						}
+					}
+					ELEMENT[at0057] occurrences matches {0..1} matches {	-- How has the information been?
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0037, 	-- Very good
+									at0038, 	-- Quite good
+									at0039, 	-- Quite bad
+									at0040, 	-- Very bad
+									at0041]	-- Not applicable
+								}
+							}
+						}
+					}
+					ELEMENT[at0058] occurrences matches {0..1} matches {	-- Eating problem
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0048, 	-- Yes
+									at0049]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0059] occurrences matches {0..1} matches {	-- Diet
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0060, 	-- Adjusted diet
+									at0061]	-- Normal diet
+								}
+							}
+						}
+					}
+					ELEMENT[at0062] occurrences matches {0..1} matches {	-- Weight before surgery
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::124]>
+								list = <
+									["1"] = <
+										units = <"kg">
+										magnitude = <|>=0.0|>
+										precision = <|2|>
+									>
+									["2"] = <
+										units = <"lb">
+										magnitude = <|>=0.0|>
+										precision = <|2|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0063] occurrences matches {0..1} matches {	-- Weight loss
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::507]>
+								list = <
+									["1"] = <
+										units = <"%">
+										magnitude = <|>=0.0|>
+										precision = <|2|>
+									>
+								>
+							>
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Esophagus cancer">
+					description = <"Patient information regarding esophagus and cardia cancer.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date (time)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Complications">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Oncology - Mucositis">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Grade 0">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Grade 1">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Grade 2">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Grade 3">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Grade 4">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Oncology - Esophagitis">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Grade 0">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Grade 1">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Grade 2">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Grade 3">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Grade 4">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Oncology - Neuropathy">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Grade 0">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Grade 1">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Grade 2">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Grade 3">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Grade 4">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Surgery">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Grade 0">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Grade 1">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Grade 2">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Grade 3a">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Grade 3b">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Grade 4a">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Grade 4b">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Grade 5">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Planned treatment">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Oncological and surgical">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Oncological">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Surgical">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Palliative">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Care contact">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Very good">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Quite good">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Quite bad">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Very bad">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Not applicable">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Do you have a contact nurse?">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"All the time">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"Partly">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Never">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Do not know">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Do you need some kind of support?">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Does not have any need for support">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Have you understood the information you got?">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Always">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Often">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Sometimes">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Rarely">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"Never">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"How has the information been?">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Eating problem">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Diet">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Adjusted diet">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"Normal diet">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"Weight before surgery">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"Weight loss">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Esofaguscancer">
+					description = <"Patientinformation relaterad till esofaguscancer och kardiacancer.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Datum (tid) för översyn">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Komplikationer">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Onkologi-Mukosit">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Grad 1">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Grad 2">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Grad 3">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Grad 4">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Onkologi-Esofagit">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Grad 1">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Grad 2">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Grad 3">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Grad 4">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Onkologi-Neuropati">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Grad 1">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Grad 2">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Grad 3">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Grad 4">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"Kirurgi">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"Grad 0">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Grad 1">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Grad 2">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Grad 3a">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Grad 3b">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Grad 4a">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"Grad 4b">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"Grad 5">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"Planerad behandling">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"Onkologisk och kirurgisk">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"Onkologisk">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"Kirurgisk">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"Palliativ">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"Vårdkontakt">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"Mycket bra">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"Ganska bra">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"Ganska dåligt">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <"Mycket dåligt">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"Ej aktuellt">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"Kontaktsjuksköterska">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"Hela tiden">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"Delar av tiden">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"Aldrig">
+					description = <"**(en)">
+				>
+				["at0046"] = <
+					text = <"Vet ej">
+					description = <"**(en)">
+				>
+				["at0047"] = <
+					text = <"Stödbehov">
+					description = <"**(en)">
+				>
+				["at0048"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0049"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0050"] = <
+					text = <"Har inte haft något behov av stöd">
+					description = <"**(en)">
+				>
+				["at0051"] = <
+					text = <"Förstått information">
+					description = <"**(en)">
+				>
+				["at0052"] = <
+					text = <"Alltid">
+					description = <"**(en)">
+				>
+				["at0053"] = <
+					text = <"Oftast">
+					description = <"**(en)">
+				>
+				["at0054"] = <
+					text = <"Ibland">
+					description = <"**(en)">
+				>
+				["at0055"] = <
+					text = <"Sällan">
+					description = <"**(en)">
+				>
+				["at0056"] = <
+					text = <"Aldrig">
+					description = <"**(en)">
+				>
+				["at0057"] = <
+					text = <"Information">
+					description = <"**(en)">
+				>
+				["at0058"] = <
+					text = <"Ätproblem">
+					description = <"**(en)">
+				>
+				["at0059"] = <
+					text = <"Kost">
+					description = <"**(en)">
+				>
+				["at0060"] = <
+					text = <"Anpassad kost">
+					description = <"**(en)">
+				>
+				["at0061"] = <
+					text = <"Normal kost">
+					description = <"**(en)">
+				>
+				["at0062"] = <
+					text = <"Vikt innan kirurgi">
+					description = <"**(en)">
+				>
+				["at0063"] = <
+					text = <"Viktförändring i %">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

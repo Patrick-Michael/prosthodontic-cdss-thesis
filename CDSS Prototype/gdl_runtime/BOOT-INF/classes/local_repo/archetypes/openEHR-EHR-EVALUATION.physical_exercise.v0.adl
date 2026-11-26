@@ -1,0 +1,176 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.physical_exercise.v0
+
+concept
+	[at0000]	-- Physical exercise
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"joana.vicente@cambio.se">
+		["date"] = <"2016-06-17">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record physical training and everyday exercise reported by the patient.">
+			use = <"Use to assess the physical training and everyday exercise based on asnwers provided by the patient.">
+			keywords = <"VBH", "value based healthcare", "physical exercise", "everyday exercise", "physical training">
+			misuse = <"Do not use for recording physical activity information that are not reported by the patient as a self-evaluation.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patientens fysisk träning och vardgasmotion.">
+			use = <"Används för att utvärdera fysisk tränning och vardagsmotion baserad på patientens svar.">
+			keywords = <"VBH", "värdebaserad sjukvård", "fysisk tränning", "vardgasmotion", "tränning">
+			misuse = <"Används inte för att registrera  fysisk tränning och vardagsmotion som inte rapporteras av patienten.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Mall för journaltabell Esofaguscancer\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"240047D1C5ECD3BC196EE5E4D3B47678">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Physical exercise
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date (time)
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Everyday exercise
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::709]>
+								list = <
+									["1"] = <
+										units = <"min/wk">
+										magnitude = <|>=0.0|>
+										precision = <|2|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Physical training
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::709]>
+								list = <
+									["1"] = <
+										units = <"min/wk">
+										magnitude = <|>=0.0|>
+										precision = <|2|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Patient own reported physical capacity
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006, 	-- Self-perceived impaired
+									at0007]	-- Self-perceived normal
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Physical exercise">
+					description = <"Information regarding the physical activity of patients.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date (time)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Everyday exercise">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Physical training">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Patient own reported physical capacity">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Self-perceived impaired">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Self-perceived normal">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fysisk aktivitet">
+					description = <"För att registrera patientens fysisk tränning och vardgasmotion i antal minuter per vecka. ">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Datum (tid) för översyn">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Vardgasmotion">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Fysisk träning">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Patientens egenupplevd fysisk kapacitet">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Egenupplevd nedsatt">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Egenupplevd normal">
+					description = <"*">
+				>
+			>
+		>
+	>

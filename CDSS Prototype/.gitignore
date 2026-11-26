@@ -1,0 +1,61 @@
+
+# ==========================================
+# Python environments and generated files
+# ==========================================
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==========================================
+# Godot generated files
+# ==========================================
+.godot/
+
+# ==========================================
+# Java compiled files
+# ==========================================
+*.class
+bridge/build/
+bridge/target/
+
+# ==========================================
+# Credentials and local configuration
+# ==========================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+smart_registration.json
+
+# ==========================================
+# External installations
+# ==========================================
+open_emr/
+
+# ==========================================
+# Backups and temporary files
+# ==========================================
+Project Zips/
+*.bak
+*.tmp
+*.log
+*~
+
+# SQLite temporary files
+*.db-journal
+*.db-wal
+*.db-shm
+
+# ==========================================
+# Windows and macOS files
+# ==========================================
+Thumbs.db
+desktop.ini
+.DS_Store

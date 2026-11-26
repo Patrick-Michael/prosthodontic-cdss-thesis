@@ -1,0 +1,146 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.responsible_primary_care_unit.v1
+
+concept
+	[at0000]	-- Responsible primary care unit
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-06-27">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera information relaterad till patientens vårdcentral.">
+			use = <"Används som filter för patientens information baserad på derras inskrivna vårdcentral.">
+			keywords = <"*common categories(en)", "*primary care(en)", "*responsible primary care unit(en)">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information regarding the primary care center that a patient belongs to.">
+			use = <"Use as way to filter patient information based on the primary care center that they are registered.">
+			keywords = <"common categories", "primary care", "responsible primary care unit">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"2F16FE0A8093744ADCC6F0716754A897">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Responsible primary care unit
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Responsible primary care unit
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Registration start date/time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Registration end date/time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Responsible primary care unit">
+					description = <"Demographic information related to primary care center responsible for each patient's care.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Responsible primary care unit">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Registration start date/time">
+					description = <"The date and time when a patient was registered to belong to the primary care unit.">
+				>
+				["at0006"] = <
+					text = <"Registration end date/time">
+					description = <"The date and time when a patient stoped belonging to the primary care unit.">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Listad på">
+					description = <"Demographiska information relaterad till patientens ansvarig vårdcentral.">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Listad på">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Inskrivnings startdatum/tid">
+					description = <"*The date and time when a patient was registered to belong to the primary care unit.(en)">
+				>
+				["at0006"] = <
+					text = <"Inskrivnings slutdatum/tid">
+					description = <"*The date and time when a patient stoped belonging to the primary care unit.(en)">
+				>
+			>
+		>
+	>

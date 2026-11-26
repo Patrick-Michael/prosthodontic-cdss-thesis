@@ -1,0 +1,455 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_eortc_qlq_lc13.v0
+
+concept
+	[at0000]	-- ichom_Eortc qlq lc13
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"blanca.flores@cambio.se">
+		["date"] = <"2015-11-26">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register data from the European Organization for Research and Treatment of Cancer Quality of Life Lung Cancer-Specific Questionnaire (EORTC QLQ-C30) as part of the ICHOM Standard measurements.">
+			use = <"Use to register data from the EORTC QLQ-LC13 Questionnaire.">
+			keywords = <"lung cancer", "value based healthcare", "ICHOM">
+			misuse = <"Do not use for questionnaires other than the EORTC QLQ-LC13.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"EORTC QLQ.C30. European Organization for Research and Treatment of Cancer Quality of Life Lung Cancer-Specific Questionnaire. http://
+groups.eortc.be/qol/eortc-qlq-lc13">
+		["MD5-CAM-1.0.1"] = <"A6E7EC0010B3FA72F4C6A22CC199EAC5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- ichom_Eortc qlq lc13
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Q1. How much did you cough?
+										value matches {
+											1|[local::at0005], 	-- Not at all
+											2|[local::at0006], 	-- A little
+											3|[local::at0007], 	-- Quite a bit
+											4|[local::at0008]  	-- Very much
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Q2. Did you cough up blood? 
+										value matches {
+											1|[local::at0010], 	-- Not at all
+											2|[local::at0011], 	-- A little
+											3|[local::at0012], 	-- Quite a bit
+											4|[local::at0013]  	-- Very much
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Q3. Were you short of breath when you rested?
+										value matches {
+											1|[local::at0015], 	-- Not at all
+											2|[local::at0016], 	-- A little
+											3|[local::at0017], 	-- Quite a bit
+											4|[local::at0018]  	-- Very much
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- Q4. Were you short of breath when you walked?
+										value matches {
+											1|[local::at0020], 	-- Not at all
+											2|[local::at0021], 	-- A little
+											3|[local::at0022], 	-- Quite a bit
+											4|[local::at0023]  	-- Very much
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {	-- Q5. Were you short of breath when you climbed stairs? 
+										value matches {
+											1|[local::at0025], 	-- Not at all
+											2|[local::at0026], 	-- A little
+											3|[local::at0027], 	-- Quite a bit
+											4|[local::at0028]  	-- Very much
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {	-- Q6. Have you had a sore mouth or tongue?
+										value matches {
+											1|[local::at0030], 	-- Not at all
+											2|[local::at0031], 	-- A little
+											3|[local::at0032], 	-- Quite a bit
+											4|[local::at0033]  	-- Very much
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {	-- Q7. Have you had trouble swallowing?
+										value matches {
+											1|[local::at0037], 	-- Not at all
+											2|[local::at0038], 	-- A little
+											3|[local::at0039], 	-- Quite a bit
+											4|[local::at0040]  	-- Very much
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {	-- Q8. Have you had tingling hands or feet?
+										value matches {
+											1|[local::at0041], 	-- Not at all
+											2|[local::at0042], 	-- A little
+											3|[local::at0043], 	-- Quite a bit
+											4|[local::at0044]  	-- Very much
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {	-- Q9. Have you had hair loss?
+										value matches {
+											1|[local::at0045], 	-- Not at all
+											2|[local::at0046], 	-- A little
+											3|[local::at0047], 	-- Quite a bit
+											4|[local::at0048]  	-- Very much
+										}
+									}
+									ELEMENT[at0049] occurrences matches {0..1} matches {	-- Q10. Have you had pain in your chest?
+										value matches {
+											1|[local::at0050], 	-- Not at all
+											2|[local::at0051], 	-- A little
+											3|[local::at0052], 	-- Quite a bit
+											4|[local::at0053]  	-- Very much
+										}
+									}
+									ELEMENT[at0054] occurrences matches {0..1} matches {	-- Q11. Have you had pain in your arm or shoulder?
+										value matches {
+											1|[local::at0055], 	-- Not at all
+											2|[local::at0056], 	-- A little
+											3|[local::at0057], 	-- Quite a bit
+											4|[local::at0058]  	-- Very much
+										}
+									}
+									ELEMENT[at0059] occurrences matches {0..1} matches {	-- Q12. Have you had pain in other parts of your body?
+										value matches {
+											1|[local::at0060], 	-- Not at all
+											2|[local::at0061], 	-- A little
+											3|[local::at0062], 	-- Quite a bit
+											4|[local::at0063]  	-- Very much
+										}
+									}
+									ELEMENT[at0065] occurrences matches {0..1} matches {	-- Q12Sub. If yes, where?
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+									ELEMENT[at0066] occurrences matches {0..1} matches {	-- Q13. Did you take any medicine for pain?
+										value matches {
+											1|[local::at0067], 	-- Not at all
+											2|[local::at0068], 	-- A little
+											3|[local::at0069], 	-- Quite a bit
+											4|[local::at0070]  	-- Very much
+										}
+									}
+									ELEMENT[at0071] occurrences matches {0..1} matches {	-- Q13sub. If yes, how much did it help?
+										value matches {
+											DV_TEXT matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"ichom_Eortc qlq lc13">
+					description = <"Use to register data from the EORTC QLQ-LC30 Questionnaire.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Q1. How much did you cough?">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Q2. Did you cough up blood? ">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Q3. Were you short of breath when you rested?">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Q4. Were you short of breath when you walked?">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Q5. Were you short of breath when you climbed stairs? ">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Q6. Have you had a sore mouth or tongue?">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Q7. Have you had trouble swallowing?">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Q8. Have you had tingling hands or feet?">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Q9. Have you had hair loss?">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"Q10. Have you had pain in your chest?">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Q11. Have you had pain in your arm or shoulder?">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Q12. Have you had pain in other parts of your body?">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <"Q12Sub. If yes, where?">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"Q13. Did you take any medicine for pain?">
+					description = <"*">
+				>
+				["at0067"] = <
+					text = <"Not at all">
+					description = <"*">
+				>
+				["at0068"] = <
+					text = <"A little">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"Quite a bit">
+					description = <"*">
+				>
+				["at0070"] = <
+					text = <"Very much">
+					description = <"*">
+				>
+				["at0071"] = <
+					text = <"Q13sub. If yes, how much did it help?">
+					description = <"*">
+				>
+			>
+		>
+	>

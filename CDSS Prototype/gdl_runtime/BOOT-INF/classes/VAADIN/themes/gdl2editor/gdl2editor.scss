@@ -1,0 +1,366 @@
+//=======================GDL variables
+$gdl-background-color: #e6d8dd;
+$gdl-right-left-padding: 10px;
+$gdl-top-bottom-margin: 15px;
+
+//=======================Vaadin facebook theme variables
+$v-app-loading-text: "GDL2 Editor";
+$v-background-color: $gdl-background-color;
+$v-app-background-color: #e2e4fc;
+$v-panel-background-color: $gdl-background-color;
+$v-focus-color: #3b5998;
+$v-focus-style: 0 0 1px 1px rgba($v-focus-color, .5);
+$v-border-radius: 3px;
+$v-textfield-border-radius: 0;
+$v-font-family: Helvetica, Arial, 'lucida grande', tahoma, verdana, arial, sans-serif;
+$v-font-size: 14px;
+$v-font-color: #37404E;
+$v-font-weight: 400;
+$v-link-text-decoration: none;
+$v-shadow: 0 1px 0 (v-shade 0.2);
+$v-bevel: inset 0 1px 0 v-tint;
+$v-unit-size: 30px;
+$v-gradient: v-linear 12%;
+$v-overlay-shadow: 0 3px 8px v-shade, 0 0 0 1px (v-shade 0.7);
+$v-shadow-opacity: 20%;
+$v-selection-overlay-padding-horizontal: 0;
+$v-selection-overlay-padding-vertical: 6px;
+$v-selection-item-border-radius: 0;
+$v-layout-margin-top: $gdl-top-bottom-margin;
+$v-layout-margin-bottom: $gdl-top-bottom-margin;
+
+@import "../valo/valo.scss";
+
+@mixin gdl2editor {
+  @include valo;
+
+  .v-window-header {
+    background-color: $v-focus-color;
+    color: white;
+  }
+  .v-window-closebox {
+    background-color: $v-focus-color;
+  }
+  .v-window-outerheader {
+    background-color: $v-focus-color;
+  }
+  .v-window-closebox:hover {
+    color: white;
+  }
+
+  .v-menubar .v-menubar-menuitem {
+    background: $gdl-background-color;
+  }
+
+  .v-textfield {
+    width: 100%;
+  }
+
+  .v-textfield-wide {
+    width: 330px;
+  }
+  .v-margin-top {
+    padding: 0;
+  }
+
+  .v-margin-bottom-test-tab {
+    padding: 20px;
+  }
+
+  .v-panel-caption {
+    background-color: $gdl-background-color;
+  }
+
+  .v-spacing {
+    width: 0;
+    height: 0
+  }
+  .v-upload .v-button {
+    color: #3b5998;
+  }
+
+  .v-splitpanel-hsplitter {
+    width: 2px !important;
+  }
+
+  .v-splitpanel-hsplitter-locked {
+    border: 1px solid #b5aaae;
+  }
+  //=========================================application defined styles
+  .gdl-background {
+    .v-filterselect-input {
+      background: $gdl-background-color;
+    }
+  }
+
+  .v-caption.v-caption-gdl-bold-caption {
+    font-weight: bolder !important;
+    color: darkred;
+    text-align: center;
+  }
+
+  .gdl_icon_label {
+    padding-top: 5px;
+  }
+  .gdl-link-button.v-button:focus:after {
+    -webkit-box-shadow: 0 0 0 0;
+    box-shadow: 0 0 0 0;
+    border: none;
+  }
+
+  .element_link_button_black  {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+    color: #3b5998 !important;
+  }
+
+  .element_link_button_min_borders  {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    color: #45353b !important;
+  }
+
+  .child_indented_icon_label{
+    padding-top: 5px;
+    padding-left: 25px !important;
+  }
+
+  .child_indented_icon_label_level2{
+    padding-top: 5px;
+    padding-left: 50px !important;
+  }
+  .child_indented_icon_label_level3{
+    padding-top: 5px;
+    padding-left: 70px !important;
+  }
+  .page_body {
+    background: $gdl-background-color;
+    height: 100%;
+  }
+  .editable_select_list {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  .gdl_button_text_color {
+    color: #3b5998;
+  }
+
+  .gdl_red-color {
+    color: darkred;
+  }
+
+  .gdl_blue_color {
+    color: blue;
+  }
+
+  .droppable_container {
+    margin-right: 5px;
+    border-left: 0 !important;
+  }
+
+  .gdl_formlayout_without_indicator {
+    .v-formlayout-errorcell {
+      display: none;
+    }
+    .v-formlayout-error-indicator {
+      width: 0 !important;
+    }
+    padding-right: $gdl-right-left-padding;
+    padding-left: $gdl-right-left-padding;
+  }
+
+  .gdl_blue_label {
+    padding: 0 0 3px 0 !important;
+    font-size: 10px !important;
+    height: 20px;
+    border-radius: 0;
+    border: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background: transparent;
+    color: blue;
+  }
+
+  .gdl_body_size {
+    min-width: 1024px;
+    min-height: 600px;
+  }
+  .title_label {
+    padding-left: 180px;
+    color: black;
+    font-size: 25px;
+    font-weight: bold;
+  }
+  .founded_label {
+    padding-left: 10px;
+    color: white;
+    font-size: 8px;
+  }
+  .padding-right-left-10px {
+    padding-left: $gdl-right-left-padding;
+    padding-right: $gdl-right-left-padding;
+  }
+
+  .padding-right-left-5px {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .padding-right-left-3px {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  .indented_child_component {
+    padding-left: 25px;
+    min-height: 30px;
+  }
+  .not_indented_child_component {
+    padding-left: 0 !important;
+    min-height: 30px;
+  }
+
+  .indented_left_25 {
+    margin-left: 25px;
+  }
+
+  .indented_component {
+    padding-left: 25px !important;
+  }
+
+  .indented_component_level0 {
+    padding-left: 0px !important;
+  }
+
+  .indented_component_level1 {
+    padding-left: 25px !important;
+  }
+
+
+  .indented_component_level2 {
+    padding-left: 50px !important;
+  }
+
+  .indented_component_level3 {
+    padding-left: 75px !important;
+  }
+
+  .indented_component_level4 {
+    padding-left: 100px !important;
+  }
+
+  .indented_component_level5 {
+    padding-left: 125px !important;
+  }
+
+  .indented_component_level6 {
+    padding-left: 150px !important;
+  }
+
+  .indented_component_level7 {
+    padding-left: 175px !important;
+  }
+
+  .indented_component_level8 {
+    padding-left: 200px !important;
+  }
+
+  .indented_component_level9 {
+    padding-left: 225px !important;
+  }
+
+  .indented_component_level10 {
+    padding-left: 250px !important;
+  }
+
+
+
+
+  .no-left-padding {
+    padding-left: 0 !important;
+  }
+  .min-height-60 {
+    min-height: 60px;
+  }
+
+  .min-width-150 {
+    min-width: 150px;
+  }
+
+  .margin-right-left-10px {
+    margin-left: $gdl-right-left-padding;
+    margin-right: $gdl-right-left-padding;
+  }
+  .padding-top-bottom-10px {
+    padding-top: $gdl-right-left-padding;
+    padding-bottom: $gdl-right-left-padding;
+  }
+  .padding-bottom-10px {
+    padding-bottom: $gdl-right-left-padding;
+  }
+
+  .tree_panel {
+    background-color: white;
+  }
+  .bottom_padding_2px {
+    padding-bottom: 2px;
+  }
+
+  .editor_ui {
+    box-shadow: 0 0 10px rgba(50, 50, 50, 0.75);
+    height: 100%;
+    width: 90%;
+    min-width: 400px;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .page_header {
+    background: no-repeat url("img/cambio-logo-red.png") right center !important;
+    background-size: 15% 90% !important;
+    -moz-background-size: 15% 90% !important;
+    height: 40px;
+    max-height: 40px;
+    vertical-align: bottom;
+  }
+
+  .has_border {
+    border: 1px solid #c4b8bc;
+    border-radius: 2px 2px 0 0;
+    -webkit-box-shadow: inset 0 1px 0 #f3f2f2;
+    box-shadow: inset 0 1px 0 #f3f2f2;
+    overflow: visible !important;
+  }
+  .gdl-hidden {
+    display: none;
+  }
+
+  .execution-output {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 1.0em;
+    margin-right: 0;
+    border-left: 0.5em;
+    word-wrap: break-word; /* IE  */
+    white-space: -moz-pre-wrap; /* Firefox */
+  }
+
+  .execution-output-header {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0.5em 0;
+    word-wrap: break-word; /* IE  */
+    white-space: -moz-pre-wrap; /* Firefox */
+  }
+  .v-slot-no-height {
+    height: 0px !important;
+  }
+
+  .no-height {
+    height: 0px !important;
+  }
+
+  .gdl-green-color {
+    color: darkgreen !important;
+  }
+
+}

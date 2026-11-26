@@ -1,0 +1,396 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.cancer_process_overview.v0
+
+concept
+	[at0000]	-- Cancer process overview
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"konstantinos.kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-02-23">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record important information regarding the cancer treatment of patients.">
+			use = <"">
+			keywords = <"cancer", "process", "overview">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record important information regarding the cancer treatment of patients.(en)">
+			use = <"*(en)">
+			keywords = <"*cancer(en)", "*process(en)", "*overview(en)">
+			misuse = <"*(en)">
+			copyright = <"*Cambio Healthcare Systems(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems<konstantinos.kalliamvakos@cambio.se>">
+		["MD5-CAM-1.0.1"] = <"CA52AD59AB45AD62CA8A80CA50FBABB5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Cancer process overview
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..*} matches {	-- Cancer process phase
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- 1-Suspected
+													at0006, 	-- 2-Referral from suspicion
+													at0007, 	-- 3-Well grounded suspicion
+													at0008, 	-- 4-Referral from well grounded suspicion
+													at0009, 	-- 5-First visit to specialized care
+													at0010, 	-- 6-MDC
+													at0011, 	-- 7-Decision on treatment
+													at0012, 	-- 8-Treatment start
+													at0013]	-- 9-Follow up
+												}
+											}
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..*} matches {	-- Treatment intent
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0015, 	-- Curative-Chemotherapy
+													at0016, 	-- Curative-Surgery
+													at0017, 	-- Curative-Radiotherapy
+													at0018, 	-- Palliative-Chemotherapy
+													at0019, 	-- Palliative-Surgery
+													at0020]	-- Palliative-Radiotherapy
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..*} matches {	-- Treatment intent-Curative
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022, 	-- Chemotherapy
+													at0023, 	-- Surgery
+													at0024]	-- Radiotherapy
+												}
+											}
+										}
+									}
+									ELEMENT[at0025] occurrences matches {0..*} matches {	-- Treatment intent-Palliative
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022, 	-- Chemotherapy
+													at0023, 	-- Surgery
+													at0024]	-- Radiotherapy
+												}
+											}
+										}
+									}
+									ELEMENT[at0027] occurrences matches {0..1} matches {	-- Treatment intent category
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0028, 	-- Curative
+													at0029]	-- Palliative
+												}
+											}
+										}
+									}
+									ELEMENT[at0030] occurrences matches {0..1} matches {	-- Treatment type
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022, 	-- Chemotherapy
+													at0023, 	-- Surgery
+													at0024]	-- Radiotherapy
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Cancer process overview">
+					description = <"Summary of necessery information regarding the process status of cancer patients">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Cancer process phase">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"1-Suspected">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"2-Referral from suspicion">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"3-Well grounded suspicion">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"4-Referral from well grounded suspicion">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"5-First visit to specialized care">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"6-MDC">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"7-Decision on treatment">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"8-Treatment start">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"9-Follow up">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Treatment intent">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Curative-Chemotherapy">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Curative-Surgery">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Curative-Radiotherapy">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Palliative-Chemotherapy">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Palliative-Surgery">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Palliative-Radiotherapy">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Treatment intent-Curative">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Chemotherapy">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Surgery">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Radiotherapy">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Treatment intent-Palliative">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Treatment intent category">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Curative">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Palliative">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Treatment type">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Cancer process overview(en)">
+					description = <"*Summary of necessery information regarding the process status of cancer patients(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Cancerprocessfas">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"1-Misstanke">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"2-Remiss- ankomst misstanke">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"3-Välgrundad misstanke">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"4-Remiss ankomst välgrundad misstanke">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"5-Första besök i specialiserad vård">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"6-MDK">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"7-Behandlingsbeslut">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"8-Start av behandling">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"9-Follow up">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Behandlingsavsikt">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Kurativ-Kemoterapi">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Kurativ-Kirurgi">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Botande-Strålbehandling">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Palliativ-Kemoterapi">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Palliativ-Kirurgi">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Palliativ-Strålbehandling">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Behandlingsavsikt-Kurativ">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Kemoterapi">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Kirurgi">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Strålbehandling">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Behandlingsavsikt-Palliativ">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Behandlingsavsikt kategori">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Kurativ">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Palliativ">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Behandlingstyp">
+					description = <"*">
+				>
+			>
+		>
+	>

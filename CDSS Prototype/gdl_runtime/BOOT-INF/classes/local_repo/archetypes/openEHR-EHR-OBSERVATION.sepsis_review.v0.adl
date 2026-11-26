@@ -1,0 +1,433 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.sepsis_review.v0
+
+concept
+	[at0000]	-- Sepsis review
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To document a review of any possible sepsis condition of the subject of care ">
+			use = <"">
+			keywords = <"sepsis", "sepsis detection">
+			misuse = <"">
+			copyright = <"">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To document a review of any possible sepsis condition of the subject of care (en)">
+			use = <"*(en)">
+			misuse = <"*(en)">
+			copyright = <"*(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"318F489166A33E88151AEDF833E91F3E">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Sepsis review
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Sepsis
+										value matches {
+											0|[local::at0011], 	-- Unlikely sepsis
+											1|[local::at0012]  	-- Likely sepsis
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {	-- Infection data
+										value matches {
+											0|[local::at0040], 	-- PCT Absent
+											1|[local::at0041], 	-- CRP Absent
+											2|[local::at0048], 	-- CRP and PCT absent
+											3|[local::at0049]  	-- No missing data
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {	-- CRP > 80
+										value matches {
+											0|[local::at0037], 	-- Absent
+											1|[local::at0038]  	-- Present
+										}
+									}
+									ELEMENT[at0033] occurrences matches {0..1} matches {	-- PCT > 2
+										value matches {
+											0|[local::at0035], 	-- Absent
+											1|[local::at0036]  	-- Present
+										}
+									}
+									ELEMENT[at0031] occurrences matches {0..1} matches {	-- CRP time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0032] occurrences matches {0..1} matches {	-- PCT time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0042] occurrences matches {0..1} matches {	-- Sepsis time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {	-- CRP
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"mg/l">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- PCT
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::119]>
+												list = <
+													["1"] = <
+														units = <"ug/l">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0043] occurrences matches {0..1} matches {	-- Responsible Unit
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0044, 	-- ICU
+													at0045, 	-- Emergency Unit
+													at0046, 	-- Other
+													at0047]	-- Unknown
+												}
+											}
+										}
+									}
+									ELEMENT[at0050] occurrences matches {0..1} matches {	-- Established sepsis diagnosis
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0051, 	-- Sepsis diagnosed and Sepsis CDS detected
+													at0052, 	-- Sepsis diagnosed without Sepsis CDS detected
+													at0053]	-- Sepsis CDS detected without Sepsis diagnosed
+												}
+											}
+										}
+									}
+									ELEMENT[at0054] occurrences matches {0..1} matches {	-- Sepsis contact end time
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sepsis review">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0009"] = <
+					text = <"Sepsis">
+					description = <"Precondition: SIRS=Present">
+				>
+				["at0011"] = <
+					text = <"Unlikely sepsis">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Likely sepsis">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"CRP">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"PCT">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"CRP time">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"PCT time">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"PCT > 2">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"CRP > 80">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Infection data">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"PCT Absent">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"CRP Absent">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Sepsis time">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Responsible Unit">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"ICU">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Emergency Unit">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Other">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Unknown">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"CRP and PCT absent">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"No missing data">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Established sepsis diagnosis">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Sepsis diagnosed and Sepsis CDS detected">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Sepsis diagnosed without Sepsis CDS detected">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Sepsis CDS detected without Sepsis diagnosed">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Sepsis contact end time">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sepsis">
+					description = <"*unknown(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0009"] = <
+					text = <"*Sepsis(en)">
+					description = <"*Precondition: SIRS=Present(en)">
+				>
+				["at0011"] = <
+					text = <"Patient är osannolikt att vara sepsis positivt">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Patient är sannolikt att vara sepsis positivt">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"CRP">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"PCT">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"CRP tid">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"PCT tid">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"PCT > 2">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"CRP > 80">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"Finns ej">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"Finns">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"Finns ej">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"Finns">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"Infektionsmätvärde">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <"PCT Saknas">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"CRP Saknas">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"Sepsis tid">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"Ansvarig enhet">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"IVA">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"Akutvårdsavdelning">
+					description = <"**(en)">
+				>
+				["at0046"] = <
+					text = <"Annan">
+					description = <"**(en)">
+				>
+				["at0047"] = <
+					text = <"Okänt">
+					description = <"**(en)">
+				>
+				["at0048"] = <
+					text = <"*CRP and PCT absent(en)">
+					description = <"**(en)">
+				>
+				["at0049"] = <
+					text = <"*No missing data(en)">
+					description = <"**(en)">
+				>
+				["at0050"] = <
+					text = <"*Established sepsis diagnosis(en)">
+					description = <"**(en)">
+				>
+				["at0051"] = <
+					text = <"*Sepsis diagnosed and Sepsis CDS detected(en)">
+					description = <"**(en)">
+				>
+				["at0052"] = <
+					text = <"*Sepsis diagnosed without Sepsis CDS detected(en)">
+					description = <"**(en)">
+				>
+				["at0053"] = <
+					text = <"*Sepsis CDS detected without Sepsis diagnosed(en)">
+					description = <"**(en)">
+				>
+				["at0054"] = <
+					text = <"*Sepsis contact end time(en)">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>3Dentes — simulated radiograph</title>
+    <style>
+      :root { color-scheme: dark; }
+      body { margin: 0; background: #14161a; color: #d8dce3;
+             font: 14px/1.5 system-ui, sans-serif; padding: 16px; }
+      h1 { font-size: 15px; font-weight: 600; margin: 0 0 2px; letter-spacing: .02em; }
+      .sub { color: #8a93a0; font-size: 12px; margin-bottom: 14px; }
+      #film { width: 100%; max-width: 900px; display: block; background: #000;
+              border-radius: 3px; image-rendering: auto; }
+      .controls { display: flex; flex-wrap: wrap; gap: 16px; margin: 14px 0;
+                  max-width: 900px; align-items: center; }
+      label { display: flex; flex-direction: column; gap: 3px; font-size: 12px;
+              color: #8a93a0; }
+      input[type=range] { width: 150px; }
+      select { background: #1e2229; color: #d8dce3; border: 1px solid #333a44;
+               border-radius: 3px; padding: 3px 6px; }
+      b { color: #cfd6e0; font-weight: 600; }
+      button { background: #232830; color: #d8dce3; border: 1px solid #333a44;
+               border-radius: 3px; padding: 5px 11px; font-size: 12px; cursor: pointer; }
+      button:hover { background: #2b323c; }
+      button[aria-pressed="true"] { background: #1d4a63; border-color: #4aa3d8;
+                                    color: #cfe9f8; }
+      #caps, #readout { font-size: 11px; color: #78818e; max-width: 900px;
+                        margin-top: 8px; font-family: ui-monospace, monospace; }
+      #status { margin: 10px 0; }
+      .split { max-width: 900px; margin-top: 14px; }
+      #geom { width: 100%; display: block; background: #0d0f12;
+              border-radius: 3px; touch-action: none; }
+      .cap { font-size: 12px; color: #8a93a0; margin-bottom: 5px; }
+      .note { max-width: 900px; font-size: 12px; color: #78818e; margin-top: 14px;
+              border-top: 1px solid #262b33; padding-top: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>Simulated periapical</h1>
+    <div class="sub">Ray-integrated from the atlas's own meshes, with density per
+      tissue from the literature. Not a rendering of the scan.</div>
+    <div id="status"></div>
+    <canvas id="film"></canvas>
+    <div class="controls">
+      <label>Tooth <select id="tooth"></select></label>
+      <label><span id="kvpv">70 kVp</span>
+        <input id="kvp" type="range" min="50" max="90" step="1" value="70" /></label>
+      <label>Framing <span id="vshiftv">-4.0 mm</span>
+        <input id="vshift" type="range" min="-12" max="6" step="0.5" value="-4" /></label>
+      <label>Gamma <span id="gammav">1.00</span>
+        <input id="gamma" type="range" min="0.4" max="2.0" step="0.05" value="1" /></label>
+      <label>Receptor tilt <span id="tiltv">0&deg;</span>
+        <input id="tilt" type="range" min="0" max="40" step="1" value="0" /></label>
+      <label>Tube vertical <span id="vertv">0&deg;</span>
+        <input id="vert" type="range" min="-15" max="40" step="1" value="0" /></label>
+      <label>Aim error <span id="aimv">0 mm</span>
+        <input id="aim" type="range" min="-40" max="40" step="1" value="0" /></label>
+      <label>Field &oslash; <span id="fieldv">60 mm</span>
+        <input id="field" type="range" min="25" max="80" step="1" value="60" /></label>
+    </div>
+    <div class="controls">
+      <button id="preset-par" aria-pressed="false">Paralleling</button>
+      <button id="preset-bis" aria-pressed="false">Bisecting, correct</button>
+      <button id="preset-bad" aria-pressed="false">Bisecting, under-angled</button>
+    </div>
+    <div class="split">
+      <div>
+        <div class="cap">The exposure &mdash; film in blue, beam in yellow,
+          the tooth's long axis in green. Drag to orbit.</div>
+        <canvas id="geom"></canvas>
+      </div>
+    </div>
+    <div id="readout"></div>
+    <div id="caps"></div>
+    <div class="note">
+      Known and accepted: bone carries no trabecular pattern, because the model
+      has no trabecular geometry — it is one homogeneous solid. The zirconia
+      crowns on 19 and 30 clip to flat white: the beam is modelled at a single
+      effective energy, and 1.5&nbsp;mm of zirconia transmits about 10<sup>-9</sup>
+      of it. Both are consequences of decisions on the record in
+      <code>docs/drr-plan.md</code>, not defects.
+    </div>
+    <script type="module" src="/src/drr-page.js"></script>
+  </body>
+</html>

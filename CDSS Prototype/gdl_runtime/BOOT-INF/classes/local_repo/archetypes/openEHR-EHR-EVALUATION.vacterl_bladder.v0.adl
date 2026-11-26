@@ -1,0 +1,270 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_bladder.v0
+
+concept
+	[at0000]	-- Vacterl bladder
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patient information for birth defects VACTERL bladder.Clinical relevant data is registered throught this archetype.">
+			use = <"Use for patients with bladder problems and birth defects VACTERL.">
+			keywords = <"VACTERL", "urin leackage", "urinary infection", "catheterization", "micturition", "VBH", "value based healthcare">
+			misuse = <"Do not use for other than to register patient data related to VACTERL sindrome and related instestinal problems.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för urinblåsa relaterad till VACTERL syndrom. Klinisk data registreras i denna archetype.">
+			use = <"Används för patienter med VACTERL syndrom och urinblåsa problem.">
+			keywords = <"VACTERL", "urinläckage", "miktionskontroll", "inkontinenshjälpmedel", "urinvägsinfektion", "katetrisering", "VBH", "värdebaserad sjukvård">
+			misuse = <"Används inte för annat än för att registrera information för med VACTERL syndrom och urinblåsa problem.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Grundmall KB Esofagusatresi, analatresi, VACTERL\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"5BADD327500AD7DDDB69054B1782A4E8">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl bladder
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Micturition
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Micturition control 
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Yes
+											at0006, 	-- No
+											at0007]	-- Not relevant due to age
+										}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Incontinence aid 
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Yes
+											at0006]	-- No
+										}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0009] occurrences matches {0..1} matches {	-- Urine
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- Urine leackage
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0011, 	-- Everyday
+											at0012, 	-- About once a week
+											at0013, 	-- Once a month
+											at0014]	-- No
+										}
+									}
+								}
+							}
+							ELEMENT[at0015] occurrences matches {0..1} matches {	-- Urinary infection
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..100|}
+									}
+								}
+							}
+							ELEMENT[at0016] occurrences matches {0..1} matches {	-- Intermittent catheterization
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Yes
+											at0014]	-- No
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl bladder">
+					description = <"Patient information regarding bladder VACTERL birth defects.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Micturition">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Micturition control ">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Not relevant due to age">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Incontinence aid ">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Urine">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Urine leackage">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Everyday">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"About once a week">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Once a month">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Urinary infection">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Intermittent catheterization">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl urinblåsa">
+					description = <"Patientinformation relaterad till urinblåsa VACTERL- syndrom.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Uppföjlning datum/tid">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Miktion">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Miktionskontroll">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Ej relevant pga låg ålder">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Inkontinenshjälpmedel">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Urin">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Urinläckage">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Varje dag">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Någon gång i veckan">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Någon gång i månaden">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Urinvägsinfektion">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Ren intermittent katetrisering">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

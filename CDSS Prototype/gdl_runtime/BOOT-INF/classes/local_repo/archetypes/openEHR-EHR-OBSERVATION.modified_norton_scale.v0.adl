@@ -1,0 +1,461 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.modified_norton_scale.v0
+
+concept
+	[at0000]	-- Modified norton scale
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2015-01-15">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"The Modified Norton Scale is used as an instrument to access risk for pressure ulcers. ">
+			use = <"The Modified Norton Scale is an instrument that can ease the patient´s accessment for the risk to develop pressure ulcers. It should be used as a complement of the patient´s clinical accessment. Is often used for elderly but can be used for all patients. ">
+			keywords = <"Modified Norton Scale", "mNs", "ulcer", "pressure", "wound", "sore", "elderly">
+			misuse = <"Do not use for other than for the accessment of the risk for pressure ulcers. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Modifierad Nortonskala används som ett instrument för trycksårsriskbedömning.">
+			use = <" Modifierad Nortonskala är ett intrument som kan underlätta bedömningen av om en person löper risk att utveckla trycksår. Det ska användas som ett komplement för den kliniska bedömningen. Används ofta hos äldre men kan användas för alla patienter. ">
+			keywords = <"Modified Norton Scale", "mNs", "trycksår", "Riskbedömning", "sår", "äldre">
+			misuse = <"Används inte för annat än för att utvärdera och identifiera risk för trycksår. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Idwall E. Kvalitetsindikatorer inom omvårdnad. Gothia. 2013 
+Lindholm C. Modifierad Nortonskala. 2013:  hämtad from www.vårdhandboken.se November 2015. ">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"5B40DE10DE93B8A6AA4A4BC32F989529">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Modified norton scale
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Mental condition
+										value matches {
+											1|[local::at0005], 	-- No contact
+											2|[local::at0006], 	-- Cannot answer adequately
+											3|[local::at0007], 	-- Occasionaly confused
+											4|[local::at0008]  	-- Fully oriented
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Physical activity
+										value matches {
+											1|[local::at0010], 	-- Bedridden
+											2|[local::at0011], 	-- Chair bound
+											3|[local::at0012], 	-- Walks with help
+											4|[local::at0013]  	-- Ambulant
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- Mobility
+										value matches {
+											1|[local::at0015], 	-- Immobile
+											2|[local::at0016], 	-- Very limited
+											3|[local::at0017], 	-- Slightly limited
+											4|[local::at0018]  	-- Full
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- Food intake
+										value matches {
+											1|[local::at0020], 	-- < 1/2 portion
+											2|[local::at0021], 	-- 1/2 portion and/or equivalent
+											3|[local::at0022], 	-- 3/4 portion and/or equivalent
+											4|[local::at0023]  	-- 1 portion and/or equivalent
+										}
+									}
+									ELEMENT[at0024] occurrences matches {0..1} matches {	-- Fluid intake
+										value matches {
+											1|[local::at0025], 	-- < 500 ml/24hr
+											2|[local::at0026], 	-- 500-700 ml/24hr
+											3|[local::at0027], 	-- 700 - 1000 ml/24hr
+											4|[local::at0028]  	-- > 1000 ml/24hr
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {	-- Incontinence
+										value matches {
+											1|[local::at0030], 	-- Urine and feces
+											2|[local::at0031], 	-- Usually urine (catheter)
+											3|[local::at0032], 	-- Occasional
+											4|[local::at0033]  	-- None
+										}
+									}
+									ELEMENT[at0034] occurrences matches {0..1} matches {	-- Physical condition
+										value matches {
+											1|[local::at0035], 	-- Very poor
+											2|[local::at0036], 	-- Poor
+											3|[local::at0037], 	-- Fair
+											4|[local::at0038]  	-- Good
+										}
+									}
+									ELEMENT[at0039] occurrences matches {0..1} matches {	-- Total score
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|>=0|}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Modified norton scale">
+					description = <"Modiefied norton scale">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Mental condition">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No contact">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Cannot answer adequately">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Occasionaly confused">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Fully oriented">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Physical activity">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Bedridden">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Chair bound">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Walks with help">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Ambulant">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Mobility">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Immobile">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Very limited">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Slightly limited">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Full">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Food intake">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"< 1/2 portion">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"1/2 portion and/or equivalent">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"3/4 portion and/or equivalent">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"1 portion and/or equivalent">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Fluid intake">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"< 500 ml/24hr">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"500-700 ml/24hr">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"700 - 1000 ml/24hr">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"> 1000 ml/24hr">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Incontinence">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Urine and feces">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Usually urine (catheter)">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Occasional">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"None">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Physical condition">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Very poor">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Poor">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"Fair">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Good">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Total score">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Modifierad Nortonskala">
+					description = <"Modifierad Nortonskala">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Psykisk status">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Ej kontaktbar">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Svarar ej adekvat på tillta">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Stundtals förvirrad">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Helt orienterad till tid och rum">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Fysisk status">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Sängliggande">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Rullstolsburen (hela dagen)">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Går med hjälp av personal">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Går själv med eller utan hjälpmedel">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Rörelseförmåga">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Orörlig">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Mycket begränsad">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Något begränsad">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Full rörlighe">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Födointag">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Mindre än halv portion">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Halv portion">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"3/4 portion">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"Normal portion">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Vätskeintag">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Mindre än 500 ml/dygn">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"500-700 ml/dygn">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"700-1000 ml/dygn">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Mer än 1000 ml/dygn">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"Inkontinens">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"Urin- och tarminkontinent">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"Urin- eller tarminkontinent (KAD)">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"Tillfälligt (annars vanligen kontinent)">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"Allmäntillstånd">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"Mycket dåligt">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"Dåligt">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"Ganska gott">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"Gott">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"Poäng">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

@@ -1,0 +1,383 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_treatment_variables.v0
+
+concept
+	[at0000]	-- Ichom treatment variables
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"blanca.flores@cambio.se">
+		["date"] = <"2015-11-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register cancer treatment variables for the ICHOM data collection standards.">
+			use = <"To register treatment variables for the ICHOM data collection standards.">
+			keywords = <"ICHOM", "treatment", "cancer">
+			misuse = <"Do not use to register data outside the ICHOM measures. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"ICHOM Lung Cancer Data Collection Reference Guide. International Consortium for Health Outcome Measurement. Version 2.1. Revised April 24th, 2015. ">
+		["MD5-CAM-1.0.1"] = <"1D32BEAC1C8DF476E11940775191116D">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Ichom treatment variables
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0028] occurrences matches {0..1} matches {	-- Immunotherapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- IMMUNOTXSTARTDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0007] occurrences matches {0..1} matches {	-- IMMUNOTXSTOPDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0004] occurrences matches {0..1} matches {	-- IMMUNOTXONGOING
+												value matches {1|[local::at0005]}		-- Treatment ongoing
+											}
+											ELEMENT[at0009] occurrences matches {0..1} matches {	-- IMMUNOTX
+												value matches {
+													0|[local::at0010], 	-- No
+													1|[local::at0011]  	-- Yes
+												}
+											}
+										}
+									}
+									CLUSTER[at0029] occurrences matches {0..1} matches {	-- Chemotherapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0015] occurrences matches {0..1} matches {	-- CHEMOTXSTARTDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- CHEMOTXSTOPDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- CHEMOTXONGOING
+												value matches {1|[local::at0013]}		-- Treatment ongoing
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {	-- CHEMOTX
+												value matches {
+													0|[local::at0017], 	-- No
+													1|[local::at0018]  	-- Yes
+												}
+											}
+										}
+									}
+									CLUSTER[at0030] occurrences matches {0..1} matches {	-- Targeted therapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0022] occurrences matches {0..1} matches {	-- TARGETTXSTARTDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0021] occurrences matches {0..1} matches {	-- TARGETTXSTOPDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {	-- TARGETTXONGOING
+												value matches {1|[local::at0020]}		-- Treatment ongoing
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {	-- TARGETTX
+												value matches {
+													0|[local::at0032], 	-- No
+													1|[local::at0033]  	-- Yes
+												}
+											}
+										}
+									}
+									CLUSTER[at0034] occurrences matches {0..1} matches {	-- Radio therapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0023] occurrences matches {0..1} matches {	-- RADIOTXONGOING
+												value matches {1|[local::at0024]}		-- Treatment ongoing
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {	-- RADIOTXSTOPDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {	-- RADIOTXSTARTDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {	-- RADIOTX 
+												value matches {
+													0|[local::at0038], 	-- No
+													1|[local::at0039], 	-- Yes, primary tumor
+													2|[local::at0040], 	-- Yes, any metastatic site except brain
+													3|[local::at0041]  	-- Yes, brain metastasis
+												}
+											}
+										}
+									}
+									CLUSTER[at0042] occurrences matches {0..1} matches {	-- Surgery
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0043] occurrences matches {0..1} matches {	-- SURGERYDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0044] occurrences matches {0..1} matches {	-- SURGERY
+												value matches {
+													0|[local::at0045], 	-- No
+													1|[local::at0046], 	-- Yes, primary tumor
+													2|[local::at0047], 	-- Yes, any metastatic site except brain
+													3|[local::at0048]  	-- Yes, brain metastasis
+												}
+											}
+											ELEMENT[at0049] occurrences matches {0..1} matches {	-- TARGETTX
+												value matches {
+													0|[local::at0050], 	-- No
+													1|[local::at0051]  	-- Yes
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ichom treatment variables">
+					description = <"To register cancer treatment variables for the ICHOM data collection standards.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"IMMUNOTXONGOING">
+					description = <"Ongoing immunotherapy">
+				>
+				["at0005"] = <
+					text = <"Treatment ongoing">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"IMMUNOTXSTOPDATE">
+					description = <"Stop of immunotherapy">
+				>
+				["at0008"] = <
+					text = <"IMMUNOTXSTARTDATE">
+					description = <"Start of immunotherapy">
+				>
+				["at0009"] = <
+					text = <"IMMUNOTX">
+					description = <"Treatments received during the last year: Immunotherapy">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"CHEMOTXONGOING">
+					description = <"Ongoing chemotherapy">
+				>
+				["at0013"] = <
+					text = <"Treatment ongoing">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"CHEMOTXSTOPDATE">
+					description = <"Stop of chemotherapy">
+				>
+				["at0015"] = <
+					text = <"CHEMOTXSTARTDATE">
+					description = <"Start of chemotherapy">
+				>
+				["at0016"] = <
+					text = <"CHEMOTX">
+					description = <"Treatments received during the last year: Chemotherapy">
+				>
+				["at0017"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"TARGETTXONGOING">
+					description = <"Ongoing targeted therapy">
+				>
+				["at0020"] = <
+					text = <"Treatment ongoing">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"TARGETTXSTOPDATE">
+					description = <"Stop of targeted therapy">
+				>
+				["at0022"] = <
+					text = <"TARGETTXSTARTDATE">
+					description = <"Start of targeted therapy">
+				>
+				["at0023"] = <
+					text = <"RADIOTXONGOING">
+					description = <"Ongoing radiotherapy">
+				>
+				["at0024"] = <
+					text = <"Treatment ongoing">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Immunotherapy">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Chemotherapy">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Targeted therapy">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"TARGETTX">
+					description = <"Treatments received during the last year: Targeted therapy">
+				>
+				["at0032"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Radio therapy">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"RADIOTXSTOPDATE">
+					description = <"Stop of radiotherapy">
+				>
+				["at0036"] = <
+					text = <"RADIOTXSTARTDATE">
+					description = <"Start of radiotherapy">
+				>
+				["at0037"] = <
+					text = <"RADIOTX ">
+					description = <"Treatments received during the last year: Radiotherapy">
+				>
+				["at0038"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Yes, primary tumor">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Yes, any metastatic site except brain">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Yes, brain metastasis">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Surgery">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"SURGERYDATE">
+					description = <"Date of surgery">
+				>
+				["at0044"] = <
+					text = <"SURGERY">
+					description = <"Treatments received during the last year: Surgery">
+				>
+				["at0045"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Yes, primary tumor">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Yes, any metastatic site except brain">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Yes, brain metastasis">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"TARGETTX">
+					description = <"Treatments received during the last year: Targeted therapy">
+				>
+				["at0050"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+			>
+		>
+	>

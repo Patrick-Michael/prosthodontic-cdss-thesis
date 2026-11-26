@@ -1,0 +1,141 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.blood_pressure_category.v0
+
+concept
+	[at0000]	-- Blood pressure category
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2015-02-04">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information about the category of hypertension, based on the levels of office blood pressure defined in the 2013 ESH/ESC guidelines for the management of arterial hypertension.">
+			use = <"">
+			keywords = <"antihypertensive treatment", "blood pressure", "blood pressure measurement", "cardiovascular complications", "cardiovascular risk", "hypertension", "organ damage", "lifestyle">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Members F, Mancia G, Fagard R, Germany RES, Anton P, Uk PS. 2013 ESH / ESC Guidelines for the management of arterial hypertension TheT ask Force for the management of arterial hypertension of the European Society of Hypertension ( ESH ) and of the European Society of Cardiology ( ESC ). 2013;1281–357. ">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"C4EBF54ED03772F14CEF01B74DBD4EA2">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Blood pressure category
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Blood pressure category
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- Optimal
+									at0004, 	-- Normal
+									at0005, 	-- High normal
+									at0006, 	-- Grade 1 hypertension
+									at0007, 	-- Grade 2 hypertension
+									at0008]	-- Grade 3 hypertension
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {	-- Isolated systolic hypertension
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010, 	-- Absent
+									at0011]	-- Present
+								}
+							}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Isolated systolic hypertension category
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0006, 	-- Grade 1 hypertension
+									at0007, 	-- Grade 2 hypertension
+									at0008]	-- Grade 3 hypertension
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Blood pressure category">
+					description = <"The blood pressure (BP) category is defined by the highest level of BP, whether systolic
+or diastolic. Isolated systolic hypertension should be graded 1, 2, or 3 according to
+systolic BP values in the ranges indicated.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Blood pressure category">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Optimal">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Normal">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"High normal">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Grade 1 hypertension">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Grade 2 hypertension">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Grade 3 hypertension">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Isolated systolic hypertension">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Isolated systolic hypertension category">
+					description = <"*">
+				>
+			>
+		>
+	>

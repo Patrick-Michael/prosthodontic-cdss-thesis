@@ -1,0 +1,118 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.simple_care_plan.v0
+
+concept
+	[at0000]	-- Simple care plan
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Simple care plan ">
+			use = <"Only for demo purpose">
+			keywords = <"care plan", ...>
+			misuse = <"Not for production use">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"Initial">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"DADDE79075AB009023F6D39BE4C7DC82">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Simple care plan
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Orders
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Activity plan
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- News guideline URL
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Simple care plan">
+					description = <"*">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Orders">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Activity plan">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"News guideline URL">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Simple care plan(sv)">
+					description = <"*unknown(sv)">
+				>
+				["at0001"] = <
+					text = <"*Träd(sv)">
+					description = <"*@ internal @(sv)">
+				>
+				["at0003"] = <
+					text = <"*Ordinationer(sv)">
+					description = <"**(sv)">
+				>
+				["at0004"] = <
+					text = <"*Aktivitetsplan(sv)">
+					description = <"**(sv)">
+				>
+				["at0005"] = <
+					text = <"*News guideline URL(en)">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

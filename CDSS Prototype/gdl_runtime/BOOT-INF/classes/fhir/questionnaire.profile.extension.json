@@ -1,0 +1,20 @@
+{
+  "resourceType": "StructureDefinitionExtension",
+  "id": "Questionnaire",
+  "snapshot": {
+    "element": [
+      {
+        "id": "Questionnaire.item.item.item",
+        "path": "Questionnaire.item.item.item",
+        "min": 0,
+        "max": "*"
+      },
+      {
+        "id": "Questionnaire.item.item.option",
+        "path": "Questionnaire.item.item.option",
+        "min": 0,
+        "max": "*"
+      }
+    ]
+  }
+}

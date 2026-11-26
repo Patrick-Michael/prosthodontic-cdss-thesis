@@ -1,0 +1,469 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.diabetes_case_study.v1
+
+concept
+	[at0000]	-- Diabetes study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the diabetes study guidelines.">
+			use = <"Use only in relation to the diabetes study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"healthcare indicators", "blood pressure", "diabetes", "length of stay", "hospitalization", "HbA1c", "cholesterol", "low density lipoprotein", "LDL cholesterol">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the diabetes study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet från genomförandet av diabetesstudiens riktlinjer.">
+			use = <"Används endast i samband med Diabetesstudien. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"öppna jämförelser", "blodtryck", "diabetes", "vårdtid", "sjukhusvård", "HbA1c", "kolesterol", "low density lipoprotein", "LDL-kolesterol">
+			misuse = <"Används inte i andra studier eller sammanhang utom när kriterierna är identiska med dem som definieras i diabetesstudien.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Socialstyrelsen. Öppna jämförelser 2013 – Hälso- och sjukvård – Jämförelser mellan landsting. Västerås: Edita Västra Aros AB; 2013.
+2. Socialstyrelsen. Bilaga 1 Beskrivning av indikatorer- Öppna jämförelser 2013: Hälso och sjukvård. 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"5445E252B882C5263BC1BE9F0E316B1B">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Diabetes study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Glycated hemoglobin
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- <= 52 mmol/mol
+													at0006, 	-- 53-62 mmol/mol
+													at0007, 	-- 63-72 mmol/mol
+													at0008]	-- > 72 mmol/mol
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Blood pressure - Systolic
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0010, 	-- <= 130 mmHg
+													at0011, 	-- 131-140 mmHg
+													at0012, 	-- 141-150 mmHg
+													at0013, 	-- 151-160 mmHg
+													at0014]	-- > 160 mmHg
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {	-- Blood pressure - Diastolic
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0016, 	-- <= 80 mmHg
+													at0017, 	-- 81-90 mmHg
+													at0018, 	-- 91-100 mmHg
+													at0019, 	-- 101-110 mmHg
+													at0020]	-- > 110 mmHg
+												}
+											}
+										}
+									}
+									ELEMENT[at0021] occurrences matches {0..1} matches {	-- LDL Cholesterol
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0022, 	-- <= 2.5 mmol/L
+													at0023, 	-- 2.6-3.5 mmol/L
+													at0024, 	-- 3.6-4.5 mmol/L
+													at0025]	-- > 4.5 mmol/L
+												}
+											}
+										}
+									}
+									ELEMENT[at0026] occurrences matches {0..1} matches {	-- Diabetes patients that got hospitalized within the last 12 months
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0027, 	-- Absent
+													at0028]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0029] occurrences matches {0..1} matches {	-- Number of hospitalized days for patients with diabetes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0030, 	-- < 3 days
+													at0031, 	-- 3-5 days
+													at0032, 	-- 6-10 days
+													at0033, 	-- 11-20 days
+													at0034, 	-- 21-30 days
+													at0035]	-- > 30 days
+												}
+											}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {	-- Length of stay
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+													>
+													["2"] = <
+														units = <"millisec">
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Diabetes study">
+					description = <"Quality indicators for diabetes study">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Glycated hemoglobin">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"<= 52 mmol/mol">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"53-62 mmol/mol">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"63-72 mmol/mol">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"> 72 mmol/mol">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Blood pressure - Systolic">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"<= 130 mmHg">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"131-140 mmHg">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"141-150 mmHg">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"151-160 mmHg">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"> 160 mmHg">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Blood pressure - Diastolic">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"<= 80 mmHg">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"81-90 mmHg">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"91-100 mmHg">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"101-110 mmHg">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"> 110 mmHg">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"LDL Cholesterol">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"<= 2.5 mmol/L">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"2.6-3.5 mmol/L">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"3.6-4.5 mmol/L">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"> 4.5 mmol/L">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Diabetes patients that got hospitalized within the last 12 months">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Number of hospitalized days for patients with diabetes">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"< 3 days">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"3-5 days">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"6-10 days">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"11-20 days">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"21-30 days">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"> 30 days">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"Length of stay">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Diabetesstudien">
+					description = <"Kvalitetsindikatorer för diabetesstudien.">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Glykosylerat hemoglobin">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"<= 52 mmol/mol">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"53-62 mmol/mol">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"63-72 mmol/mol">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"> 72 mmol/mol">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Blodtryck - Systoliskt">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"<= 130 mmHg">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"131-140 mmHg">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"141-150 mmHg">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"151-160 mmHg">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"> 160 mmHg">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Blodtryck - Diastoliskt">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"<= 80 mmHg">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"81-90 mmHg">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"91-100 mmHg">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"101-110 mmHg">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"> 110 mmHg">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"LDL-kolesterol">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"<= 2.5 mmol/L">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"2.6-3.5 mmol/L">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"3.6-4.5 mmol/L">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"> 4.5 mmol/L">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Diabetespatienter som lagts in på sjukhus inom de senaste 12 månaderna">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"Antal vårddagar för diabetespatienter">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"< 3 dagar">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"3-5 dagar">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"6-10 dagar">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"11-20 dagar">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"21-30 dagar">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"> 30 dagar">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"Vårdtid">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

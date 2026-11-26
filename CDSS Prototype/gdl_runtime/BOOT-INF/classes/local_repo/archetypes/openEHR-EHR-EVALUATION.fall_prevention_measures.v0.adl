@@ -1,0 +1,505 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.fall_prevention_measures.v0
+
+concept
+	[at0000]	-- Fall prevention åtgärder
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To be used in combination with a patients accessment for risk for fall. It provides a way of registering the current and planned preventive measures to avoid fall. ">
+			use = <"Used to plan and decide on the preventives measures that need to be implemented for a patient with and active risk for fall. ">
+			keywords = <"Fall prevention ", "Risk for fall", "Elderly", "Fall", "Risk">
+			misuse = <"Do not use for other than to organise, plan and decide on the preventive measures to avoid fall in patients with active risk for fall. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Ska användas i kombination med DFRI (Downton Fall Risk Index) riskbedömning för rirsk för fall. Planerade och pågående förebyggande åtgärder för att förebygga risk för fall listas i detta archetype. Används ofta inom äldreomsorg. ">
+			use = <"Används för planerade och pågående förebyggande åtgärder för att förebygga risk för fall i patienter med aktiv risk för fall efter riskbedömning med Downton Fall Risk Index.">
+			keywords = <"Fallprevention ", "Risk", "Förebyggande", "Äldre", "Risk för fall ", "Prevention ">
+			misuse = <"Används inte för annat än för att organisera planerade och pågående förebyggande åtgärder för fall. Används endast för patienter med aktiv risk för fall enligt DFRI riskbedömningsinstrument. ">
+			copyright = <"Cambio Healthcare Systems(en)">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Idwall E. Kvalitetsindikatorer inom omvårdnad. Gothia. 2013 
+Skog M. Riskbedömning. 2013:  hämtad from www.vårdhandboken.se November 2015.">
+		["MD5-CAM-1.0.1"] = <"1FEE62497164C83501D98FF19FECF1BD">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Fall prevention åtgärder
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- *New element(en)
+						value matches {
+							DV_DATE_TIME matches {
+								value matches {yyyy-mm-ddTHH:??:??}
+							}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Muskelfunktions- och styrketräning 
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Styrketräning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- Balansträning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Gångträning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Träning avfysisk prestationsförmåga
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- Annan åtgärd- Muskelfunktions- och styrketräning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0009] occurrences matches {0..1} matches {	-- Förflyttning och personlig vård
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- Förflyttningsträning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- Assistans vid förflyttning 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0013] occurrences matches {0..1} matches {	-- Stöd vid personlig vård
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0015] occurrences matches {0..1} matches {	-- Assistans vid personlig vård
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0014] occurrences matches {0..1} matches {	-- Träning av å- och avklädning 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- Annan åtgärd- Förflyttning och personlig vård 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0016] occurrences matches {0..1} matches {	-- Omgivsningsanpassning
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0017] occurrences matches {0..1} matches {	-- Anpassning av möblering och inventarier
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0018] occurrences matches {0..1} matches {	-- Hjälpmedelsförskrivning 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0020] occurrences matches {0..1} matches {	-- Träning i att använda hjälpmedel
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0021] occurrences matches {0..1} matches {	-- Anpassning av belysning och ljudförhållanden
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0023] occurrences matches {0..1} matches {	-- Larm/ estra tillsyn
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0022] occurrences matches {0..1} matches {	-- Höftskyddsbyxor
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0024] occurrences matches {0..1} matches {	-- Antihalksockar
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0019] occurrences matches {0..1} matches {	-- Annan åtgärd- Omgivningsanpassning
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0025] occurrences matches {0..1} matches {	-- Annat
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0026] occurrences matches {0..1} matches {	-- Läkemedelsgenomgång
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0027] occurrences matches {0..1} matches {	-- Information/undervisning om hälsa- ohälsa- Fall
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0029] occurrences matches {0..1} matches {	-- Vård i livets slutskede- Fall
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0030] occurrences matches {0..1} matches {	-- Annan åtgärd
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0028] occurrences matches {0..1} matches {	-- Person avböjer samtliga förebyggande åtgärder- Fall
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fall prevention measures">
+					description = <"Downton fall risk index">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"New element">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Muscule and strenght training ">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Strenght training">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Other measures- muscule and strenght training ">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Balance training">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Physical capacity training">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Walking training">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Patient movement and personal hygien">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Movement training">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Other measures- patient movement and personal hygien ">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Movement assistance">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Assistance with personal hygien">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Training to dressing-undressing">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Support with personal hygien">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Environment adjustment ">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Furniture adjustment">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Prescription of helping aids">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Other measures- Environment adjustment ">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Training to use helping aids">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Adjustment of rooms light and sound">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Hip protection aid">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Personal alarm / extra supervision">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Non-slippery socks">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Other ">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"revision of patients medication list">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Health and risk information/instruction- fall  ">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Patient declines preventive measures- Fall">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Paliative care- Fall">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Other measures- Fall">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Fall prevention åtgärder">
+					description = <"Planerade och pågående förebyggande åtgärder för risk för fall. ">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Muskelfunktions- och styrketräning ">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Styrketräning">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Annan åtgärd- Muskelfunktions- och styrketräning">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Balansträning">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Träning avfysisk prestationsförmåga">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Gångträning">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Förflyttning och personlig vård">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Förflyttningsträning">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Annan åtgärd- Förflyttning och personlig vård ">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Assistans vid förflyttning ">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Stöd vid personlig vård">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Träning av å- och avklädning ">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Assistans vid personlig vård">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Omgivsningsanpassning">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Anpassning av möblering och inventarier">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Hjälpmedelsförskrivning ">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Annan åtgärd- Omgivningsanpassning">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Träning i att använda hjälpmedel">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Anpassning av belysning och ljudförhållanden">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Höftskyddsbyxor">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Larm/ estra tillsyn">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Antihalksockar">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Annat">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Läkemedelsgenomgång">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Information/undervisning om hälsa- ohälsa- Fall">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Person avböjer samtliga förebyggande åtgärder- Fall">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Vård i livets slutskede- Fall">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Annan åtgärd">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,358 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.svf_cancer_days_intervals_kva.v0
+
+concept
+	[at0000]	-- Svf cancer days intervals kva
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Attribute days intervals for Dashboard categories for SVF kva cancer case study.">
+			use = <"Use to register patient data into Dashboard categories for the SVF kva cancer case study.">
+			keywords = <"SVF", "cancer", "days">
+			misuse = <"Do not use to register data for a process other than  the SVF kva cancer case study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Socialstyrelsen (2015). Standardiserade vårdförlopp i cancervården. En baslinjestudie. Hämtad från https://www.socialstyrelsen.se/Lists/Artikelkatalog/Attachments/19926/2015-10-5.pdf Februari 2016. 
+Regionala Cancercentrum i Samverkan (2016).Prostatacancer Primärvårdsversion av standardiseradt vårdförlopp 2016. Hämtad från http://www.cancercentrum.se/globalassets/vara-uppdrag/kunskapsstyrning/varje-dag-raknas/vardforlopp/primarvardsversioner_standardiserade_vardforlopp_20151221.pdf Februari 2016. ">
+		["MD5-CAM-1.0.1"] = <"D6491FB7B7B3830D4C716C9EEC62254E">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Svf cancer days intervals kva
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- VP915 – Referal received at specialist care
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- VJ150 – Treatment start- surgery
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- VJ152 – Treatment start- medication
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- VJ154 – Treatment start- radiation
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- VJ156 – Treatment start-combination 
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- VJ158 –Treatment start- paliative 
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- VJ165 – Decision not to treat
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0012] occurrences matches {0..1} matches {	-- VJ170 – Criteria for grounded cancer suspection not present
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0013] occurrences matches {0..1} matches {	-- VJ172 – New svf process due to new cancer diagnose
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0014] occurrences matches {0..1} matches {	-- VJ174 – Svf end- other medical causes
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {	-- VJ176 – Svf end- patients choice
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {	-- VJ178 – Svf end- cancer suspection discharges
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- VP920 – Referal handled by coordinator/doctor at specialist clinic
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0018] occurrences matches {0..1} matches {	-- VP925 –First appointment within specislist care
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0019] occurrences matches {0..1} matches {	-- VP943 –Treatment decision after initial check up 
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0020] occurrences matches {0..1} matches {	-- VP944 –Treatment start after deeper check up 
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"d">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Svf cancer days intervals kva">
+					description = <"Assist days calculation för trial study Svf cancer categories KVA.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"VP915 – Referal received at specialist care">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"VJ150 – Treatment start- surgery">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"VJ152 – Treatment start- medication">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"VJ154 – Treatment start- radiation">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"VJ156 – Treatment start-combination ">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"VJ158 –Treatment start- paliative ">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"VJ165 – Decision not to treat">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"VJ170 – Criteria for grounded cancer suspection not present">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"VJ172 – New svf process due to new cancer diagnose">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"VJ174 – Svf end- other medical causes">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"VJ176 – Svf end- patients choice">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"VJ178 – Svf end- cancer suspection discharges">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"VP920 – Referal handled by coordinator/doctor at specialist clinic">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"VP925 –First appointment within specislist care">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"VP943 –Treatment decision after initial check up ">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"VP944 –Treatment start after deeper check up ">
+					description = <"*">
+				>
+			>
+		>
+	>

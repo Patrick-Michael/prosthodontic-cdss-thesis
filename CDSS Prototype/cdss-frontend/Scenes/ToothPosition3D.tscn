@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://jd1kasc0f4a7"]
+
+[node name="ToothPosition3D" type="Node3D" unique_id=2035938664]
+
+[node name="ToothModel" type="Node3D" parent="." unique_id=1667938718]
+
+[node name="MissingRegion" type="Node3D" parent="." unique_id=119379857]
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=1079543192]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=107658820]

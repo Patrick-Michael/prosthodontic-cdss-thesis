@@ -1,0 +1,332 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_esophagus.v0
+
+concept
+	[at0000]	-- Vacterl esophagus
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patient information for birth defects VACTERL esophagus. Clinical relevant data is registred throught this archetype.">
+			use = <"Use for patients with esophagus problems and birth defects VACTERL.">
+			keywords = <"VACTERL", "esophagus", "esophagitis", "reflux", "Barrets", "De Meester score", "value based healthcare", "VBH">
+			misuse = <"Do not use for other than to register patient data related to VACTERL sindrome and related esophagus problems.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för esofagus relaterad till VACTERL syndrom. Klinisk data registreras i denna archetype.">
+			use = <"Används för patienter med VACTERL syndrom och esofagus problem.">
+			keywords = <"VACTERL", "esofagus", "esofagit", "reflux", "Barrets", "De Meester score", "värdebaserad sjukvård", "VBH">
+			misuse = <"Används inte för annat än för att registrera information för med VACTERL syndrom och esofagus problem.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Grundmall KB Esofagusatresi, analatresi, VACTERL\". Landstninget Uppsala Län.
+">
+		["MD5-CAM-1.0.1"] = <"CA5A7A967C5B33A52A76298A4C54F668">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl esophagus
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Dysphagia
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Dysphagia long time
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- Dysphagia refusal
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- Dysphagia choking
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Dysphagia vomiting
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Dysphagia same food
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0019] occurrences matches {0..1} matches {	-- Dysphagia sum
+								value matches {
+									DV_COUNT matches {*}
+								}
+							}
+						}
+					}
+					ELEMENT[at0009] occurrences matches {0..1} matches {	-- Reflux
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0010, 	-- Acid Reflux
+									at0011, 	-- Vomiting
+									at0012]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Esophagitis degree
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|1..4|}
+							}
+						}
+					}
+					ELEMENT[at0014] occurrences matches {0..1} matches {	-- Barrets esophagus
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015, 	-- Yes
+									at0016]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {	-- DeMeester score
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::380]>
+								list = <
+									["1"] = <
+										units = <"10*12">
+										magnitude = <|0.0..1000.0|>
+										precision = <|3|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0018] occurrences matches {0..1} matches {	-- Acid-inhibiting treatment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0015, 	-- Yes
+									at0012]	-- No
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl esophagus">
+					description = <"Patient information regarding esophagus VACTERL birth defects.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Dysphagia">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Dysphagia long time">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Dysphagia refusal">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Dysphagia choking">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Dysphagia vomiting">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Dysphagia same food">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Reflux">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Acid Reflux">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Vomiting">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Esophagitis degree">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Barrets esophagus">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"DeMeester score">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Acid-inhibiting treatment">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Dysphagia sum">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl esofagus">
+					description = <"Patientinformation relaterad till esofagus VACTERL- syndrom.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Uppföljning datum/tid">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Dysfagi">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Dysfagi lång tid">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Dysfagi vägran">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Dysfagi sätter i halsen">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Dysfagi kräkning">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Dysfagi samma mat">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Reflux">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Sura uppstötningar">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Kräkningar">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Nej">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Esofagitgrad">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Barrets esofagus">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Ja">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Nej">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"De Meester score">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Syrahämmande behandling">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Dysfagia sum">
+					description = <"*">
+				>
+			>
+		>
+	>

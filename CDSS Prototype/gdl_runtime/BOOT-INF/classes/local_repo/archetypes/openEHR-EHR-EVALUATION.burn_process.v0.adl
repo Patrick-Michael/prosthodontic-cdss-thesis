@@ -1,0 +1,468 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.burn_process.v0
+
+concept
+	[at0000]	-- Burn process
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["email"] = <"blanca.flores@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-01-13">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register patient data for the burn process case study for value-based healthcare.">
+			use = <"Use to register patient data for the burn process study.">
+			keywords = <"VBH", "value based healthcare", "burn process">
+			misuse = <"Do not use to register data for a process other than the burn process.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för Brännskador case studien inom Värdevbaserad sjukvård processen.">
+			use = <"Används för att registrera data för Brännskador processen studie.">
+			keywords = <"VBH", "brännskador process">
+			misuse = <"Används inte för annat än för att registrera patient data för Brännskador processen studie.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Grundmall Jorunaltabell. (2009). Mallnamn: Bräannskador. Systemförvaltning EPJ.">
+		["MD5-CAM-1.0.1"] = <"6450D1BD116D0C86176CA1D9CD8AB6FB">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Burn process
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0002] occurrences matches {0..1} matches {	-- Lower extremities
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0003] occurrences matches {0..1} matches {	-- General movement and muscle function
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..6|}
+									}
+								}
+							}
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Muscular strength
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..14|}
+									}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- Balance and coordination
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..10|}
+									}
+								}
+							}
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- Endurance
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..10|}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Lower extremities total score
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..40|}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0008] occurrences matches {0..1} matches {	-- Shoulder-arm
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- Function right
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|5..30|}
+									}
+								}
+							}
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- Function left
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|5..30|}
+									}
+								}
+							}
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- Shoulder-arm total score
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|10..60|}
+									}
+								}
+							}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Pain when in motion
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..10|}
+							}
+						}
+					}
+					ELEMENT[at0013] occurrences matches {0..1} matches {	-- Do you have itching due to burn
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0014, 	-- Never
+									at0015, 	-- Sometimes
+									at0016, 	-- Often
+									at0017]	-- All the time
+								}
+							}
+						}
+					}
+					ELEMENT[at0018] occurrences matches {0..1} matches {	-- If you have itching from the burn, how severe is it?
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..10|}
+							}
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {	-- My hand function is limited as a result of the burn
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0023] occurrences matches {0..1} matches {	-- The look of my scars bothers me
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0024] occurrences matches {0..1} matches {	-- My burns have open wounds
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0025] occurrences matches {0..1} matches {	-- I have reduced appetite
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0026] occurrences matches {0..1} matches {	-- My burns affect my work/employment
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0027] occurrences matches {0..1} matches {	-- I use alcohol, tobacco or drugs to deal with the problems
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0020, 	-- Yes
+									at0021, 	-- Partially
+									at0022]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0028] occurrences matches {0..1} matches {	-- Burn process review date (time)
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Burn process">
+					description = <"Based on the Burn process journal, patient data is registered for a case study for value-based healthcare. ">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Lower extremities">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"General movement and muscle function">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Muscular strength">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Balance and coordination">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Endurance">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Lower extremities total score">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Shoulder-arm">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Function right">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Function left">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Shoulder-arm total score">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Pain when in motion">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Do you have itching due to burn">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Never">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Sometimes">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Often">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"All the time">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"If you have itching from the burn, how severe is it?">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"My hand function is limited as a result of the burn">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Partially">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"The look of my scars bothers me">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"My burns have open wounds">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"I have reduced appetite">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"My burns affect my work/employment">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"I use alcohol, tobacco or drugs to deal with the problems">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Burn process review date (time)">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Brännskador process">
+					description = <"Baserad på Brännskador journalmall, patient information är registrerad för en studien inom värdebaserad sjukvård.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Nedre extremiteter">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Allmän rörelse- och muskelfunktion">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Muskelstyrka">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Balans och koordination">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Uthållighet">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Nedre extremiteter - Summa">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Skuldra-arm">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Funktion höger">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Funktion vänster">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Skuldra-arm - Summa">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Smärta i rörelse">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Har du klåda pga brännskadan?">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Aldrig">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Ibland">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Ofta">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Hela tiden">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Om du har klåda, hur svår är din klåda från brännskadan?">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Min handfunktion är begränsad som en följd av brännskadan">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Ja">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Till viss del">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"Utseendet på mina ärr stör mig">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Min brännskada har öppna sår">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Jag har nedsatt aptit">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Min brännskada påverkar mitt arbete/sysselsättning">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Jag använder alkohol, tobak eller droger för att hantera problem">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Datum (tid) av bränskada process">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

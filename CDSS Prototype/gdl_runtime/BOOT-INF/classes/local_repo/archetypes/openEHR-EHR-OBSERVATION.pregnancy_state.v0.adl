@@ -1,0 +1,159 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.pregnancy_state.v0
+
+concept
+	[at0000]	-- Pregnancy status
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Medical Informatics Group (MIG)">
+		["email"] = <"mig@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2017-03-29">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record the state of a pregancy(en)">
+			use = <"*(en)">
+			misuse = <"*(en)">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the state of a pregancy">
+			use = <"">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Medical Informatics Group (MIG), Cambio Healthcare Systems<mig@cambiocds.com>">
+		["MD5-CAM-1.0.1"] = <"FE5A040E41151357B19609A30EFBAFB7">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Pregnancy status
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Pregnancy status
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Suspected
+													at0006, 	-- Confirmed
+													at0007, 	-- Ongoing
+													at0008]	-- Completed
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pregnancy status">
+					description = <"Information regarding the state of a pregnancy on a patient">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Pregnancy status">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Suspected">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Confirmed">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Ongoing">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Completed">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Graviditet status">
+					description = <"*Information regarding the state of a pregnancy on a patient(en)">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Graviditet status">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Misstänkt">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Bekräftad">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Pågående">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Avslutad">
+					description = <"*">
+				>
+			>
+		>
+	>

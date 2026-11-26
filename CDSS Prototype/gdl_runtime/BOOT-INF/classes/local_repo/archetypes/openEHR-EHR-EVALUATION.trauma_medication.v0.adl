@@ -1,0 +1,112 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.trauma_medication.v0
+
+concept
+	[at0000]	-- Trauma medication
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Medical Informatics Group (MIG)">
+		["email"] = <"mig@cambiocds.com">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2017-05-04">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record when an alert for severe trauma has been reviewed(en)">
+			use = <"*(en)">
+			keywords = <"*trauma(en)", "*severe(en)", "*acetylsalicylic acid(en)", "*ASA(en)">
+			misuse = <"*(en)">
+			copyright = <"*Cambio Healthcare Systems(en)">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record when an alert for severe trauma has been reviewed">
+			use = <"">
+			keywords = <"trauma", "severe", "acetylsalicylic acid", "ASA">
+			misuse = <"">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Medical Informatics Group (MIG), Cambio Healthcare Systems<mig@cambiocds.com>">
+		["MD5-CAM-1.0.1"] = <"4A753EE87F242E46968FD64F3011295E">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Trauma medication
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Alert reviewed
+						value matches {
+							DV_BOOLEAN matches {
+								value matches {True, False}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Trauma medication">
+					description = <"Severe trauma on patient with blood thiner medication">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Alert reviewed">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Trauma medication(en)">
+					description = <"*Severe trauma on patient with blood thiner medication(en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Varning har granskats">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Datum/Tid för översyn">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

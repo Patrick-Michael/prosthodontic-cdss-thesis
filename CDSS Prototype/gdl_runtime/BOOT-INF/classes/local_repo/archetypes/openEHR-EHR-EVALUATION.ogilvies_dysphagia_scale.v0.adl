@@ -1,0 +1,154 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.ogilvies_dysphagia_scale.v0
+
+concept
+	[at0000]	-- Ogilvies dysphagia scale
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"jaona.vicente@cambio.se">
+		["date"] = <"2016-06-17">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register information related to Ogilvie dysphagia scale.">
+			use = <"To record information regarding a patients ability to consume food according to Ogilvie dysphagia scale.">
+			keywords = <"VBH", "value based healthcare", "dysphagia", "Ogilvie">
+			misuse = <"Do not use to register other dysphagia related information that are not described by Ogilvie AL. et. al. [1]">
+			copyright = <"Cambio Heathcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera information relaterat till Ogilvies disfagiskalan.">
+			use = <"För att registrera information om patientens förmåga att äta enligt Ogilvies disfagiskalan.">
+			keywords = <"VBH", "värdebaserad sjukvård", "dysfagi", "Ogilvie">
+			misuse = <"Används inte för annat disfagi relaterat infomration som inte ingår i Ogilvie AL. et. al. [1] ">
+			copyright = <"Cambio Heathcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Ogilvie AL, Dronfield MW, Ferguson R, Atkinson M. Palliative intubation of oesophagogastric neoplasms at fibreoptic endoscopy. Gut 1982;23(12):1060-7.">
+		["MD5-CAM-1.0.1"] = <"57CC3CBDD06B68FD77D7F47211C5C935">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Ogilvies dysphagia scale
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date (time)
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Ogilvies dysphagia scale
+						value matches {
+							0|[local::at0004], 	-- Able to eat any type of food
+							1|[local::at0005], 	-- Able to eat some solid food
+							2|[local::at0006], 	-- Able to eat only semi solid food
+							3|[local::at0007], 	-- Able to eat liquid food only
+							4|[local::at0008]  	-- Unable to eat solid or liquid food
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ogilvies dysphagia scale">
+					description = <"A 5 point scale to assess the level of dyshpagia on a patient as described by Ogilvie AL. et. al. [1]">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date (time)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Ogilvies dysphagia scale">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Able to eat any type of food">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Able to eat some solid food">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Able to eat only semi solid food">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Able to eat liquid food only">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Unable to eat solid or liquid food">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ogilvies dysfagieskala">
+					description = <"A 5 point scale to assess the level of dyshpagia on a patient as described by Ogilvie AL. et. al. [1] (en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Datum (tid) för översyn">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Ogilvies dysfagieskala">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"All sorts föda">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Viss fast föda">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Mosad föda">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Flytande föda">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Varken fast eller flytande">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

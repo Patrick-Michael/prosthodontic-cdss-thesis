@@ -1,0 +1,419 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_treatment_complications.v0
+
+concept
+	[at0000]	-- Ichom treatment complications
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"blanca.flores@cambio.se">
+		["date"] = <"2015-11-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register treatment complications data for the ICHOM data collection standards.">
+			use = <"To register treatment complications data for the ICHOM data collection standards.">
+			keywords = <"ICHOM", "treatment", "complications", "cancer">
+			misuse = <"Do not use to register data outside the ICHOM measures. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"ICHOM Lung Cancer Data Collection Reference Guide. International Consortium for Health Outcome Measurement. Version 2.1. Revised April 24th, 2015.">
+		["MD5-CAM-1.0.1"] = <"6D39B433513433059CC92DEAE6D82FC9">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Ichom treatment complications
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									CLUSTER[at0029] occurrences matches {0..1} matches {	-- Resectional surgery
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0004] occurrences matches {0..1} matches {	-- COMPLSURG
+												value matches {
+													0|[local::at0005], 	-- No
+													1|[local::at0006], 	-- Yes, grade III
+													2|[local::at0007]  	-- Yes, grade IV
+												}
+											}
+										}
+									}
+									CLUSTER[at0030] occurrences matches {0..1} matches {	-- Radiotherapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0008] occurrences matches {0..1} matches {	-- COMPLRAD
+												value matches {
+													0|[local::at0009], 	-- No grade III - IV toxicity 
+													1|[local::at0010], 	-- Cytopenias (anemia, febrile neutropenia, thrombocytopenia)
+													2|[local::at0011], 	-- Infection, any primary site
+													3|[local::at0012], 	-- Skin reaction (rash, dermatitis radiation)
+													4|[local::at0013], 	-- Pneumonitis, cough, dyspnea, other lung toxicity
+													5|[local::at0014], 	-- Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity
+													6|[local::at0015], 	-- Neuropathy, tinnitus, hearing impaired, other neurologic toxicity
+													7|[local::at0016], 	-- Acute kidney injury
+													888|[local::at0017]  	-- Other
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {	-- COMPLRADOTHER
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0031] occurrences matches {0..1} matches {	-- COMPLRADCYTODATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0032] occurrences matches {0..1} matches {	-- COMPLRADINFDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0033] occurrences matches {0..1} matches {	-- COMPLRADSKIDATE
+												value matches {
+													DV_DATE_TIME matches {*}
+												}
+											}
+											ELEMENT[at0034] occurrences matches {0..1} matches {	-- COMPLRADPNEDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0036] occurrences matches {0..1} matches {	-- COMPLRADNEURODATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0035] occurrences matches {0..1} matches {	-- COMPLRADOESDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0037] occurrences matches {0..1} matches {	-- COMPLRADKIDDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0038] occurrences matches {0..1} matches {	-- COMPLRADOTHERDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0039] occurrences matches {0..1} matches {	-- Systemic therapy
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0018] occurrences matches {0..1} matches {	-- COMPLSYS
+												value matches {
+													0|[local::at0019], 	-- No grade III - IV toxicity
+													1|[local::at0020], 	-- Cytopenias (anemia, febrile neutropenia, thrombocytopenia)
+													2|[local::at0021], 	-- Infection, any primary site
+													3|[local::at0022], 	-- Skin reaction (rash, dermatitis radiation)
+													4|[local::at0023], 	-- Pneumonitis, cough, dyspnea, other lung toxicity
+													5|[local::at0024], 	-- Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity
+													6|[local::at0025], 	-- Neuropathy, tinnitus, hearing impaired, other neurologic toxicity
+													7|[local::at0026], 	-- Acute kidney injury
+													888|[local::at0027]  	-- Other
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {	-- COMPLSYSOTHER
+												value matches {
+													DV_TEXT matches {*}
+												}
+											}
+											ELEMENT[at0041] occurrences matches {0..1} matches {	-- COMPLSYSCYTODATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0042] occurrences matches {0..1} matches {	-- COMPLSYSINFDATE
+												value matches {
+													DV_DATE_TIME matches {*}
+												}
+											}
+											ELEMENT[at0043] occurrences matches {0..1} matches {	-- COMPLSYSSKIDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0045] occurrences matches {0..1} matches {	-- COMPLSYSOESDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0046] occurrences matches {0..1} matches {	-- COMPLSYSNEURODATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0044] occurrences matches {0..1} matches {	-- COMPLSYSPNEDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0047] occurrences matches {0..1} matches {	-- COMPLSYSKIDDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+											ELEMENT[at0048] occurrences matches {0..1} matches {	-- COMPLSYSOTHERDATE
+												value matches {
+													DV_DATE_TIME matches {
+														value matches {yyyy-mm-ddTHH:MM:SS}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ichom treatment complications">
+					description = <"To register  treatment complications data for the ICHOM data collection standards.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"COMPLSURG">
+					description = <"Clavien‐Dindo grade III - IV complications due to surgery. If answered 'yes' on SURGERY.">
+				>
+				["at0005"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Yes, grade III">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Yes, grade IV">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"COMPLRAD">
+					description = <"If answered 'yes' on radiotherapy RADIOTX">
+				>
+				["at0009"] = <
+					text = <"No grade III - IV toxicity ">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Cytopenias (anemia, febrile neutropenia, thrombocytopenia)
+(anemia,
+febrile
+neutropenia,
+thrombocytopenia)">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Infection, any primary site">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Skin reaction (rash, dermatitis radiation)">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Pneumonitis, cough, dyspnea, other lung toxicity">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Neuropathy, tinnitus, hearing impaired, other neurologic toxicity">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Acute kidney injury">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Other">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"COMPLSYS">
+					description = <"CTCAE grade III - IV complications due to systemic therapy. If answered 'yes' on chemotherapy or immunotherapy (CHEMOTX or IMMUNOTX)">
+				>
+				["at0019"] = <
+					text = <"No grade III - IV toxicity">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Cytopenias (anemia, febrile neutropenia, thrombocytopenia)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Infection, any primary site">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Skin reaction (rash, dermatitis radiation)">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Pneumonitis, cough, dyspnea, other lung toxicity">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Neuropathy, tinnitus, hearing impaired, other neurologic toxicity">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Acute kidney injury">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Other">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"COMPLRADOTHER">
+					description = <"CTCAE grade III - IV complication due to radiotherapy other than those explicitly listed. If answered 'Other' on Clavien-Dindo III-IV complications due to radiotherapy.">
+				>
+				["at0029"] = <
+					text = <"Resectional surgery">
+					description = <"">
+				>
+				["at0030"] = <
+					text = <"Radiotherapy">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"COMPLRADCYTODATE">
+					description = <"Date of cytopenias. If answered Cytopenias (COMPL)">
+				>
+				["at0032"] = <
+					text = <"COMPLRADINFDATE">
+					description = <"Date of infection. If answered Infection (COMPL).">
+				>
+				["at0033"] = <
+					text = <"COMPLRADSKIDATE">
+					description = <"Date of skin reaction. If answered Skin reaction (COMPL)">
+				>
+				["at0034"] = <
+					text = <"COMPLRADPNEDATE">
+					description = <"Date of pneumonitis, cough, dyspnea, or other lung toxicity. If answered Pneumonitis, cough, dyspnea, other lung toxicity (COMPL)">
+				>
+				["at0035"] = <
+					text = <"COMPLRADOESDATE">
+					description = <"If answered Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity (COMPL)">
+				>
+				["at0036"] = <
+					text = <"COMPLRADNEURODATE">
+					description = <"If answered Neuropathy, tinnitus, hearing impaired, other neurologic toxicity (COMPL)">
+				>
+				["at0037"] = <
+					text = <"COMPLRADKIDDATE">
+					description = <"If answered Acute kidney injury (COMPL)">
+				>
+				["at0038"] = <
+					text = <"COMPLRADOTHERDATE">
+					description = <"If answered Other (COMPL)">
+				>
+				["at0039"] = <
+					text = <"Systemic therapy">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"COMPLSYSOTHER">
+					description = <"If answered 'Other' on Clavien-Dindo III-IV complications due to systemic therapy (COMPLSYS)">
+				>
+				["at0041"] = <
+					text = <"COMPLSYSCYTODATE">
+					description = <"If answered Cytopenias (COMPL)">
+				>
+				["at0042"] = <
+					text = <"COMPLSYSINFDATE">
+					description = <"If answered Infection (COMPL)">
+				>
+				["at0043"] = <
+					text = <"COMPLSYSSKIDATE">
+					description = <"If answered Skin reaction (COMPL)">
+				>
+				["at0044"] = <
+					text = <"COMPLSYSPNEDATE">
+					description = <"Date of pneumonitis, cough, dyspnea, or other lung toxicity. If answered Pneumonitis, cough, dyspnea, other lung toxicity (COMPL)">
+				>
+				["at0045"] = <
+					text = <"COMPLSYSOESDATE">
+					description = <"If answered Oesophagitis, mucositis oral, nausea, vomiting, diarrhea, constipation, other GI toxicity (COMPL)">
+				>
+				["at0046"] = <
+					text = <"COMPLSYSNEURODATE">
+					description = <"If answered Neuropathy, tinnitus, hearing impaired, other neurologic toxicity (COMPL)">
+				>
+				["at0047"] = <
+					text = <"COMPLSYSKIDDATE">
+					description = <"If answered Acute kidney injury (COMPL)">
+				>
+				["at0048"] = <
+					text = <"COMPLSYSOTHERDATE">
+					description = <"If answered Other (COMPL)">
+				>
+			>
+		>
+	>

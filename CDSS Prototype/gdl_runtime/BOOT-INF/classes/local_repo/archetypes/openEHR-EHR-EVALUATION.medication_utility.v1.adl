@@ -1,0 +1,119 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.medication_utility.v1
+
+concept
+	[at0000]	-- Medication utility
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To store information about ongoing medication which can be used for clinical decision support.">
+			use = <"Use in clinical decision support for establishing if a medication is still ongoing or not in the form of lists. This number of entries can later be used to established indicators such as polypharmacy.">
+			keywords = <"medication", "ongoing medication", "ongoing treatment">
+			misuse = <"Not to be used for detecting specific medications. Use openEHR-EHR-INSTRUCTION.medication.v1 instead.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera information om pågående medicinering som kan användas för kliniskt beslutsstöd.">
+			use = <"Används i kliniskt beslutsstöd för att fastställa om en läkemedelsbehandling fortfarande pågår eller inte, i form av \"lists\". Detta antal inträden kan senare användas för etablerade indikatorer såsom polyfarmaci.">
+			keywords = <"läkemedel", "pågående läkemedelsbehandling", "pågående behandling">
+			misuse = <"Används ej för att detektera specifika läkemedel. Använd openEHR-EHR-INSTRUCTION.medication.v1 istället.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"8EF844A9DEB1E2F6887B1387C6A7A395">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Medication utility
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Ongoing medication
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- Absent
+									at0004]	-- Present
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Medication utility">
+					description = <"Utility archetype used in conjunction with the medication archetype.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Ongoing medication">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Läkemedel utility">
+					description = <"Utility arketyp använd i Kombination med läkemedels arketyp.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Pågående läkemedelsbehandling">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

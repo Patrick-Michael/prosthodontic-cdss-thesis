@@ -1,0 +1,328 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_intestinal.v0
+
+concept
+	[at0000]	-- Vacterl intestinal
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patient information for birth defects VACTERL instestinal.Clinical relevant data is registered throught this archetype.">
+			use = <"Use for patients with instestinal problems and birth defects VACTERL.">
+			keywords = <"VACTERL", "soiling", "constipation", "faeces control", "gas incontinence", "intestinal", "VBH", "value based healthcare">
+			misuse = <"Do not use for other than to register patient data related to VACTERL sindrome and related instestinal problems.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för tarm relaterad till VACTERL syndrom. Klinisk data registreras i denna archetype.">
+			use = <"Används för patienter med VACTERL syndrom och tarmproblem.">
+			keywords = <"VACTERL", "soiling", "avföringskontroll", "förstoppning", "gasinkontinens", "förstoppningsbehandling", "VBH", "value based healthcare">
+			misuse = <"Används inte för annat än för att registrera information för med VACTERL syndrom och tarmproblem.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Grundmall KB Esofagusatresi, analatresi, VACTERL\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"1AD89795867F07BC2495973B4AC94D2E">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl intestinal
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Faeces control
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004, 	-- Yes
+									at0005]	-- No
+								}
+							}
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- Soiling
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007, 	-- Grade 1 - (1-2 times a week)
+									at0008, 	-- Grade 2 - (everyday, no soc)
+									at0009, 	-- Grade 3 - (always, soc)
+									at0010]	-- No
+								}
+							}
+						}
+					}
+					CLUSTER[at0011] occurrences matches {0..1} matches {	-- Constipation
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- Constipation grade
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0013, 	-- Grade 1 - Diet
+											at0014, 	-- Grade 2 - Laxatives
+											at0015, 	-- Grade 3 - Laxatives not sufficient
+											at0016]	-- No
+										}
+									}
+								}
+							}
+							ELEMENT[at0017] occurrences matches {0..1} matches {	-- Constipation treatment
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0018, 	-- Bowel irritant (Laxoberal)
+											at0019, 	-- Osmotic (Lactulose, Forlax, Importal, Movicol)
+											at0020]	-- Klysma (Klyx, Microlax, Resulax, Toilax)
+										}
+									}
+								}
+							}
+						}
+					}
+					ELEMENT[at0021] occurrences matches {0..1} matches {	-- Gas incontinence
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0022, 	-- Yes
+									at0023]	-- No
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl intestinal">
+					description = <"Patient information regarding instestinal VACTERL birth defects.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Faeces control">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Soiling">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Grade 1 - (1-2 times a week)">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Grade 2 - (everyday, no soc)">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Grade 3 - (always, soc)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Constipation">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Constipation grade">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Grade 1 - Diet">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Grade 2 - Laxatives">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Grade 3 - Laxatives not sufficient">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"No">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Constipation treatment">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Bowel irritant (Laxoberal)">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Osmotic (Lactulose, Forlax, Importal, Movicol)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Klysma (Klyx, Microlax, Resulax, Toilax)">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Gas incontinence">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Yes">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"No">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl tarm">
+					description = <"Patientinformation relaterad till tarm VACTERL- syndrom.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Uppföljning datum/tid">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Avföringskontroll">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Soiling">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Grade 1 - (1-2 ggr/v)">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Grade 2 - (varje dag, ej soc)">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Grade 3 - (alltid, soc)">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Förstoppning">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Förstoppning">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Grade 1 - Diet">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Grade 2 - Laxativ">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Grade 3 - Räcker ej med laxativ">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Förstoppningsbehandling">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Tarmirriterande (Laxoberal)">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Osmotiskt (Laktulos, Forlax, Importal, Movicol)">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Klysma (Klyx, Microlax, Resulax, Toilax)">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Gasinkontinens">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

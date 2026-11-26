@@ -1,0 +1,533 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.mfi_20.v0
+
+concept
+	[at0000]	-- Multidimensional fatigue inventory
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-06-21">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information regarding fatigue according to the MFI-20 self-evaluation.">
+			use = <"Use to register the answers for each question as well as the total score for each of the 5 fatigue dimensions of MFI-20.">
+			keywords = <"VBH", "value based healthcare", "MFI-20", "multidimensional fatigue inventory", "fatigue", "physical fatigue", "mental fatigue", "motivation", "activity">
+			misuse = <"Do not use to register other fatigue related information that are not described in MFI-20.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera information kring patientens fatigue genom MFI-20 själv-utvärdering redskap.">
+			use = <"Används för att registrera svaren till MFI-20 frågor och summa för varje 5 dimensioner.">
+			keywords = <"VBH", "värdebaserad sjukvård", "MFI-20", "multidimensional fatigue inventory", "fatigue", "fysisk fatigue", "mental fatigue", "minskad motivation", "minskad aktivitet">
+			misuse = <"Används inte för att registrera annat fatigue än den som beskrivs med MFI-20.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <"Joana Vicente", ...>
+	other_details = <
+		["references"] = <"1. Smets EMA, Garssen B, Bonke B, De Haes JCJM. The multidimensional Fatigue Inventory (MFI) psychometric qualities of an instrument to assess fatigue. J Psychosom Res. 1995;39(3):315–25.
+2. Smets EM, Garssen B, Cull A, de Haes JC. Application of the multidimensional fatigue inventory (MFI-20) in cancer patients receiving radiotherapy. Vol. 73, British Journal of Cancer. 1996. p. 241–5.">
+		["MD5-CAM-1.0.1"] = <"1BBA37CF74C3BAFDC96C6A823D47BCB4">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Multidimensional fatigue inventory
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date (time)
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- General fatigue
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- 1. I feel fit.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- 5. I feel tired.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- 12. I am rested.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- 16. I tire easily.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- General fatigue - Total
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..20|}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0009] occurrences matches {0..1} matches {	-- Physical fatigue
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- 2. Physically, I feel only able to do a little.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- 8. Physically I can take on a lot.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- 14. Physically I feel I am in a bad condition.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0013] occurrences matches {0..1} matches {	-- 20. Physically I feel I am in an excellent condition.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0014] occurrences matches {0..1} matches {	-- Physical fatigue - Total
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..20|}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0015] occurrences matches {0..1} matches {	-- Mental fatigue
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0016] occurrences matches {0..1} matches {	-- 7. When I am doing something, I can keep my thoughts on it.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0017] occurrences matches {0..1} matches {	-- 11. I can concentrate well.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0018] occurrences matches {0..1} matches {	-- 13. It takes a lot of effort to concentrate on things.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0019] occurrences matches {0..1} matches {	-- 19. My thoughts easily wander.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0020] occurrences matches {0..1} matches {	-- Mental fatigue - Total
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..20|}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0021] occurrences matches {0..1} matches {	-- Reduced activity
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0022] occurrences matches {0..1} matches {	-- 3. I feel very active.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0023] occurrences matches {0..1} matches {	-- 6. I think I do a lot in a day.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0024] occurrences matches {0..1} matches {	-- 10. I think I do very little in a day.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0025] occurrences matches {0..1} matches {	-- 17. I get little done.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0026] occurrences matches {0..1} matches {	-- Reduced activity - Total
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..20|}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0027] occurrences matches {0..1} matches {	-- Reduced motivation
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0028] occurrences matches {0..1} matches {	-- 4. I feel like doing all sorts of nice things.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0029] occurrences matches {0..1} matches {	-- 9. I dread having to do things.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0030] occurrences matches {0..1} matches {	-- 15. I have lots of plans.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0031] occurrences matches {0..1} matches {	-- 18. I don't feel like doing anything.
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..5|}
+									}
+								}
+							}
+							ELEMENT[at0032] occurrences matches {0..1} matches {	-- Reduced motivation - Total
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|0..20|}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Multidimensional fatigue inventory">
+					description = <"Multidimensional Fatigue Inventory (MFI) is a 20-item self-report instrument designed to measure fatigue. It covers the following dimensions: General Fatigue, Physical Fatigue, Mental Fatigue, Reduced Motivation and Reduced Activity. [1]">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date (time)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"General fatigue">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"1. I feel fit.">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"5. I feel tired.">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"12. I am rested.">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"16. I tire easily.">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"General fatigue - Total">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Physical fatigue">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"2. Physically, I feel only able to do a little.">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"8. Physically I can take on a lot.">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"14. Physically I feel I am in a bad condition.">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"20. Physically I feel I am in an excellent condition.">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Physical fatigue - Total">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Mental fatigue">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"7. When I am doing something, I can keep my thoughts on it.">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"11. I can concentrate well.">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"13. It takes a lot of effort to concentrate on things.">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"19. My thoughts easily wander.">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Mental fatigue - Total">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Reduced activity">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"3. I feel very active.">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"6. I think I do a lot in a day.">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"10. I think I do very little in a day.">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"17. I get little done.">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Reduced activity - Total">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Reduced motivation">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"4. I feel like doing all sorts of nice things.">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"9. I dread having to do things.">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"15. I have lots of plans.">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"18. I don't feel like doing anything.">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Reduced motivation - Total">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Multidimensional fatigue inventory">
+					description = <"Multidimensional Fatigue Inventory (MFI) är ett 20 st egen rapporterad redskap som används för att mäta patientens fatigue. Den innehåller fem olika dimentioner: Generellt fatigue, Fysisk fatigue, Mental fatigue, Minskad aktivitet och Minskad motivation. [1]">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Datum (tid) för översyn">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Generell fatigue">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"1. Jag känner mig i form.">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"5. Jag känner mig trött.">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"12. Jag är utvilad.">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"16. Jag blir lätt trött.">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Generell fatigue - Total">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Fysisk fatigue">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"2. Kroppsligt känner jag mig bara i stånd att göra väldigt lite.">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"8. Kroppsligt orkar jag mycket.">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"14. Kroppsligt känner jag mig i dålig form.">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"20. Kroppsligt känner jag mig i utmärkt form.">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Fysisk fatigue - Total">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Mental fatigue">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"7. När jag gör något kan jag koncentrera mig på det.">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"11. Jag har lätt för att koncentrera mig.">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"13. Jag använder mycket kraft för att koncentrera mig på saker.">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"19. Mina tankar far lätt iväg.">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Mental fatigue - Total">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Minskad aktivitet">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"3. Jag känner mig mycket aktiv.">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"6. Jag tycker att jag hinner med mycket på en dag.">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"10. Jag får väldigt lite gjort under en dag.">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"17. Jag får inte mycket gjort.">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Minskad aktivitet - Total">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Minskad motivation">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"4. Jag har lust att göra en massa trevliga saker.">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"9. Jag fasar för att behöva göra något.">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"15. Jag massor av planer.">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"18. Jag har ingen lust att göra något.">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"Minskad motivation - Total">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

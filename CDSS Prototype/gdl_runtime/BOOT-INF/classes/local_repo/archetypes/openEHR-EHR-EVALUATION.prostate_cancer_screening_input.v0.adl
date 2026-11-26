@@ -1,0 +1,204 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.prostate_cancer_screening_input.v0
+
+concept
+	[at0000]	-- *Prostate cancer screening input(en)
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record relevant information as input for PSA-based prostate cancer screening.">
+			use = <"">
+			keywords = <"PSA", "Prostate cancer">
+			misuse = <"">
+			copyright = <"">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record relevant information as input for PSA-based prostate cancer screening.(en)">
+			use = <"*(en)">
+			keywords = <"*PSA(en)", "*Prostate cancer(en)">
+			misuse = <"*(en)">
+			copyright = <"*(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"2330E3E96062FA33CCB0A546D624BA1D">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- *Prostate cancer screening input(en)
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Ärftlig riskgrupp
+						value matches {
+							0|[local::at0005], 	-- Nej
+							1|[local::at0006]  	-- Ja
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Har symptom
+						value matches {
+							0|[local::at0007], 	-- Nej
+							1|[local::at0008]  	-- Ja
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Har positiva fyndet hos prostata palpation
+						value matches {
+							0|[local::at0009], 	-- Nej
+							1|[local::at0010]  	-- Ja
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Förväntad kvarvarande livstid under 10 år
+						value matches {
+							0|[local::at0012], 	-- Nej
+							1|[local::at0013]  	-- Ja
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate cancer screening input">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Family history of prostate cancer">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Has symptom">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Has positive finding in prostate palpation">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"No">
+					description = <"No family history of prostate cancer">
+				>
+				["at0006"] = <
+					text = <"Yes">
+					description = <"Has family history of prostate cancer">
+				>
+				["at0007"] = <
+					text = <"No">
+					description = <"No symptom">
+				>
+				["at0008"] = <
+					text = <"Yes">
+					description = <"Has symptom">
+				>
+				["at0009"] = <
+					text = <"No">
+					description = <"No positive finding in prostate palpation">
+				>
+				["at0010"] = <
+					text = <"Yes">
+					description = <"Has positive finding in prostate palpation">
+				>
+				["at0011"] = <
+					text = <"Life-expectancy under 10 years">
+					description = <"*">
+				>
+				["at0012"] = <
+					comment = <"*(en)">
+					text = <"No">
+					description = <"*Life-expectancy < 10 years(en)">
+				>
+				["at0013"] = <
+					comment = <"*(en)">
+					text = <"Yes">
+					description = <"*Life-expectancy > 10 years(en)">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"*Prostate cancer screening input(en)">
+					description = <"*unknown(en)">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Ärftlig riskgrupp">
+					description = <"Män med två eller fler fall av prostatacancer i den nära släkten, varav någon diagnostiserats före 75 års ålder, har omkring 40 procents risk att drabbas.">
+				>
+				["at0003"] = <
+					text = <"Har symptom">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Har positiva fyndet hos prostata palpation">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"*No family history of prostate cancer(en)">
+				>
+				["at0006"] = <
+					text = <"Ja">
+					description = <"*Has family history of prostate cancer(en)">
+				>
+				["at0007"] = <
+					text = <"Nej">
+					description = <"*No symptom(en)">
+				>
+				["at0008"] = <
+					text = <"Ja">
+					description = <"*Has symptom(en)">
+				>
+				["at0009"] = <
+					text = <"Nej">
+					description = <"*No positive finding in prostate palpation(en)">
+				>
+				["at0010"] = <
+					text = <"Ja">
+					description = <"*Has positive finding in prostate palpation(en)">
+				>
+				["at0011"] = <
+					text = <"Förväntad kvarvarande livstid under 10 år">
+					description = <"Förväntad kvarvarande livstid under 10 år">
+				>
+				["at0012"] = <
+					comment = <"*(en)">
+					text = <"Nej">
+					description = <"*Life-expectancy < 10 years(en)">
+				>
+				["at0013"] = <
+					comment = <"*(en)">
+					text = <"Ja">
+					description = <"*Life-expectancy > 10 years(en)">
+				>
+			>
+		>
+	>

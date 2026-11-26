@@ -1,0 +1,405 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.stroke_prevention_dashboard_utility.v1
+
+concept
+	[at0000]	-- Stroke prevention dashboard utility
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-04-14">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera specifik information för specifikationerna av Stroke prevention studien som inte ingår i de primära Stroke prevention riktlinjerna.">
+			use = <"Används endast i samband med Stroke preventionsstudien. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"CHA2DS2-VASc", "stroke", "profylax", "förmaksflimmer", "blödning">
+			misuse = <"Används inte i andra studier eller sammanhang utom då kriterierna är identiska med dem som definieras i Stroke prevention studien.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record specific information for the needs of the stroke prevention study that are not part of the main stroke prevention guidelines.">
+			use = <"Use only in relation to the stroke prevention study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"CHA2DS2-VASc", "stroke", "prevention", "atrial fibrillation", "bleeding">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the stroke prevention study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"CE26AE5244BB9DA2390D2D5D1C650054">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Stroke prevention dashboard utility
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Decision postponed
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0045, 	-- 1 day
+									at0017, 	-- 7 days
+									at0018, 	-- 30 days
+									at0019]	-- 365 days
+								}
+							}
+						}
+					}
+					ELEMENT[at0034] occurrences matches {0..1} matches {	-- CHA2DS2-VASc score
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0035, 	-- 0
+									at0036, 	-- 1
+									at0037, 	-- 2
+									at0038, 	-- 3
+									at0039, 	-- 4
+									at0040, 	-- 5
+									at0041, 	-- 6
+									at0042, 	-- 7
+									at0043, 	-- 8
+									at0044]	-- 9
+								}
+							}
+						}
+					}
+					CLUSTER[at0024] occurrences matches {0..1} matches {	-- Override
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0033] occurrences matches {0..1} matches {	-- General diagnosis override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0025] occurrences matches {0..1} matches {	-- Atrial fibrillation override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0026] occurrences matches {0..1} matches {	-- Diabetes override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0027] occurrences matches {0..1} matches {	-- Hypertension override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0028] occurrences matches {0..1} matches {	-- Congestive heart failure override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0029] occurrences matches {0..1} matches {	-- Stroke/TIA/Thromboembolism override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+							ELEMENT[at0030] occurrences matches {0..1} matches {	-- Vascular disease override
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0031, 	-- Diagnosis not changed
+											at0032]	-- Diagnosis changed
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Stroke prevention dashboard utility">
+					description = <"Utility archetype for the stroke prevention study.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"Decision postponed">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"7 days">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"30 days">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"365 days">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Override">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Atrial fibrillation override">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Diabetes override">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Hypertension override">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Congestive heart failure override">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Stroke/TIA/Thromboembolism override">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"Vascular disease override">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Diagnosis not changed">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"Diagnosis changed">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"General diagnosis override">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"CHA2DS2-VASc score">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"0">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"1">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"2">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"3">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"4">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"5">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"6">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"7">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"8">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"9">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"1 day">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Stroke prevention dashboard utility">
+					description = <"Utility arketyp för Stroke prevention studien.">
+				>
+				["at0001"] = <
+					text = <"Träd">
+					description = <"*@ internal @(en)">
+				>
+				["at0007"] = <
+					text = <"Beslut uppskjutet">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"En vecka">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"En månad">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Ett år">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Omvärdering">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Förmaksflimmer omvärdering">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Diabetes omvärdering">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"Hypertoni omvärdering">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"Hjärtsvikt/VK-dysfunktion omvärdering">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"Stroke/TIA/Tromboembolism omvärdering">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"Vaskulär sjukdom omvärdering">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"Diagnos inte ändrad">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"Diagnos ändrad">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"Omvärdering av diagnos">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"CHA2DS2-VASc poäng">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"0">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"1">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"2">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"3">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"4">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <"5">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"6">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"7">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"8">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"9">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"En dag">
+					description = <"*">
+				>
+			>
+		>
+	>

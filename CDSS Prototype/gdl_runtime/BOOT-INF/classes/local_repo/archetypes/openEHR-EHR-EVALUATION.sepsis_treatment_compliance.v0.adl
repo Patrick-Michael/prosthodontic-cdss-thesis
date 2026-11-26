@@ -1,0 +1,271 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.sepsis_treatment_compliance.v0
+
+concept
+	[at0000]	-- Sepsis treatment compliance
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2013-12-18">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information about the sepsis treatment compliance">
+			use = <"">
+			keywords = <"sepsis", "compliance", "treatment compliance">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Brink M, Cronqvist J, Furebring M, Gårdlund B, Lanbeck P, Ljungström L, et al. Vårdprogram Svår sepsis och septisk chock - tidig identifiering och initial handläggning. Svenska Infektionsläkarföreningen; 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"4FD2E09724E698184803A52F94CCF379">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Sepsis treatment compliance
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Treatment compliance
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- Compliant
+									at0004]	-- Non-compliant
+								}
+							}
+						}
+					}
+					CLUSTER[at0005] occurrences matches {0..1} matches {	-- Blood cultures
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0006] occurrences matches {0..1} matches {	-- Blood cultures compliance
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Blood cultures taken before antibiotic administration
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Blood cultures taken within 1 hour after Sepsis
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- Blood cultures sample taken
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0015, 	-- Missing
+											at0016]	-- Present
+										}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0010] occurrences matches {0..1} matches {	-- Antibiotics
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- Antibiotics compliance
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- Antibiotics administered after blood cultures taken
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0013] occurrences matches {0..1} matches {	-- Antibiotics administered within 1 hour after Sepsis
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0003, 	-- Compliant
+											at0004]	-- Non-compliant
+										}
+									}
+								}
+							}
+							ELEMENT[at0014] occurrences matches {0..1} matches {	-- Antibiotics administration
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0015, 	-- Missing
+											at0016]	-- Present
+										}
+									}
+								}
+							}
+						}
+					}
+					ELEMENT[at0017] occurrences matches {0..1} matches {	-- Time of non-compliance
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0018, 	-- 06:00 - 10:00
+									at0019, 	-- 11:00 - 15:00
+									at0020, 	-- 16:00 - 20:00
+									at0021, 	-- 21:00 - 01:00
+									at0022]	-- 02:00 - 06:00
+								}
+							}
+						}
+					}
+					ELEMENT[at0024] occurrences matches {0..1} matches {	-- Date/Time of non-compliance
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sepsis treatment compliance">
+					description = <"Compliance of sepsis treatment">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Treatment compliance">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Compliant">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Non-compliant">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Blood cultures">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Blood cultures compliance">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Blood cultures taken before antibiotic administration">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Blood cultures taken within 1 hour after Sepsis">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Blood cultures sample taken">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Antibiotics">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Antibiotics compliance">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Antibiotics administered after blood cultures taken">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Antibiotics administered within 1 hour after Sepsis">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Antibiotics administration">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Missing">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Time of non-compliance">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"06:00 - 10:00">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"11:00 - 15:00">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"16:00 - 20:00">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"21:00 - 01:00">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"02:00 - 06:00">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Date/Time of non-compliance">
+					description = <"*">
+				>
+			>
+		>
+	>

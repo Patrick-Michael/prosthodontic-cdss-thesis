@@ -1,0 +1,574 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.pressure_ulcers_prevention.v0
+
+concept
+	[at0000]	-- Pressure ulcers prevention measures
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To plan and document current and preventive measures for patients with active risk for pressure ulcers. To be used after the patients risk accessment for pressure ulcers and when this accessment reveals that the risk is present. ">
+			use = <"Use to plan and describe current and planned clinical measures to avoid pressure ulcers in patients with active risk to develop pressure ulcers. ">
+			keywords = <"Pressure ulcers", "prevention ", "measures", "Elderly", "Risk">
+			misuse = <"Do not use for other than to plan and document current and future measures to prevent pressure ulcers in patients with an active risk. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att plannera och dokumentera pågående förebyggande åtgärder för risk för trycksår. ">
+			use = <"Används för att plannera och beskriva pågående eller plannerade förebyggande åtgärder för patienter med aktivt trycksår risk. ">
+			keywords = <"Prevention ", "Förebyggande", "Åtgärder", "Trycksår">
+			misuse = <"Används inte för annat än för att plannera åtgärder som kan förebygga trycksår i patienter med aktivt risk för trycksår. ">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Idwall E. Kvalitetsindikatorer inom omvårdnad. Gothia. 2013 
+Lindholm C. Modifierad Nortonskala. 2013:  hämtad from www.vårdhandboken.se November 2015. ">
+		["MD5-CAM-1.0.1"] = <"A1A41C0ACC6B00584DF900D48BEB55F5">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Pressure ulcers prevention measures
+		data matches {
+			ITEM_TREE[at0001] matches {	-- *Tree(en)
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- *New element(en)
+						value matches {
+							DV_DATE_TIME matches {
+								value matches {yyyy-mm-ddTHH:??:??}
+							}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..*} matches {	-- Enviromental adjustments
+						items cardinality matches {1..4; ordered} matches {
+							ELEMENT[at0040] occurrences matches {0..1} matches {	-- Body position in bed/chair
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0041] occurrences matches {0..1} matches {	-- Use of pressure ulcer prevention madress
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0042] occurrences matches {0..1} matches {	-- Reduce shear effekt  
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0043] occurrences matches {0..1} matches {	-- Other measures- environmental adjustments
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0009] occurrences matches {0..1} matches {	-- Body position
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0045] occurrences matches {0..1} matches {	-- Often change of body position 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0047] occurrences matches {0..1} matches {	-- Body position change training- other body positions
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0046] occurrences matches {0..1} matches {	-- Prescription of helping tools
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0044] occurrences matches {0..1} matches {	-- Other measure- change of position 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0016] occurrences matches {0..1} matches {	-- Skin
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0048] occurrences matches {0..1} matches {	-- Skin accessment at least once a day 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0049] occurrences matches {0..1} matches {	-- Skin care
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0018] occurrences matches {0..1} matches {	-- Nutrition treatment 
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0059] occurrences matches {0..1} matches {	-- Snacks between meals
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0058] occurrences matches {0..1} matches {	-- Food enrichment
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0055] occurrences matches {0..1} matches {	-- Food rich in protein and energy 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0057] occurrences matches {0..1} matches {	-- Food consistence adjustment
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0056] occurrences matches {0..1} matches {	-- Adjust food according to religious and cultural needs
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0054] occurrences matches {0..1} matches {	-- Reduce night food fast to max11 hours
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0053] occurrences matches {0..1} matches {	-- Enteral nutrition 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0052] occurrences matches {0..1} matches {	-- Parental nutrition 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0051] occurrences matches {0..1} matches {	-- Energy nutritional drinks
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0050] occurrences matches {0..1} matches {	-- Other measures- Pressure ulcers
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0031] occurrences matches {0..1} matches {	-- Pain relieve
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0061] occurrences matches {0..1} matches {	-- Pain accessment
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0062] occurrences matches {0..1} matches {	-- Pain relieving treatment- not farmakological 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0060] occurrences matches {0..1} matches {	-- Medication prescription 
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0035] occurrences matches {0..1} matches {	-- Other measures 
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0063] occurrences matches {0..1} matches {	-- Information/ instruction on the healthproblem- Pressure ulcers
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0066] occurrences matches {0..1} matches {	-- Other measures- Pressure ulcers
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0065] occurrences matches {0..1} matches {	-- Paliative care- Pressure ulcers
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+							ELEMENT[at0064] occurrences matches {0..1} matches {	-- Patient declines preventive measures- Pressure ulcers
+								value matches {
+									DV_BOOLEAN matches {
+										value matches {True, False}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Pressure ulcers prevention measures">
+					description = <"To prevent and document current and planned preventive measures for patients with active risk for pressure ulcers. ">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Enviromental adjustments">
+					description = <"Typ av omgivningsanpassning ">
+				>
+				["at0009"] = <
+					text = <"Body position">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Skin">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Nutrition treatment ">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Pain relieve">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Other measures ">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Body position in bed/chair">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"Use of pressure ulcer prevention madress">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"Reduce shear effekt  ">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"Other measures- environmental adjustments">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"Other measure- change of position ">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"Often change of body position ">
+					description = <"**(en)">
+				>
+				["at0046"] = <
+					text = <"Prescription of helping tools">
+					description = <"**(en)">
+				>
+				["at0047"] = <
+					text = <"Body position change training- other body positions">
+					description = <"**(en)">
+				>
+				["at0048"] = <
+					text = <"Skin accessment at least once a day ">
+					description = <"**(en)">
+				>
+				["at0049"] = <
+					text = <"Skin care">
+					description = <"**(en)">
+				>
+				["at0050"] = <
+					text = <"Other measures- Pressure ulcers">
+					description = <"**(en)">
+				>
+				["at0051"] = <
+					text = <"Energy nutritional drinks">
+					description = <"**(en)">
+				>
+				["at0052"] = <
+					text = <"Parental nutrition ">
+					description = <"**(en)">
+				>
+				["at0053"] = <
+					text = <"Enteral nutrition ">
+					description = <"**(en)">
+				>
+				["at0054"] = <
+					text = <"Reduce night food fast to max11 hours">
+					description = <"**(en)">
+				>
+				["at0055"] = <
+					text = <"Food rich in protein and energy ">
+					description = <"**(en)">
+				>
+				["at0056"] = <
+					text = <"Adjust food according to religious and cultural needs">
+					description = <"**(en)">
+				>
+				["at0057"] = <
+					text = <"Food consistence adjustment">
+					description = <"**(en)">
+				>
+				["at0058"] = <
+					text = <"Food enrichment">
+					description = <"**(en)">
+				>
+				["at0059"] = <
+					text = <"Snacks between meals">
+					description = <"**(en)">
+				>
+				["at0060"] = <
+					text = <"Medication prescription ">
+					description = <"**(en)">
+				>
+				["at0061"] = <
+					text = <"Pain accessment">
+					description = <"**(en)">
+				>
+				["at0062"] = <
+					text = <"Pain relieving treatment- not farmakological ">
+					description = <"**(en)">
+				>
+				["at0063"] = <
+					text = <"Information/ instruction on the healthproblem- Pressure ulcers">
+					description = <"**(en)">
+				>
+				["at0064"] = <
+					text = <"Patient declines preventive measures- Pressure ulcers">
+					description = <"**(en)">
+				>
+				["at0065"] = <
+					text = <"Paliative care- Pressure ulcers">
+					description = <"**(en)">
+				>
+				["at0066"] = <
+					text = <"Other measures- Pressure ulcers">
+					description = <"**(en)">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Planerade och förebyggande åtgärder- Trycksår">
+					description = <"För att plannera och anteckna pågående förebyggande åtgärder för patienter med aktivt risk för trycksår. ">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"New element">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Omgivningsanpassning">
+					description = <"Typ av omgivningsanpassning ">
+				>
+				["at0009"] = <
+					text = <"Lägesändring">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Huden ">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Nutritionsbehandling ">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"Smärtlindring ">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Annan åtgärd ">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Kroppspositionering i säng/stol ">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Bruk av tryckutjämnande underlag">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Minskning av skjuveffekt">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Annan åtgärd- Omgivningsanpassning ">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"Annan åtgärd- Lägesändring ">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Regelbundna lägesändringar">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Hjälpmedelsförskrivning">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Förflyttningsträning- ändra kroppsställning">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Bedömning av huden en gång per dag eller oftare">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"Hudvård">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"Annan åtgärd- Nutritionsbehandling ">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"Parental nutrition ">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Enteral nutrition ">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Minska nattfasta till max 11 timmar ">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Anpassa maten efter kulturella och religiösa behov ">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Protein- och energirik kost">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"Näringsdryck">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"Konsistensanpassning ">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Berikning av kosten">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Mellanmål ">
+					description = <"*">
+				>
+				["at0060"] = <
+					text = <"Ordination av läkemedel ">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"Bedömning av smärta ">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"Smärtreducerande behandling - icke farmakologisk ">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"Information/ undervisning om hälsoproblem- Trycksår ">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"Person avböjer samtliga förebyggande åtgärd- Trycksår">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <"Vård i livest slutskede- Trycksår ">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"Annan åtgärd- Trycksår ">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,276 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.safe_discharge.v0
+
+concept
+	[at0000]	-- Safe discharge
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2014-09-29">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patients that belong to a high risk group">
+			use = <"">
+			keywords = <"safe discharge", "high-risk patient", "polypharmacy", "re-hospitalization", "alert">
+			misuse = <"">
+			copyright = <"">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record patients that belong to a high risk group(en)">
+			use = <"*(en)">
+			misuse = <"*(en)">
+			copyright = <"*(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Plan för projektet ” Säker hemgång ” - en förstärkt överlämningsprocess vid utskrivning för patienter med hög risk för återinläggning i Landstinget i Östergötland. Landstiget i Östergötland; 2012.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"45655AEC043BBF066F005EEC9AB41848">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Safe discharge
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Age > 70 years old
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Previous hospitalization during the last 12 months
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Diabetes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Atrial fibrillation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Heart failure
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- COPD
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Stroke
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- 7 or more ongoing medications
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Safe discharge">
+					description = <"Safe discharge for high risk patients">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Age > 70 years old">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Previous hospitalization during the last 12 months">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Diabetes">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Atrial fibrillation">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Heart failure">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"COPD">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Stroke">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"7 or more ongoing medications">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Säker hemgång">
+					description = <"Safe discharge for high risk patients(en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Patienten är över 70 år">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Patienten har haft en tidigare inläggning under de senaste 12 månaderna">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Diabetes">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Förmaksflimmer">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Hjärtsvikt">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"KOL">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Stroke">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Patienten tar 7 eller fler läkemedel">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Finns ej">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Finns">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

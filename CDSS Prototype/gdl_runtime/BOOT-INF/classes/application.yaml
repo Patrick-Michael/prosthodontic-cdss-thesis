@@ -1,0 +1,15 @@
+spring:
+  jmx:
+    enabled: false
+server:
+  port: 8080
+  servlet:
+    context-path: /gdl2-editor
+    session:
+      timeout: 38000s
+  connection-timeout: 20800000s
+execution:
+  url: https://cds-platform/gdl2-execution-service/
+vaadin:
+  servlet:
+    close-idle-sessions: true

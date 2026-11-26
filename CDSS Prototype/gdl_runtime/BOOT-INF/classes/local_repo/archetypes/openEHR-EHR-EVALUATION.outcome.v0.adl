@@ -1,0 +1,263 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.outcome.v0
+
+concept
+	[at0000]	-- Outcome
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2013-12-18">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record details about the outcome of a condition for a patient">
+			use = <"">
+			keywords = <"outcome", "clinical outcome", "length of stay", "re-admission", "mortality">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"BDD5A0F5BE7AD81E6C278562A4417A46">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Outcome
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Mortality
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0003, 	-- Absent
+									at0004]	-- Present
+								}
+							}
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- Length of stay
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::128]>
+								list = <
+									["1"] = <
+										units = <"d">
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- Range of stay
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0007, 	-- 0 days
+									at0008, 	-- 1-3 days
+									at0009, 	-- 4-6 days
+									at0010, 	-- 7-9 days
+									at0011, 	-- 10-12 days
+									at0012, 	-- 13-15 days
+									at0013, 	-- 16-18 days
+									at0014, 	-- 19-21 days
+									at0015, 	-- 22-24 days
+									at0016, 	-- 25-27 days
+									at0017, 	-- 28-30 days
+									at0018]	-- > 30 days
+								}
+							}
+						}
+					}
+					ELEMENT[at0019] occurrences matches {0..1} matches {	-- Readmission rate (within a month)
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::507]>
+								list = <
+									["1"] = <
+										units = <"%">
+										precision = <|2|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0020] occurrences matches {0..1} matches {	-- Readmission count
+						value matches {
+							C_DV_QUANTITY <
+							>
+						}
+					}
+					ELEMENT[at0021] occurrences matches {0..1} matches {	-- Readmission rate range
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0022, 	--  <5 %
+									at0023, 	-- 6-10 %
+									at0024, 	-- 11-15 %
+									at0025, 	-- 16-20 %
+									at0026, 	-- 21-25 %
+									at0027, 	-- 26-30 %
+									at0028, 	-- 31-35 %
+									at0029, 	-- 36-40 %
+									at0030, 	-- 41-45 %
+									at0031, 	-- 46-50 %
+									at0032]	-- > 50 %
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Outcome">
+					description = <"To record details about the outcome of a condition for a patient">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Mortality">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Length of stay">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Range of stay">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"0 days">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"1-3 days">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"4-6 days">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"7-9 days">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"10-12 days">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"13-15 days">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"16-18 days">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"19-21 days">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"22-24 days">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"25-27 days">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"28-30 days">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"> 30 days">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Readmission rate (within a month)">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Readmission count">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Readmission rate range">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <" <5 %">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"6-10 %">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"11-15 %">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"16-20 %">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"21-25 %">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"26-30 %">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"31-35 %">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"36-40 %">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"41-45 %">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"46-50 %">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"> 50 %">
+					description = <"*">
+				>
+			>
+		>
+	>

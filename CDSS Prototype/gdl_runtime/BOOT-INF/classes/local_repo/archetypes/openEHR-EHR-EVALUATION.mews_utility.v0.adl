@@ -1,0 +1,149 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.mews_utility.v0
+
+concept
+	[at0000]	-- Mews utility
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record information based on the calculated MEWS score">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"4FF79DC66FE3FF902CB2BCB2C9706864">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Mews utility
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- MEWS score
+						value matches {
+							0|[local::at0003], 	-- MEWS score: 0
+							1|[local::at0004], 	-- MEWS score: 1
+							2|[local::at0005], 	-- MEWS score: 2
+							3|[local::at0006], 	-- MEWS score: 3
+							4|[local::at0007], 	-- MEWS score: 4
+							5|[local::at0008], 	-- MEWS score: 5
+							6|[local::at0009], 	-- MEWS score: 6
+							7|[local::at0010], 	-- MEWS score: 7
+							8|[local::at0011], 	-- MEWS score: 8
+							9|[local::at0012], 	-- MEWS score: 9
+							10|[local::at0013], 	-- MEWS score: 10
+							11|[local::at0014], 	-- MEWS score: 11
+							12|[local::at0015], 	-- MEWS score: 12
+							13|[local::at0016], 	-- MEWS score: 13
+							14|[local::at0017], 	-- MEWS score: 14
+							15|[local::at0018], 	-- MEWS score: 15
+							16|[local::at0019], 	-- MEWS score: 16
+							17|[local::at0020]  	-- MEWS score: 17
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Mews utility">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"MEWS score">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"MEWS score: 0">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"MEWS score: 1">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"MEWS score: 2">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"MEWS score: 3">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"MEWS score: 4">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"MEWS score: 5">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"MEWS score: 6">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"MEWS score: 7">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"MEWS score: 8">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"MEWS score: 9">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"MEWS score: 10">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"MEWS score: 11">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"MEWS score: 12">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"MEWS score: 13">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"MEWS score: 14">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"MEWS score: 15">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"MEWS score: 16">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"MEWS score: 17">
+					description = <"*">
+				>
+			>
+		>
+	>

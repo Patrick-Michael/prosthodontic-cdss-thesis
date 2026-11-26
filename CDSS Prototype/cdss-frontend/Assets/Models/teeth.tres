@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ct2th5m85wj4c"]
+
+[resource]
+resource_name = "teeth"
+cull_mode = 2
+albedo_color = Color(0.96628004, 0.95748645, 0.9314077, 1)
+roughness = 0.65

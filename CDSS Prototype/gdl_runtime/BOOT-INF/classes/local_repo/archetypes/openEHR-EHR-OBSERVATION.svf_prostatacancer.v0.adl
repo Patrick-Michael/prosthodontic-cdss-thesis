@@ -1,0 +1,773 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.svf_prostatacancer.v0
+
+concept
+	[at0000]	-- Svf prostatacancer
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To provide an overview of the different fases of the  prostatacancer Dashboard case study for SVF. ">
+			use = <"To provide an overview of the different fases and the SVF objectives for  prostatacancer case study for SVF. ">
+			keywords = <"Prostata", "SVF">
+			misuse = <"Do not use to provide an overview other than  prostatacancer Dashboard case study for SVF.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Olika faser på standardiserade vårdförlopp i cancervården. ">
+			use = <"Översikt av olika faser i den standardiserade vårdförlopp i cancervården.">
+			keywords = <"SVF", "Cancervården", "">
+			misuse = <"Används ej för att visualisera annat än SVF (standardiserade vårdförlopp) olika faser inom cancervården. ">
+			copyright = <"Cambio Healthcare Systems ">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Socialstyrelsen (2015). Standardiserade vårdförlopp i cancervården. En baslinjestudie. Hämtad från https://www.socialstyrelsen.se/Lists/Artikelkatalog/Attachments/19926/2015-10-5.pdf Februari 2016. 
+Regionala Cancercentrum i Samverkan (2016).Prostatacancer Primärvårdsversion av standardiseradt vårdförlopp 2016. Hämtad från http://www.cancercentrum.se/globalassets/vara-uppdrag/kunskapsstyrning/varje-dag-raknas/vardforlopp/primarvardsversioner_standardiserade_vardforlopp_20151221.pdf Februari 2016. ">
+		["MD5-CAM-1.0.1"] = <"D52477485EFBC80F576F411BC114654D">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Svf prostatacancer
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- *Tree(en)
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Misstanke
+										value matches {
+											DV_DATE matches {
+												value matches {yyyy-mm-dd}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- Remissbeslut vid välgrundad misstanke (VGM)
+										value matches {
+											DV_DATE matches {
+												value matches {yyyy-mm-dd}
+											}
+										}
+									}
+									CLUSTER[at0010] occurrences matches {0..1} matches {	-- Remissankomst VGM
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0012] occurrences matches {0..1} matches {	-- Remissankomst
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0013] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till remissankomst
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																precision = <|3|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Antal dagar från remissankomnst till första besök (Block A)
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+														assumed_value = <
+															magnitude = <0.0>
+															units = <"d">
+															precision = <-1>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0015] occurrences matches {0..1} matches {	-- Första besök (Block A)
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0016] occurrences matches {0..1} matches {	-- Första besök
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Antal dagar från remissankomst VGM till första besök
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {	-- Antal dagar från första besök till biopsi
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0019] occurrences matches {0..1} matches {	-- Biopsi
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0020] occurrences matches {0..1} matches {	-- Biopsi
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0021] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till Biopsi
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0022] occurrences matches {0..1} matches {	-- Antal dagar från biopsi till möte med patient
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0023] occurrences matches {0..1} matches {	-- Möte med patienten för besked om resultatet
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0024] occurrences matches {0..1} matches {	-- Möte med patienten
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0025] occurrences matches {0..1} matches {	-- Antal dagar från Biopsi till Möte med patienten
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0049] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till möte med patient
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0026] occurrences matches {0..1} matches {	-- Svar till VGM remiss remittenten
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0027] occurrences matches {0..1} matches {	-- Svar remittenten
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0028] occurrences matches {0..1} matches {	-- Antal dagar från remiss till bilddiagnostik till svar till remitenten
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0029] occurrences matches {0..1} matches {	-- Antal dagar från svar till remitenten till MDK multidisciplinära konferens
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0031] occurrences matches {0..1} matches {	-- MDK multidisciplinära konferens
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0032] occurrences matches {0..1} matches {	-- MDK multidisciplinära konferens
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0033] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till MDK
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																magnitude = <|>=0.0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0034] occurrences matches {0..1} matches {	-- Antal dagar från MDK till behandlingsbeslut
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0038] occurrences matches {0..1} matches {	-- Behandlingsbeslut
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0039] occurrences matches {0..1} matches {	-- Behandlingsbeslut
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0040] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till behandlingsbeslut
+												value matches {
+													C_DV_QUANTITY <
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0042] occurrences matches {0..1} matches {	-- Behandlingsstart
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0043] occurrences matches {0..1} matches {	-- Behandlingsstart
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0041] occurrences matches {0..1} matches {	-- Antal dagar från behandlingsbeslut till behandlingsstart
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0044] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till behandlingsstart
+												value matches {
+													C_DV_QUANTITY <
+													>
+												}
+											}
+											ELEMENT[at0045] occurrences matches {0..1} matches {	-- Antall dagar från behandlingsstart till follow up
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																precision = <|0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+									CLUSTER[at0046] occurrences matches {0..1} matches {	-- Follow-up
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0048] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till follow-up
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																magnitude = <|<=0.0|>
+																precision = <|0|>
+															>
+														>
+													>
+												}
+											}
+											ELEMENT[at0047] occurrences matches {0..1} matches {	-- Follow-up
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+										}
+									}
+									CLUSTER[at0053] occurrences matches {0..1} matches {	-- Remiss till Bilddiagnostik
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0054] occurrences matches {0..1} matches {	-- Remiss till Bilddiagnostik
+												name matches {
+													DV_TEXT matches {*}
+												}
+												value matches {
+													DV_DATE matches {
+														value matches {yyyy-mm-dd}
+													}
+												}
+											}
+											ELEMENT[at0055] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till remiss till bilddiagnostik
+												value matches {
+													C_DV_QUANTITY <
+														property = <[openehr::128]>
+														list = <
+															["1"] = <
+																units = <"d">
+																precision = <|0|>
+															>
+														>
+													>
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Svf prostatacancer">
+					description = <"Dashboard prostatacancer case study for SVF. ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0007"] = <
+					text = <"Misstanke">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Remissbeslut vid välgrundad misstanke (VGM)">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Remissankomst VGM">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Remissankomst">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Antal dagar från VGM remissbeslut till remissankomst">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Antal dagar från remissankomnst till första besök (Block A)">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Första besök (Block A)">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Första besök">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Antal dagar från remissankomst VGM till första besök">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Antal dagar från första besök till biopsi">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Biopsi">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Biopsi">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Antal dagar från VGM remissbeslut till Biopsi">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Antal dagar från biopsi till möte med patient">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Möte med patienten för besked om resultatet">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Möte med patienten">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Antal dagar från Biopsi till Möte med patienten">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Svar till VGM remiss remittenten">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Svar remittenten">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Antal dagar från remiss till bilddiagnostik till svar till remitenten">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"Antal dagar från svar till remitenten till MDK multidisciplinära konferens">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"MDK multidisciplinära konferens">
+					description = <" Besök för ny
+medicinsk
+bedömning
+(second opinion) ">
+				>
+				["at0032"] = <
+					text = <"MDK multidisciplinära konferens">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Antal dagar från VGM remissbeslut till MDK">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"Antal dagar från MDK till behandlingsbeslut">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"Behandlingsbeslut">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"Behandlingsbeslut">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till behandlingsbeslut">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Antal dagar från behandlingsbeslut till behandlingsstart">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"Behandlingsstart">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"Behandlingsstart">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till behandlingsstart">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"Antall dagar från behandlingsstart till follow up">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Follow-up">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Follow-up">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till follow-up">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"Antal dagar från VGM remissbeslut till möte med patient">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Remiss till Bilddiagnostik">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"Remiss till Bilddiagnostik">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till remiss till bilddiagnostik">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Standardizerad vårdförlopp faser för Prostatacancer">
+					description = <"Översykt av prostatacancer standardizerad vårdförlopp olika faser. ">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0007"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0046"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0047"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0048"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0049"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0053"] = <
+					text = <"*New cluster(en)">
+					description = <"**(en)">
+				>
+				["at0054"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+				["at0055"] = <
+					text = <"*New element(en)">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

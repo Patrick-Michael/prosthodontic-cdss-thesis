@@ -1,0 +1,268 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_lungs.v0
+
+concept
+	[at0000]	-- Vacterl lungs
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record patient information for birth defects VACTERL lungs. Clinical relevant data is registred throught this archetype.">
+			use = <"Use for patients with lung problems and birth defects VACTERL.">
+			keywords = <"VACTERL", "lung", "lung function", "chronic cough", "inalation medication", "value based healthcare", "VBH">
+			misuse = <"Do not use for other than to register patient data related to VACTERL syndrome and related lung problems.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera patient data för lungor relaterad till VACTERL syndrom. Klinisk data registreras i denna archetype.">
+			use = <"Används för patienter med VACTERL syndrom och lungproblem.">
+			keywords = <"VACTERL", "lungor", "lungfunktion", "vingscapula", "inhalationsläkemedel", "scolios", "kronisk hosta", "värdebaserad sjukvård", "VBH">
+			misuse = <"Används inte för annat än för att registrera information för med VACTERL syndrom och lungproblem.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Grundmall KB Esofagusatresi, analatresi, VACTERL\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"78831D5742286F267DF52CCCB4B71493">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl lungs
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Lung/breathing
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Chronic cough
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Normal
+											at0006]	-- Reduced obstructive
+										}
+									}
+								}
+							}
+							ELEMENT[at0007] occurrences matches {0..1} matches {	-- Scoliosis
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Normal
+											at0006]	-- Reduced obstructive
+										}
+									}
+								}
+							}
+							ELEMENT[at0008] occurrences matches {0..1} matches {	-- Winged scapula
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Normal
+											at0006]	-- Reduced obstructive
+										}
+									}
+								}
+							}
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- Pulmunary function
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0005, 	-- Normal
+											at0006, 	-- Reduced obstructive
+											at0010]	-- Reduced restrictive
+										}
+									}
+								}
+							}
+						}
+					}
+					ELEMENT[at0011] occurrences matches {0..1} matches {	-- Pneumonia
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|0..100|}
+							}
+						}
+					}
+					ELEMENT[at0012] occurrences matches {0..1} matches {	-- Inhalated medication
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0013, 	-- Steroids
+									at0014, 	-- Bronchodilatory
+									at0015]	-- No
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl lungs">
+					description = <"Patient information regarding complications in lungs VACTERL birth defects.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Lung/breathing">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Chronic cough">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Normal">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Reduced obstructive">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Scoliosis">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Winged scapula">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Pulmunary function">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Reduced restrictive">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Pneumonia">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Inhalated medication">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Steroids">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Bronchodilatory">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"No">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl lungor">
+					description = <"Patientinformation relaterad till lungor VACTERL- syndrom.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Uppföljning datum/tid">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Lungor/andning">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Kronisk hosta">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Normal">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Nedsatt obstruktiv">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Scolios">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"Vingscapula">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Lungfunktion">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Nedsatt restriktiv">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Pneumoni">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Inhalationsläkemedel">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Steroid">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Luftvägsvidgande">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Nej">
+					description = <"*">
+				>
+			>
+		>
+	>

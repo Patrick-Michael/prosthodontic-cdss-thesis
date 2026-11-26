@@ -1,0 +1,913 @@
+﻿{
+    "resourceType":  "Bundle",
+    "type":  "collection",
+    "entry":  [
+                  {
+                      "fullUrl":  "urn:uuid:0801b844-dd89-5cd2-a98f-07b65c356da7",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245566003"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "0801b844-dd89-5cd2-a98f-07b65c356da7"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:73f34442-f949-558c-a59d-00b7ac613855",
+                      "resource":  {
+                                       "resourceType":  "Condition",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-condition"
+                                                                ]
+                                                },
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://snomed.info/sct",
+                                                                       "code":  "234948008"
+                                                                   }
+                                                               ]
+                                                },
+                                       "bodySite":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://snomed.info/sct",
+                                                                               "code":  "245590002"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "id":  "73f34442-f949-558c-a59d-00b7ac613855"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:fd5edf96-cfd3-555b-9db2-5dfadfa8f397",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245567007"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "fd5edf96-cfd3-555b-9db2-5dfadfa8f397"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:7c078ba8-9782-5f79-a652-e75bcf0766d2",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245591003"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "7c078ba8-9782-5f79-a652-e75bcf0766d2"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:ec78b2ec-d57c-508e-87b4-1406a61c76f5",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245568002"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "ec78b2ec-d57c-508e-87b4-1406a61c76f5"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:54a45d61-25b5-552f-935a-cbd0c1b8764b",
+                      "resource":  {
+                                       "resourceType":  "Condition",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-condition"
+                                                                ]
+                                                },
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://snomed.info/sct",
+                                                                       "code":  "234948008"
+                                                                   }
+                                                               ]
+                                                },
+                                       "bodySite":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://snomed.info/sct",
+                                                                               "code":  "245592005"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "id":  "54a45d61-25b5-552f-935a-cbd0c1b8764b"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:4ebbdcea-4d20-577c-97c2-4166af898695",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245570006"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "4ebbdcea-4d20-577c-97c2-4166af898695"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:180d3847-cd9b-5a5d-abe1-9aeadccff78d",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245595007"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "180d3847-cd9b-5a5d-abe1-9aeadccff78d"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:e65a4e2d-c9fd-5da5-a4a6-f645bd670769",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245571005"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "e65a4e2d-c9fd-5da5-a4a6-f645bd670769"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:8bf1f2be-8706-57a3-9d02-de4e0ba0da2c",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245596008"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "8bf1f2be-8706-57a3-9d02-de4e0ba0da2c"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:a5f938ef-1721-51c8-a474-d7d48c424338",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245572003"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "a5f938ef-1721-51c8-a474-d7d48c424338"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:d256fc2a-c7bd-5be8-875c-746f4e6aa208",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245597004"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "d256fc2a-c7bd-5be8-875c-746f4e6aa208"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:cbedde57-a886-560e-8234-a51910f83738",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245574002"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "cbedde57-a886-560e-8234-a51910f83738"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:a61f60fe-a6c1-5676-b565-cbff7047365e",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245599001"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "a61f60fe-a6c1-5676-b565-cbff7047365e"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:0dee1a9f-c456-5ef7-922b-f0376a79358c",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245575001"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "0dee1a9f-c456-5ef7-922b-f0376a79358c"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:230d9990-ca3e-59d0-a72a-d31924fbc748",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/dental-data-exchange/StructureDefinition/dental-findings"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://hl7.org/fhir/us/dental-data-exchange/CodeSystem/dental-category",
+                                                                               "code":  "dental",
+                                                                               "display":  "Dental"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "32885-6"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "effectiveDateTime":  "2026-10-10",
+                                       "valueCodeableConcept":  {
+                                                                    "coding":  [
+                                                                                   {
+                                                                                       "system":  "http://snomed.info/sct",
+                                                                                       "code":  "278661005"
+                                                                                   }
+                                                                               ]
+                                                                },
+                                       "bodySite":  {
+                                                        "coding":  [
+                                                                       {
+                                                                           "system":  "http://snomed.info/sct",
+                                                                           "code":  "245600003"
+                                                                       }
+                                                                   ]
+                                                    },
+                                       "id":  "230d9990-ca3e-59d0-a72a-d31924fbc748"
+                                   }
+                  },
+                  {
+                      "fullUrl":  "urn:uuid:910e9f3f-1b99-5ac2-add1-a6e5362c54e3",
+                      "resource":  {
+                                       "resourceType":  "Observation",
+                                       "meta":  {
+                                                    "profile":  [
+                                                                    "http://hl7.org/fhir/us/core/StructureDefinition/us-core-observation-lab"
+                                                                ]
+                                                },
+                                       "status":  "unknown",
+                                       "category":  [
+                                                        {
+                                                            "coding":  [
+                                                                           {
+                                                                               "system":  "http://terminology.hl7.org/CodeSystem/observation-category",
+                                                                               "code":  "laboratory"
+                                                                           }
+                                                                       ]
+                                                        }
+                                                    ],
+                                       "code":  {
+                                                    "coding":  [
+                                                                   {
+                                                                       "system":  "http://loinc.org",
+                                                                       "code":  "4548-4"
+                                                                   }
+                                                               ]
+                                                },
+                                       "subject":  {
+                                                       "reference":  "Patient/1"
+                                                   },
+                                       "encounter":  {
+                                                         "reference":  "Encounter/4"
+                                                     },
+                                       "valueQuantity":  {
+                                                             "value":  8.0,
+                                                             "unit":  "%",
+                                                             "system":  "http://unitsofmeasure.org",
+                                                             "code":  "%"
+                                                         },
+                                       "id":  "910e9f3f-1b99-5ac2-add1-a6e5362c54e3"
+                                   }
+                  }
+              ]
+}

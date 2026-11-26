@@ -1,0 +1,451 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_study.v0
+
+concept
+	[at0000]	-- Vacterl study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To categorize values in the VACTERL process case study.">
+			use = <"To categorize values in the VACTERL process case study.">
+			keywords = <"VACTERL", "VBH", "value based healthcare">
+			misuse = <"Do not use for categories of values other than the VACTERL process case study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Ange studie kategorier för VACTERL.">
+			use = <"Ange kategorier för VACTERL process studie.">
+			keywords = <"VACTERL", "värdebaserad sjukvård", "VBH">
+			misuse = <"Används inte i annat studie än VACTERL.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"LUL, Systemförvaltning (2009). \"Mall för journaltabell Esofaguscancer\". Landstninget Uppsala Län">
+		["MD5-CAM-1.0.1"] = <"C676880826406A94488B91A9CE9E95E5">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl study
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					CLUSTER[at0003] occurrences matches {0..1} matches {	-- Esophagus
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0004] occurrences matches {0..1} matches {	-- Dysphagia sum categories
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0006, 	-- 6-12
+											at0007, 	-- 13-18
+											at0008, 	-- 19-24
+											at0033, 	-- 25-30
+											at0034]	-- 0-5
+										}
+									}
+								}
+							}
+							ELEMENT[at0005] occurrences matches {0..1} matches {	-- Dysphagia sum
+								value matches {
+									DV_COUNT matches {*}
+								}
+							}
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- De Meester score
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0010, 	-- Less or equal to 14,7
+											at0011]	-- More than 14,7
+										}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0012] occurrences matches {0..1} matches {	-- Lungs
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0013] occurrences matches {0..1} matches {	-- Pneumonia
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0014, 	-- 1
+											at0015, 	-- 2
+											at0016, 	-- 3
+											at0017, 	-- 4
+											at0018, 	-- 5
+											at0019, 	-- 6
+											at0020, 	-- 7
+											at0021, 	-- 8
+											at0022]	-- More than 9
+										}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0023] occurrences matches {0..1} matches {	-- Bladder
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0024] occurrences matches {0..1} matches {	-- Urinary infection
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0014, 	-- 1
+											at0015, 	-- 2
+											at0016, 	-- 3
+											at0017, 	-- 4
+											at0018, 	-- 5
+											at0019, 	-- 6
+											at0020, 	-- 7
+											at0021, 	-- 8
+											at0022]	-- More than 9
+										}
+									}
+								}
+							}
+						}
+					}
+					CLUSTER[at0025] occurrences matches {0..1} matches {	-- Parental survey
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0026] occurrences matches {0..1} matches {	-- Parental survey sum categories
+								value matches {
+									DV_CODED_TEXT matches {
+										defining_code matches {
+											[local::
+											at0027, 	-- 1-8
+											at0028, 	-- 9-16
+											at0029, 	-- 17-24
+											at0030, 	-- 25-32
+											at0031, 	-- 33-40
+											at0032]	-- 41-48
+										}
+									}
+								}
+							}
+							ELEMENT[at0035] occurrences matches {0..1} matches {	-- Parental survey sum
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|8..48|}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl study">
+					description = <"Vacterl birth defects value based healthcare study.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0003"] = <
+					text = <"Esophagus">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Dysphagia sum categories">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Dysphagia sum">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"6-12">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"13-18">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"19-24">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"De Meester score">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Less or equal to 14,7">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"More than 14,7">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Lungs">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Pneumonia">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"1">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"2">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"3">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"4">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"5">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"6">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"7">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"8">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"More than 9">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"Bladder">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Urinary infection">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Parental survey">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Parental survey sum categories">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"1-8">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"9-16">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"17-24">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"25-32">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"33-40">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"41-48">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"25-30">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"0-5">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Parental survey sum">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl studie">
+					description = <"Vacterl värdebaserad sjukvård studie.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0003"] = <
+					text = <"Esofagus">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"Dysfagi summa">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Dysfagi summa">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"6-12">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"13-18">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"19-24">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"De Meester score">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Mindre eller lika 14,7">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Mer än 14,7">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Lungor">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Pneumonia">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"1">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"2">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"3">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"4">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"5">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"6">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"7">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"8">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"Mer än 9">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"Urinblåsa">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Urinvägsinfektion">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Föräldraenkät">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Föräldrarenkät summa kategorier">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"1-8">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"9-16">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"17-24">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"25-32">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"33-40">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"41-48">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <"25-30">
+					description = <"**(en)">
+				>
+				["at0034"] = <
+					text = <"0-5">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"Föräldrarenkät summa">
+					description = <"*">
+				>
+			>
+		>
+	>

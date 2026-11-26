@@ -1,0 +1,85 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.compliance_checking.v0
+
+concept
+	[at0000]	-- Compliance checking
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Rong Chen">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"rong.chen@cambio.se">
+		["date"] = <"2012-12-10">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record compliance of given prevention or treatment against recommendations from clinical practice guideline or protocol">
+			use = <"Use">
+			keywords = <"compliance", "prevention", "clinical practice guidelines", "CPGs", "treatment compliance", "recommendation">
+			misuse = <"Misuse">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Camm a J, Kirchhof P, Lip GYH, Schotten U, Savelieva I, Ernst S, et al. Guidelines for the management of atrial fibrillation: the Task Force for the Management of Atrial Fibrillation of the European Society of Cardiology (ESC). Eur Heart J. 2010 Oct;31(19):2369–429.">
+		["MD5-CAM-1.0.1"] = <"1661506051F82F07FEBA2B5C45165A5C">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Compliance checking
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tr?d
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Compliant
+						value matches {
+							DV_BOOLEAN matches {
+								value matches {True, False}
+							}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Source of knowledge
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+					ELEMENT[at0004] occurrences matches {0..1} matches {	-- Reason for deviation
+						value matches {
+							DV_TEXT matches {*}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Compliance checking">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tr?d">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Compliant">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Source of knowledge">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Reason for deviation">
+					description = <"*">
+				>
+			>
+		>
+	>

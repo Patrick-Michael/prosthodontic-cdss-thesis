@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://glvaj27slqtd"]
+
+[resource]
+resource_name = "enamel"
+cull_mode = 2
+albedo_color = Color(0.98265713, 0.9808553, 0.9717797, 1)
+roughness = 0.4

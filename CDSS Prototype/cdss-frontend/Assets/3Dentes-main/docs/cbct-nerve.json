@@ -1,0 +1,305 @@
+{
+  "provenance": {
+    "canal": "MEASURED (CBCT)",
+    "apical_foramina": "MEASURED (CBCT)",
+    "nerve_trunk": "SCHEMATIC (canal contents are not resolved by CBCT)",
+    "branches": "INFERRED (endpoints measured, path is convention)",
+    "mental_foramen": "MEASURED (anterior end of the hand-traced mental canal)"
+  },
+  "trunks": [
+    {
+      "side": "right",
+      "length_mm": 60.8,
+      "mean_radius_mm": 0.576
+    },
+    {
+      "side": "left",
+      "length_mm": 54.6,
+      "mean_radius_mm": 0.602
+    }
+  ],
+  "branches": [
+    {
+      "universal": 18,
+      "fma": "FMA55703",
+      "canal": 0,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 4.45,
+      "apex_lps": [
+        29.84,
+        -6.79,
+        -39.56
+      ]
+    },
+    {
+      "universal": 18,
+      "fma": "FMA55703",
+      "canal": 1,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 3.13,
+      "apex_lps": [
+        32.61,
+        -5.27,
+        -39.56
+      ]
+    },
+    {
+      "universal": 19,
+      "fma": "FMA55704",
+      "canal": 0,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 3.29,
+      "apex_lps": [
+        26.24,
+        -21.32,
+        -40.04
+      ]
+    },
+    {
+      "universal": 19,
+      "fma": "FMA55704",
+      "canal": 1,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 7.09,
+      "apex_lps": [
+        28.72,
+        -16.55,
+        -39.4
+      ]
+    },
+    {
+      "universal": 20,
+      "fma": "FMA55692",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 0.95,
+      "apex_lps": [
+        21.92,
+        -26.07,
+        -39.08
+      ]
+    },
+    {
+      "universal": 21,
+      "fma": "FMA55693",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 3.2,
+      "apex_lps": [
+        17.6,
+        -31.91,
+        -36.52
+      ]
+    },
+    {
+      "universal": 22,
+      "fma": "FMA55687",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 2.06,
+      "apex_lps": [
+        12.55,
+        -33.34,
+        -38.92
+      ]
+    },
+    {
+      "universal": 23,
+      "fma": "FMA57141",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 2.14,
+      "apex_lps": [
+        7.04,
+        -36.63,
+        -35.56
+      ]
+    },
+    {
+      "universal": 24,
+      "fma": "FMA57143",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 2.61,
+      "apex_lps": [
+        4.16,
+        -38.23,
+        -33.32
+      ]
+    },
+    {
+      "universal": 25,
+      "fma": "FMA57142",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 2.73,
+      "apex_lps": [
+        0.96,
+        -37.43,
+        -32.36
+      ]
+    },
+    {
+      "universal": 26,
+      "fma": "FMA57140",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 2.87,
+      "apex_lps": [
+        -1.44,
+        -35.99,
+        -33.64
+      ]
+    },
+    {
+      "universal": 27,
+      "fma": "FMA55686",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 1.75,
+      "apex_lps": [
+        -6.61,
+        -32.05,
+        -39.56
+      ]
+    },
+    {
+      "universal": 28,
+      "fma": "FMA55694",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 3.06,
+      "apex_lps": [
+        -12.64,
+        -30.87,
+        -36.52
+      ]
+    },
+    {
+      "universal": 29,
+      "fma": "FMA55695",
+      "canal": 0,
+      "parent": "incisive",
+      "trunk_to_apex_mm": 1.8,
+      "apex_lps": [
+        -14.64,
+        -25.51,
+        -38.6
+      ]
+    },
+    {
+      "universal": 30,
+      "fma": "FMA55705",
+      "canal": 0,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 7.19,
+      "apex_lps": [
+        -20.3,
+        -13.47,
+        -38.92
+      ]
+    },
+    {
+      "universal": 30,
+      "fma": "FMA55705",
+      "canal": 1,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 6.16,
+      "apex_lps": [
+        -18.96,
+        -19.03,
+        -38.76
+      ]
+    },
+    {
+      "universal": 31,
+      "fma": "FMA55706",
+      "canal": 0,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 4.68,
+      "apex_lps": [
+        -21.81,
+        -5.06,
+        -38.76
+      ]
+    },
+    {
+      "universal": 31,
+      "fma": "FMA55706",
+      "canal": 1,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 3.63,
+      "apex_lps": [
+        -23.7,
+        -2.41,
+        -38.76
+      ]
+    },
+    {
+      "universal": 31,
+      "fma": "FMA55706",
+      "canal": 2,
+      "parent": "inferior dental plexus",
+      "trunk_to_apex_mm": 5.73,
+      "apex_lps": [
+        -21.28,
+        -2.87,
+        -37.32
+      ]
+    }
+  ],
+  "mental_foramina": {
+    "right": [
+      -20.15,
+      -21.03,
+      -42.75
+    ],
+    "left": [
+      25.32,
+      -23.08,
+      -43.27
+    ]
+  },
+  "terminal": [
+    {
+      "name": "incisive branch",
+      "side": "right",
+      "length_mm": 29.3,
+      "supplies": [
+        26,
+        27,
+        28,
+        29
+      ],
+      "provenance": "SCHEMATIC (course inferred from the anterior apices; the incisive canal is not resolved at 0.16 mm)"
+    },
+    {
+      "name": "mental nerve",
+      "side": "right",
+      "length_mm": 7.0,
+      "supplies": "chin and lower lip (soft tissue, not modelled)",
+      "provenance": "SCHEMATIC (exits the measured mental foramen; its extraosseous course is convention)"
+    },
+    {
+      "name": "incisive branch",
+      "side": "left",
+      "length_mm": 36.5,
+      "supplies": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      "provenance": "SCHEMATIC (course inferred from the anterior apices; the incisive canal is not resolved at 0.16 mm)"
+    },
+    {
+      "name": "mental nerve",
+      "side": "left",
+      "length_mm": 7.0,
+      "supplies": "chin and lower lip (soft tissue, not modelled)",
+      "provenance": "SCHEMATIC (exits the measured mental foramen; its extraosseous course is convention)"
+    }
+  ]
+}

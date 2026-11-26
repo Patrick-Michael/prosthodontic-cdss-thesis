@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://b82rqqjnqqdwr"]
+
+[ext_resource type="Script" uid="uid://dgumhgxwk1kgr" path="res://Codes/JawController.gd" id="1_hepc5"]
+[ext_resource type="PackedScene" uid="uid://cxfmc6o5snbm1" path="res://Assets/Models/clinical_odontogram.glb" id="1_svcuw"]
+
+[node name="Odontogram3D" type="Node3D" unique_id=532307478]
+script = ExtResource("1_hepc5")
+
+[node name="UpperJaw" type="Node3D" parent="." unique_id=1428707699]
+
+[node name="UpperGingiva" type="Node3D" parent="UpperJaw" unique_id=725579125]
+
+[node name="UpperTeeth" type="Node3D" parent="UpperJaw" unique_id=338772505]
+
+[node name="LowerJaw" type="Node3D" parent="." unique_id=288878457]
+
+[node name="LowerGingiva" type="Node3D" parent="LowerJaw" unique_id=2065438896]
+
+[node name="LowerTeeth" type="Node3D" parent="LowerJaw" unique_id=937949394]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1485779009]
+
+[node name="JawControls" type="VBoxContainer" parent="CanvasLayer" unique_id=2121250125]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 270.0
+offset_bottom = 60.0
+
+[node name="ModelRotationRoot" type="Node3D" parent="." unique_id=937006582]
+
+[node name="clinical_odontogram" parent="ModelRotationRoot" unique_id=8409742 instance=ExtResource("1_svcuw")]
+
+[editable path="ModelRotationRoot/clinical_odontogram"]

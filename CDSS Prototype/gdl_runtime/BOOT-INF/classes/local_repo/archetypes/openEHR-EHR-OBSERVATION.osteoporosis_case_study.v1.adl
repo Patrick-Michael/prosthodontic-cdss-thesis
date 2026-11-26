@@ -1,0 +1,145 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.osteoporosis_case_study.v1
+
+concept
+	[at0000]	-- Osteoporosis study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet vid körning av osteoporosstudiens riktlinjer.">
+			use = <"Använd endast i förhållande till osteoporosstudien. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"osteoporos", "öppna jämförelser", "fraktur", "Socialstyrelsen", "osteoporosförebyggande läkemedel ", "benskörhet">
+			misuse = <"Använd inte i andra studier eller sammanhang utom i de fall då kriterierna är identiska med dem som definierats i osteoporosstudien.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the osteoporosis study guidelines.">
+			use = <"Use only in relation to the osteoporosis study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"osteoporosis", "healthcare indicators", "fracture", "Socialstyrelsen", "osteoporosis medication">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the osteoporosis study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Socialstyrelsen. Öppna jämförelser 2013 – Hälso- och sjukvård – Jämförelser mellan landsting. Västerås: Edita Västra Aros AB; 2013.
+2. Socialstyrelsen. Bilaga 1 Beskrivning av indikatorer- Öppna jämförelser 2013: Hälso och sjukvård. 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"A55AAE37E3373A24F33E99C56E3D74A2">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Osteoporosis study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Osteoporosis medications after fracture
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Absent
+													at0006]	-- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Osteoporosis study">
+					description = <"Prevention of fractures due to osteoporosis">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Osteoporosis medications after fracture">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Osteoporostudien">
+					description = <"Förebyggande av frakturer vid benskörhet">
+				>
+				["at0001"] = <
+					text = <"Händelse Serie">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Alla händelser">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Osteoporosförebyggande läkemedel efter fraktur">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

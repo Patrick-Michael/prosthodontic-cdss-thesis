@@ -1,0 +1,110 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.diabetes_review.v0
+
+concept
+	[at0000]	-- Diabetes review
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"">
+			use = <"">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"254C7DAF6E3D8A09B3078D6B29EBE71B">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Diabetes review
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- High fasting plasma glucose (on two repeated measurements)
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0005] occurrences matches {0..1} matches {	-- High glycated hemoglobin (HbA1c)
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0006] occurrences matches {0..1} matches {	-- High post-load plasma glucose
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0007] occurrences matches {0..1} matches {	-- Diabetes mellitus
+						value matches {
+							0|[local::at0003], 	-- Absent
+							1|[local::at0004]  	-- Present
+						}
+					}
+					ELEMENT[at0008] occurrences matches {0..1} matches {	-- Diabetes mellitus score
+						value matches {
+							DV_COUNT matches {
+								magnitude matches {|>=0|}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Diabetes review">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"High fasting plasma glucose (on two repeated measurements)">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"High glycated hemoglobin (HbA1c)">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"High post-load plasma glucose">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Diabetes mellitus">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Diabetes mellitus score">
+					description = <"*">
+				>
+			>
+		>
+	>

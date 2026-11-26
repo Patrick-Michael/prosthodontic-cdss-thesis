@@ -1,0 +1,287 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.ichom_baseline_clinical_factors.v0
+
+concept
+	[at0000]	-- Ichom baseline clinical factors
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Blanca Flores">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"blanca.flores@cambio.se">
+		["date"] = <"2015-11-27">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To register baseline clinical factors for ICHOM data collection standards.">
+			use = <"To register baseline clinical factors for ICHOM data collection standards. ">
+			keywords = <"pulmonary function", "ICHOM", "comorbidities", "smoking", "weight loss">
+			misuse = <"Do not use to register data outside the ICHOM measures.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"ICHOM Lung Cancer Data Collection Reference Guide. International Consortium for Health Outcome Measurement. Version 2.1. Revised April 24th, 2015.">
+		["MD5-CAM-1.0.1"] = <"22D52DD6B59292F9E5B2BBDAFC343571">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Ichom baseline clinical factors
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- PULMFUNCPER
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0006, 	-- Higher than 79%
+													at0007, 	-- 50% - 79%
+													at0008, 	-- 30% - 49%
+													at0009]	-- Less than 30%
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- PULMFUNCAB
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0011, 	-- 0 - 0.99 L
+													at0012, 	-- 1.00 - 1.99 L
+													at0013, 	-- 2.00 - 2.99 L
+													at0014, 	-- 3.00 - 3.99 L
+													at0015, 	-- 4.00 - 4.99 L
+													at0016]	-- 5.00 - 5.99 L
+												}
+											}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- SMOKING
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018, 	-- 1 = Never-smoker
+													at0019, 	-- 2 = Ex-smoker
+													at0020, 	-- 3 = Current smoker
+													at0021]	-- 999 = Unknown
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {	-- COMORB
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023, 	-- 0 = I have no other diseases
+													at0024, 	-- 1 = Heart disease
+													at0025, 	-- 2 = High blood pressure
+													at0026, 	-- 3 = Leg pain when walking due to poor circulation
+													at0027, 	-- 4 = Lung disease
+													at0028, 	-- 5 = Diabetes
+													at0029, 	-- 6 = Kidney disease
+													at0030, 	-- 7 = Liver disease
+													at0031, 	-- 8 = Problems caused by stroke
+													at0032, 	-- 9 = Disease of the nervous system
+													at0033, 	-- 10 = Other cancer (within the last 5 years)
+													at0034, 	-- 11 = Depression
+													at0035]	-- 12 = Arthritis
+												}
+											}
+										}
+									}
+									ELEMENT[at0036] occurrences matches {0..1} matches {	-- WEIGHTL
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0037, 	-- 0 = No
+													at0038, 	-- 1 = Yes
+													at0039]	-- 999 = Unknown
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Ichom baseline clinical factors">
+					description = <"To evaluate baseline clinical factors for lung cancer patients.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0005"] = <
+					text = <"PULMFUNCPER">
+					description = <"Pulmonary function at lung cancer diagnosis: Percent predicted normal value">
+				>
+				["at0006"] = <
+					text = <"Higher than 79%">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"50% - 79%">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"30% - 49%">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Less than 30%">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"PULMFUNCAB">
+					description = <"Pulmonary function at lung cancer diagnosis: Absolute value FEV -1">
+				>
+				["at0011"] = <
+					text = <"0 - 0.99 L">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"1.00 - 1.99 L">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"2.00 - 2.99 L">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"3.00 - 3.99 L">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"4.00 - 4.99 L">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"5.00 - 5.99 L">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"SMOKING">
+					description = <"Smoking status: Please indicate your smoking status at time of your lung cancer diagnosis.">
+				>
+				["at0018"] = <
+					text = <"1 = Never-smoker">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"2 = Ex-smoker">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"3 = Current smoker">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"999 = Unknown">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"COMORB">
+					description = <"Comorbidities: Have you been told by a doctor that you have any of the following?">
+				>
+				["at0023"] = <
+					text = <"0 = I have no other diseases">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"1 = Heart disease">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"2 = High blood pressure">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"3 = Leg pain when walking due to poor circulation">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"4 = Lung disease">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"5 = Diabetes">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"6 = Kidney disease">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"7 = Liver disease">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"8 = Problems caused by stroke">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"9 = Disease of the nervous system">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"10 = Other cancer (within the last 5 years)">
+					description = <"*">
+				>
+				["at0034"] = <
+					text = <"11 = Depression">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"12 = Arthritis">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"WEIGHTL">
+					description = <"Weight loss: Have you unintentionally lost weight?">
+				>
+				["at0037"] = <
+					text = <"0 = No">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"1 = Yes">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"999 = Unknown">
+					description = <"*">
+				>
+			>
+		>
+	>

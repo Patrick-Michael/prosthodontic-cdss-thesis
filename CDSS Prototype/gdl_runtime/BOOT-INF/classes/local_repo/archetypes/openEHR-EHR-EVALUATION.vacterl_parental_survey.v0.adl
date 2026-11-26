@@ -1,0 +1,296 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.vacterl_parental_survey.v0
+
+concept
+	[at0000]	-- Vacterl parental survey
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["organisation"] = <"Cambio Healthcare Systems">
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record parental survey information for birth defects VACTERL patients. Parental survey data is registred throught this archetype.">
+			use = <"Use for VACTERL patients that answer the parental survey.">
+			keywords = <"VACTERL", "parental survey", "information", "participation", "value based healthcare", "VBH">
+			misuse = <"Do not use for other patients than VACTERL patients that answer the parental survey.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera föräldraenkät för VACTERL syndrom patienter. ">
+			use = <"Används för VACTERL patienter som svarar till föräldraenkät.">
+			keywords = <"VACTERL", "VBH", "värdebaserad sjukvård", "föräldraenkät", "information", "delaktighet">
+			misuse = <"Används inte för att registrera annat än föräldraenkät för VACTERL patienter.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. LUL, Systemförvaltning (2009). \"Grundmall KB Esofagusatresi, analatresi, VACTERL\". Landstninget Uppsala Län.">
+		["MD5-CAM-1.0.1"] = <"DFB53176A80322F90FA151306541AE19">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Vacterl parental survey
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {0..*; unordered} matches {
+					ELEMENT[at0002] occurrences matches {0..1} matches {	-- Review date/time
+						value matches {
+							DV_DATE_TIME matches {*}
+						}
+					}
+					ELEMENT[at0003] occurrences matches {0..1} matches {	-- Completed by
+						value matches {
+							DV_CODED_TEXT matches {
+								defining_code matches {
+									[local::
+									at0004, 	-- Mom
+									at0005, 	-- Dad
+									at0006, 	-- Both parents
+									at0007]	-- Other
+								}
+							}
+						}
+					}
+					CLUSTER[at0008] occurrences matches {0..1} matches {	-- Survey
+						items cardinality matches {1..*; unordered} matches {
+							ELEMENT[at0009] occurrences matches {0..1} matches {	-- Permanent healthcare contact
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0010] occurrences matches {0..1} matches {	-- Participation
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0011] occurrences matches {0..1} matches {	-- Information transfer
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0012] occurrences matches {0..1} matches {	-- Treatment
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0013] occurrences matches {0..1} matches {	-- Practical support
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0014] occurrences matches {0..1} matches {	-- Information
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0015] occurrences matches {0..1} matches {	-- Emotional support
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0016] occurrences matches {0..1} matches {	-- Contact
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|1..6|}
+									}
+								}
+							}
+							ELEMENT[at0017] occurrences matches {0..1} matches {	-- Survey Sum
+								value matches {
+									DV_COUNT matches {
+										magnitude matches {|8..48|}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl parental survey">
+					description = <"Parental survey regarding VACTERL birth defects.">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Review date/time">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Completed by">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Mom">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Dad">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Both parents">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Other">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"Survey">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Permanent healthcare contact">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Participation">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Information transfer">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Treatment">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Practical support">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Information">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Emotional support">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Contact">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Survey Sum">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Vacterl föräldraenkät">
+					description = <"Föräldraenkät för VACTERL patienter.">
+				>
+				["at0001"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Uppföljning datum/tid">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"Ifylld av ">
+					description = <"**(en)">
+				>
+				["at0004"] = <
+					text = <"*Mom(en)">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"*Dad(en)">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"*Both parents(en)">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"*Other(en)">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"enkät">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Fast vårdkontakt">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Delaktighet">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Informationsöverföring">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Bemötande">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Praktiskt stöd">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Information">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Känslomässigt stöd">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Kontakt">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Summa">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

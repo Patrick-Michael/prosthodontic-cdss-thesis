@@ -1,0 +1,103 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-EVALUATION.prostate_cancer_screening_result.v0
+
+concept
+	[at0000]	-- Prostate cancer screening result
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record result of PSA-based prostate cancer screening">
+			use = <"">
+			keywords = <"PSA", "Prostate cancer">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["MD5-CAM-1.0.1"] = <"13461177A6740345D97A1B73A9DD837E">
+	>
+
+definition
+	EVALUATION[at0000] matches {	-- Prostate cancer screening result
+		data matches {
+			ITEM_TREE[at0001] matches {	-- Tree
+				items cardinality matches {3..*; unordered} matches {
+					ELEMENT[at0002] matches {	-- Recommendation
+						value matches {
+							0|[local::at0003], 	-- No action
+							1|[local::at0004], 	-- Follow-up
+							3|[local::at0006]  	-- Referral to specialist
+						}
+					}
+					ELEMENT[at0007] matches {	-- Follow-up interval
+						value matches {
+							C_DV_QUANTITY <
+								property = <[openehr::128]>
+								list = <
+									["1"] = <
+										units = <"a">
+										magnitude = <|>=0.0|>
+									>
+								>
+							>
+						}
+					}
+					ELEMENT[at0008] matches {	-- 5-alpha reductase inhibitor treatment
+						value matches {
+							DV_BOOLEAN matches {
+								value matches {True, False}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Prostate cancer screening result">
+					description = <"unknown">
+				>
+				["at0001"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Recommendation">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"No action">
+					description = <"*">
+				>
+				["at0004"] = <
+					text = <"Follow-up">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Referral to specialist">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Follow-up interval">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"5-alpha reductase inhibitor treatment">
+					description = <"*">
+				>
+			>
+		>
+	>

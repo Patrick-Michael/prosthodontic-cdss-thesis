@@ -1,0 +1,531 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.retts.v0
+
+concept
+	[at0000]	-- RETTS
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2014-09-24">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record RETTS score for clinical triage">
+			use = <"">
+			keywords = <"rapid emergency triage and treatment system", "RETTS", "triage", "emergency", "vital parameters">
+			misuse = <"">
+			copyright = <"">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"*To record RETTS score for clinical triage(en)">
+			use = <"*(en)">
+			misuse = <"*(en)">
+			copyright = <"*(en)">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Frid L (Landstinget i Ö). RETTS (rapid emergency triage and treatment system)-Användarmanual för ambulanssjukvården Östergötland. Landstinget i Östergötland; 2013.
+2. Vitalparametrar enligt RETTS. Landstinget i Östergötland; 2014.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"DFE59F3A9E694F12FEDC670FD269B121">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- RETTS
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Träd
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- A
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Red
+													at0010, 	-- Orange
+													at0011, 	-- Yellow
+													at0012]	-- Green
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- B
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Red
+													at0010, 	-- Orange
+													at0011, 	-- Yellow
+													at0012]	-- Green
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- C
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Red
+													at0010, 	-- Orange
+													at0011, 	-- Yellow
+													at0012]	-- Green
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- D
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Red
+													at0010, 	-- Orange
+													at0011, 	-- Yellow
+													at0012]	-- Green
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- E
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0009, 	-- Red
+													at0010, 	-- Orange
+													at0011, 	-- Yellow
+													at0012]	-- Green
+												}
+											}
+										}
+									}
+									CLUSTER[at0013] occurrences matches {0..1} matches {	-- Vital paremeters
+										items cardinality matches {1..*; unordered} matches {
+											ELEMENT[at0014] occurrences matches {0..1} matches {	-- Airway obstruction
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0015] occurrences matches {0..1} matches {	-- Respiration
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0016] occurrences matches {0..1} matches {	-- SpO2
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0017] occurrences matches {0..1} matches {	-- Heart rate
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0018] occurrences matches {0..1} matches {	-- RLS
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0019] occurrences matches {0..1} matches {	-- Seizure
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0020] occurrences matches {0..1} matches {	-- Fatigue
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0021] occurrences matches {0..1} matches {	-- Temperature
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0022] occurrences matches {0..1} matches {	-- Stridor
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0023] occurrences matches {0..1} matches {	-- SBP
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0024] occurrences matches {0..1} matches {	-- Unconscious
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0025] occurrences matches {0..1} matches {	-- Acute confusion
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+											ELEMENT[at0026] occurrences matches {0..1} matches {	-- Somnolent
+												value matches {
+													DV_CODED_TEXT matches {
+														defining_code matches {
+															[local::
+															at0009, 	-- Red
+															at0010, 	-- Orange
+															at0011, 	-- Yellow
+															at0012]	-- Green
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"RETTS">
+					description = <"Rapid Emergency Triage and Treatment System (RETTS)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"A">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"B">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"C">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"D">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"E">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Red">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Orange">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Yellow">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Green">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Vital paremeters">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"Airway obstruction">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Respiration">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"SpO2">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Heart rate">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"RLS">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Seizure">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Fatigue">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Temperature">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Stridor">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"SBP">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"Unconscious">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"Acute confusion">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"Somnolent">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"RETTS">
+					description = <"RETTS score is a model for clinical triage.(en)">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"(en)">
+				>
+				["at0003"] = <
+					text = <"Träd">
+					description = <"@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"A">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"B">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"C">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"D">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"E">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"Röd">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"Orange">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"Gul">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"Grön">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"Vitalparametrar">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"Ofri luftväg">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Andningsfrekvens">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"SpO2">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Puls">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"RLS">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Pågående kramp">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Trött/Sugslö">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Temperatur">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"Stridor">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"SBT">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"Medvetslös">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"Akut oklar">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"Somnolent">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

@@ -1,0 +1,360 @@
+[gd_scene format=3 uid="uid://p3m7xirq54ky"]
+
+[ext_resource type="Script" uid="uid://c1ov44yar4sdh" path="res://Codes/MainController.gd" id="1_8gbba"]
+[ext_resource type="Theme" uid="uid://wav65nkybvpe" path="res://Themes/clean_dark.tres" id="1_21xkr"]
+[ext_resource type="Script" uid="uid://fpk44b40tmxe" path="res://Codes/DentalCameraController.gd" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://b82rqqjnqqdwr" path="res://Scenes/Odontogram3D.tscn" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://cgjugd4iwh1gd" path="res://Codes/RotationGizmo.gd" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://cpsw5uysrkb8d" path="res://Codes/ControlsPopup.gd" id="5_kry3j"]
+
+[sub_resource type="Environment" id="Environment_74wv5"]
+background_mode = 1
+background_color = Color(0.105882354, 0.16078432, 0.21176471, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.25
+
+[node name="Main" type="Control" unique_id=1946244739]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_21xkr")
+script = ExtResource("1_8gbba")
+
+[node name="AppLayout" type="VBoxContainer" parent="." unique_id=2059772573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NavigationBar" type="HBoxContainer" parent="AppLayout" unique_id=2120515476]
+custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+
+[node name="ClinicalAssessmentButton" type="Button" parent="AppLayout/NavigationBar" unique_id=1715636764]
+layout_mode = 2
+toggle_mode = true
+text = "Clinical Assessment"
+
+[node name="TreatmentComparisonButton" type="Button" parent="AppLayout/NavigationBar" unique_id=734812331]
+layout_mode = 2
+toggle_mode = true
+text = "Treatment Options"
+
+[node name="PatientInformationButton" type="Button" parent="AppLayout/NavigationBar" unique_id=1550207400]
+layout_mode = 2
+toggle_mode = true
+text = "Patient Information"
+
+[node name="MainLayout" type="HSplitContainer" parent="AppLayout" unique_id=2095517878]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InformationPanel" type="PanelContainer" parent="AppLayout/MainLayout" unique_id=1349250917]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="InformationMargin" type="MarginContainer" parent="AppLayout/MainLayout/InformationPanel" unique_id=644233972]
+layout_mode = 2
+
+[node name="InformationContent" type="VBoxContainer" parent="AppLayout/MainLayout/InformationPanel/InformationMargin" unique_id=2106078779]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PageHeading" type="Label" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent" unique_id=1060573413]
+layout_mode = 2
+text = "Clinical Assessment"
+
+[node name="PageContainer" type="Control" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent" unique_id=463709994]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ClinicalAssessmentPage" type="VBoxContainer" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer" unique_id=1121648837]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ClinicalAssessmentPagePlaceholder" type="Label" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer/ClinicalAssessmentPage" unique_id=608350108]
+layout_mode = 2
+text = "Clinical inputs and odontogram findings will appear here."
+autowrap_mode = 3
+
+[node name="TreatmentComparisonPage" type="VBoxContainer" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer" unique_id=388505072]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TreatmentComparisonPagePlaceholder" type="Label" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer/TreatmentComparisonPage" unique_id=2122900771]
+layout_mode = 2
+text = "Dynamic treatment cards will appear here."
+autowrap_mode = 3
+
+[node name="TreatmentCardList" type="VBoxContainer" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer/TreatmentComparisonPage" unique_id=1546818374]
+layout_mode = 2
+
+[node name="PatientInformationPage" type="VBoxContainer" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer" unique_id=109264112]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PatientInformationPagePlaceholder" type="Label" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent/PageContainer/PatientInformationPage" unique_id=1072312829]
+layout_mode = 2
+text = "Patient information and care explanations will appear here."
+autowrap_mode = 3
+
+[node name="ExplanationLayer" type="Control" parent="AppLayout/MainLayout/InformationPanel/InformationMargin/InformationContent" unique_id=1876430349]
+layout_mode = 2
+
+[node name="VisualizationPanel" type="PanelContainer" parent="AppLayout/MainLayout" unique_id=1634833843]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=311218377]
+custom_minimum_size = Vector2(100, 26)
+layout_mode = 2
+stretch = true
+
+[node name="DentalViewport" type="SubViewport" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer" unique_id=1261593568]
+handle_input_locally = false
+size = Vector2i(704, 544)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="DentalWorld" type="Node3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport" unique_id=1957338548]
+
+[node name="DentalCamera" type="Camera3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=1308594602]
+transform = Transform3D(0.8716265, 0.048721075, -0.4877433, 0, 0.9950479, 0.09939615, 0.49017066, -0.08663631, 0.86731017, -43.540405, -15.321232, 77.513)
+h_offset = 10.0
+v_offset = 10.0
+script = ExtResource("1_bo1nx")
+
+[node name="CameraFillLight" type="SpotLight3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld/DentalCamera" unique_id=336369081]
+light_energy = 0.5
+light_size = 1.0
+spot_range = 200.0
+spot_angle = 60.0
+spot_angle_attenuation = 0.5
+
+[node name="MainLight" type="DirectionalLight3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=1771419675]
+transform = Transform3D(0.8660254, -0.35355338, 0.35355338, 0, 0.70710677, 0.70710677, -0.5, -0.6123724, 0.6123724, 0, 2, 8)
+light_energy = 0.65
+
+[node name="UpperFillLight" type="DirectionalLight3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=1006460676]
+transform = Transform3D(0.8660254, 0.48296288, 0.12940952, 0, 0.25881904, -0.96592575, -0.5, 0.8365162, 0.22414388, 0, 2, 8)
+light_energy = 0.25
+
+[node name="LowerFillLight" type="DirectionalLight3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=136227954]
+transform = Transform3D(-1, 8.444391e-08, -2.2626681e-08, 0, 0.25881904, 0.96592575, 8.742278e-08, 0.96592575, -0.25881904, 0, 2, 8)
+light_energy = 0.25
+
+[node name="SideFillLight" type="DirectionalLight3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=50902551]
+transform = Transform3D(-4.371139e-08, 0, -0.99999994, 0, 0.99999994, 0, 1, 0, -4.3711385e-08, 0, 2, 8)
+light_energy = 0.2
+
+[node name="Odontogram3D" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=532307478 instance=ExtResource("1_jjgbg")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld" unique_id=634999166]
+environment = SubResource("Environment_74wv5")
+
+[node name="VisualizationOverlay" type="Control" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=320962535]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="BottomToolbar" type="HBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay" unique_id=1519369913]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LeftSection" type="CenterContainer" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar" unique_id=792799834]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JawVisibilitySelector" type="OptionButton" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/LeftSection" unique_id=872239123]
+layout_mode = 2
+selected = 0
+item_count = 3
+popup/item_0/text = "Both jaws"
+popup/item_0/id = 0
+popup/item_1/text = "Upper jaw only"
+popup/item_1/id = 1
+popup/item_2/text = "Lower jaw only"
+popup/item_2/id = 2
+
+[node name="VisibilityLabel" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/LeftSection/JawVisibilitySelector" unique_id=887684132]
+layout_mode = 0
+offset_left = 49.0
+offset_top = -19.0
+offset_right = 119.0
+theme_override_font_sizes/font_size = 12
+text = "Visible jaws"
+
+[node name="MiddleSection" type="CenterContainer" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar" unique_id=184861400]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JawOpeningSlider" type="HSlider" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/MiddleSection" unique_id=831905821]
+custom_minimum_size = Vector2(220, 20)
+layout_mode = 2
+
+[node name="OpeningLabel" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/MiddleSection/JawOpeningSlider" unique_id=1863826158]
+layout_mode = 0
+offset_left = 67.0
+offset_top = -14.0
+offset_right = 161.0
+offset_bottom = 9.0
+theme_override_font_sizes/font_size = 12
+text = "Jaw opening"
+
+[node name="RightSection" type="CenterContainer" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar" unique_id=1820477113]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ResetCameraButton" type="Button" parent="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/RightSection" unique_id=1074231509]
+layout_mode = 2
+text = "Reset Camera"
+
+[node name="RotationGizmo" type="Control" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=1398571264 node_paths=PackedStringArray("model_root")]
+custom_minimum_size = Vector2(100, 200)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+script = ExtResource("4_jjvhh")
+model_root = NodePath("../ViewportContainer/DentalViewport/DentalWorld/Odontogram3D/ModelRotationRoot")
+
+[node name="AxisSliders" type="HBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo" unique_id=638004363]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 150.0
+
+[node name="XGroup" type="VBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders" unique_id=1037153170]
+layout_mode = 2
+
+[node name="XRotationLabel" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/XGroup" unique_id=524125832]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8392157, 0.36078432, 0.3764706, 1)
+text = "X"
+horizontal_alignment = 1
+
+[node name="XRotation" type="VSlider" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/XGroup" unique_id=1652718761]
+custom_minimum_size = Vector2(28, 100)
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="XArrow" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/XGroup" unique_id=1527802538]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8392157, 0.36078432, 0.3764706, 1)
+theme_override_font_sizes/font_size = 26
+text = "↕"
+horizontal_alignment = 1
+
+[node name="YGroup" type="VBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders" unique_id=432008295]
+layout_mode = 2
+
+[node name="YRotationLabel" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/YGroup" unique_id=651309616]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.34509805, 0.7254902, 0.4745098, 1)
+text = "Y"
+horizontal_alignment = 1
+
+[node name="YRotation" type="VSlider" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/YGroup" unique_id=3338560]
+custom_minimum_size = Vector2(28, 100)
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="YArrow" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/YGroup" unique_id=772950701]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.34509805, 0.7254902, 0.4745098, 1)
+theme_override_font_sizes/font_size = 26
+text = "↔"
+horizontal_alignment = 1
+
+[node name="ZGroup" type="VBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders" unique_id=966139367]
+layout_mode = 2
+
+[node name="ZRotationLabel" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/ZGroup" unique_id=2053432899]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3764706, 0.6, 0.9098039, 1)
+text = "Z"
+horizontal_alignment = 1
+
+[node name="ZRotation" type="VSlider" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/ZGroup" unique_id=925087607]
+custom_minimum_size = Vector2(28, 100)
+layout_mode = 2
+min_value = -180.0
+max_value = 180.0
+
+[node name="ZArrow" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/AxisSliders/ZGroup" unique_id=1466644686]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3764706, 0.6, 0.9098039, 1)
+theme_override_font_sizes/font_size = 26
+text = "↶"
+horizontal_alignment = 1
+
+[node name="ResetRotationButton" type="Button" parent="AppLayout/MainLayout/VisualizationPanel/RotationGizmo" unique_id=1632220795]
+layout_mode = 0
+offset_left = -11.0
+offset_top = 191.0
+offset_right = 112.0
+offset_bottom = 229.0
+text = "Reset Rotation"
+
+[node name="ControlsHelpButton" type="Button" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=1514850628]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Controls"
+
+[node name="ControlsPopup" type="PanelContainer" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=933149520]
+visible = false
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("5_kry3j")
+
+[node name="MarginContainer" type="MarginContainer" parent="AppLayout/MainLayout/VisualizationPanel/ControlsPopup" unique_id=1052552223]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TreatmentOptionsBar" type="HBoxContainer" parent="AppLayout/MainLayout/VisualizationPanel" unique_id=2021970362]
+visible = false
+layout_mode = 2
+
+[node name="TreatmentBarPlaceholder" type="Label" parent="AppLayout/MainLayout/VisualizationPanel/TreatmentOptionsBar" unique_id=2030613388]
+layout_mode = 2
+text = "Restoration alternatives will appear after evaluation."
+
+[connection signal="item_selected" from="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/LeftSection/JawVisibilitySelector" to="." method="_on_jaw_visibility_selector_item_selected"]
+[connection signal="value_changed" from="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/MiddleSection/JawOpeningSlider" to="." method="_on_jaw_opening_slider_value_changed"]
+[connection signal="pressed" from="AppLayout/MainLayout/VisualizationPanel/VisualizationOverlay/BottomToolbar/RightSection/ResetCameraButton" to="." method="_on_reset_camera_button_pressed"]
+[connection signal="pressed" from="AppLayout/MainLayout/VisualizationPanel/RotationGizmo/ResetRotationButton" to="AppLayout/MainLayout/VisualizationPanel/RotationGizmo" method="_on_reset_rotation_button_pressed"]
+[connection signal="pressed" from="AppLayout/MainLayout/VisualizationPanel/ControlsHelpButton" to="." method="_on_controls_help_button_pressed"]
+
+[editable path="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld/Odontogram3D"]
+[editable path="AppLayout/MainLayout/VisualizationPanel/ViewportContainer/DentalViewport/DentalWorld/Odontogram3D/ModelRotationRoot/clinical_odontogram"]

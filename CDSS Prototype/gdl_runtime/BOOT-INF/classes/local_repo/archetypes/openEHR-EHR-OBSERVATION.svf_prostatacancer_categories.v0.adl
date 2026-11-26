@@ -1,0 +1,681 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.svf_prostatacancer_categories.v0
+
+concept
+	[at0000]	-- Svf prostatacancer categories
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Set Dashboard categories for SVF prostata cancer case study.">
+			use = <"Use to register patient data into Dashboard categories for the SVF prostata cancer case study.
+">
+			keywords = <"SVF", "prostate ", "cancer ">
+			misuse = <"Do not use to register data for a process other than  the SVF prostata cancer case study.
+">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Socialstyrelsen (2015). Standardiserade vårdförlopp i cancervården. En baslinjestudie. Hämtad från https://www.socialstyrelsen.se/Lists/Artikelkatalog/Attachments/19926/2015-10-5.pdf Februari 2016. 
+Regionala Cancercentrum i Samverkan (2016).Prostatacancer Primärvårdsversion av standardiseradt vårdförlopp 2016. Hämtad från http://www.cancercentrum.se/globalassets/vara-uppdrag/kunskapsstyrning/varje-dag-raknas/vardforlopp/primarvardsversioner_standardiserade_vardforlopp_20151221.pdf Februari 2016. ">
+		["MD5-CAM-1.0.1"] = <"284EDD451EEABA176BB62505C6BFD1EB">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Svf prostatacancer categories
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till remissankomst
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- 0-3- Inom SVF mål
+													at0006, 	-- 4-6
+													at0007, 	-- 7-9
+													at0008, 	-- 10-13
+													at0009]	-- Mer än 14
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- Antal dagar från remissankomnst VGM till första besök (Block A)
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0113, 	-- 0-14- Inom SVF mål
+													at0114, 	-- 15-28
+													at0115, 	-- 29-42
+													at0116, 	-- 43-56
+													at0117]	-- Mer än 57
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {	-- Antal dagar från första besök till biopsi
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023, 	-- 0-10
+													at0024, 	-- 11-20
+													at0025, 	-- 21-30
+													at0026, 	-- 31-40
+													at0027]	-- Mer än 40
+												}
+											}
+										}
+									}
+									ELEMENT[at0041] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till Biopsi
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0042, 	-- 0-20
+													at0043, 	-- 21-40
+													at0044, 	-- 41-60
+													at0045, 	-- 61-80
+													at0046]	-- Mer än 81
+												}
+											}
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {	-- Antal dagar från biopsi till möte med patient
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0036, 	-- 0-11- Inom SVF mål
+													at0037, 	-- 12-22
+													at0038, 	-- 23-33
+													at0039, 	-- 34-44
+													at0040]	-- Mer än 44
+												}
+											}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till möte med patient
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0029, 	-- 0-28- Inom SVF mål för låg- och mellanriskcancer
+													at0030, 	-- 29-56
+													at0031, 	-- 57-84
+													at0032, 	-- 85-112
+													at0033]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till remiss till bilddiagnostik
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0048, 	-- 0-28
+													at0049, 	-- 29-56
+													at0050, 	-- 57-84
+													at0051, 	-- 85-112
+													at0052]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0053] occurrences matches {0..1} matches {	-- Antal dagar från remiss till bilddiagnostik till svar till remitenten
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0054, 	-- 0-14- Inom SVF mål
+													at0055, 	-- 15-28
+													at0056, 	-- 29-42
+													at0057, 	-- 43-56
+													at0058]	-- Mer än 57
+												}
+											}
+										}
+									}
+									ELEMENT[at0059] occurrences matches {0..1} matches {	-- Antal dagar från svar till remitenten till MDK multidisciplinära konferens
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0061, 	-- 0-20
+													at0062, 	-- 21-40
+													at0063, 	-- 41-60
+													at0064, 	-- 61-80
+													at0065]	-- Mer än 81
+												}
+											}
+										}
+									}
+									ELEMENT[at0066] occurrences matches {0..1} matches {	-- Antal dagar från VGM remissbeslut till MDK
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0067, 	-- 0-28
+													at0068, 	-- 29-56
+													at0069, 	-- 57-84
+													at0070, 	-- 85-112
+													at0071]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0072] occurrences matches {0..1} matches {	-- Antal dagar från MDK till behandlingsbeslut
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0073, 	-- 0-3
+													at0074, 	-- 4-6
+													at0075, 	-- 7-9
+													at0076, 	-- 10-13
+													at0077]	-- Mer än 14
+												}
+											}
+										}
+									}
+									ELEMENT[at0078] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till behandlingsbeslut
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0079, 	-- 0-28
+													at0080, 	-- 29-56
+													at0081, 	-- 57-84
+													at0082, 	-- 85-112
+													at0083]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0084] occurrences matches {0..1} matches {	-- Antal dagar från behandlingsbeslut till behandlingsstart
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0090, 	-- 0-28- Inom SVF mål 
+													at0091, 	-- 29-56
+													at0092, 	-- 57-84
+													at0093, 	-- 85-112
+													at0094]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0095] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till behandlingsstart
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0096, 	-- 0-28- Inom SVF mål för för högriskcancer där kurativt syftande behandling inte är aktuell
+													at0097, 	-- 29-60-Inom SVF mål för Högriskcancer där kurativt syftande behandling kan vara aktuell
+													at0098, 	-- 61-84
+													at0099, 	-- 85-112
+													at0100]	-- Mer än 113
+												}
+											}
+										}
+									}
+									ELEMENT[at0101] occurrences matches {0..1} matches {	-- Antal dagar från behandlingsstart till follow up
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0102, 	-- 0-20
+													at0103, 	-- 21-40
+													at0104, 	-- 41-60
+													at0105, 	-- 61-80
+													at0106]	-- Mer än 81
+												}
+											}
+										}
+									}
+									ELEMENT[at0107] occurrences matches {0..1} matches {	-- Antal dagar från remissbeslut vid VGM till follow-up
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0108, 	-- 0-50
+													at0109, 	-- 51-100
+													at0110, 	-- 101-150
+													at0111, 	-- 151-200
+													at0112]	-- Mer än 200
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Svf prostatacancer categories">
+					description = <"Dashboard categories for the prostatacancer case study for SVF. ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Antal dagar från VGM remissbeslut till remissankomst">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"0-3- Inom SVF mål">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"4-6">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"7-9">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"10-13">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Mer än 14">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"Antal dagar från remissankomnst VGM till första besök (Block A)">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"Antal dagar från första besök till biopsi">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"0-10">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"11-20">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"21-30">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"31-40">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <"Mer än 40">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"Antal dagar från VGM remissbeslut till möte med patient">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"0-28- Inom SVF mål för låg- och mellanriskcancer">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"Antal dagar från biopsi till möte med patient">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"0-11- Inom SVF mål">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"12-22">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"23-33">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"34-44">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <"Mer än 44">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"Antal dagar från VGM remissbeslut till Biopsi">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <"Mer än 81">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till remiss till bilddiagnostik">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"Antal dagar från remiss till bilddiagnostik till svar till remitenten">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"0-14- Inom SVF mål">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"15-28">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"29-42">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"43-56">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <"Mer än 57">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"Antal dagar från svar till remitenten till MDK multidisciplinära konferens">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <"Mer än 81">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"Antal dagar från VGM remissbeslut till MDK">
+					description = <"*">
+				>
+				["at0067"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0068"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0070"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0071"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0072"] = <
+					text = <"Antal dagar från MDK till behandlingsbeslut">
+					description = <"*">
+				>
+				["at0073"] = <
+					text = <"0-3">
+					description = <"*">
+				>
+				["at0074"] = <
+					text = <"4-6">
+					description = <"*">
+				>
+				["at0075"] = <
+					text = <"7-9">
+					description = <"*">
+				>
+				["at0076"] = <
+					text = <"10-13">
+					description = <"*">
+				>
+				["at0077"] = <
+					text = <"Mer än 14">
+					description = <"*">
+				>
+				["at0078"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till behandlingsbeslut">
+					description = <"*">
+				>
+				["at0079"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0080"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0081"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0082"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"Antal dagar från behandlingsbeslut till behandlingsstart">
+					description = <"*">
+				>
+				["at0090"] = <
+					text = <"0-28- Inom SVF mål ">
+					description = <"*">
+				>
+				["at0091"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0092"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0093"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0094"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0095"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till behandlingsstart">
+					description = <"*">
+				>
+				["at0096"] = <
+					text = <"0-28- Inom SVF mål för för högriskcancer där kurativt syftande behandling inte är aktuell">
+					description = <"*">
+				>
+				["at0097"] = <
+					text = <"29-60-Inom SVF mål för Högriskcancer där kurativt syftande behandling kan vara aktuell">
+					description = <"*">
+				>
+				["at0098"] = <
+					text = <"61-84">
+					description = <"*">
+				>
+				["at0099"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0100"] = <
+					text = <"Mer än 113">
+					description = <"*">
+				>
+				["at0101"] = <
+					text = <"Antal dagar från behandlingsstart till follow up">
+					description = <"*">
+				>
+				["at0102"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0103"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0104"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0105"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0106"] = <
+					text = <"Mer än 81">
+					description = <"*">
+				>
+				["at0107"] = <
+					text = <"Antal dagar från remissbeslut vid VGM till follow-up">
+					description = <"*">
+				>
+				["at0108"] = <
+					text = <"0-50">
+					description = <"*">
+				>
+				["at0109"] = <
+					text = <"51-100">
+					description = <"*">
+				>
+				["at0110"] = <
+					text = <"101-150">
+					description = <"*">
+				>
+				["at0111"] = <
+					text = <"151-200">
+					description = <"*">
+				>
+				["at0112"] = <
+					text = <"Mer än 200">
+					description = <"*">
+				>
+				["at0113"] = <
+					text = <"0-14- Inom SVF mål">
+					description = <"*">
+				>
+				["at0114"] = <
+					text = <"15-28">
+					description = <"*">
+				>
+				["at0115"] = <
+					text = <"29-42">
+					description = <"*">
+				>
+				["at0116"] = <
+					text = <"43-56">
+					description = <"*">
+				>
+				["at0117"] = <
+					text = <"Mer än 57">
+					description = <"*">
+				>
+			>
+		>
+	>

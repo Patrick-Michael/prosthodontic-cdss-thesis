@@ -1,0 +1,177 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.timed_stands.v0
+
+concept
+	[at0000]	-- Timed stands
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2016-06-21">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera time stands test resultater.">
+			use = <"Används för att registrera tiden för varje enskilda uppresningar (med hjälp av ett mall) och antal och medel tid för lyckat uppresningar.">
+			keywords = <"VBH", "värdebaserad sjukvård", "ben", "time stands test", "muskelstyrka", "muskelfunktion">
+			misuse = <"Används inte för att registrera resultater relaterat till 30 sekunder stol test.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the results of a timed stands test.">
+			use = <"Use to record the time of each individual stand (with the help of a template) as well as the number and average time of successful rises.">
+			keywords = <"VBH", "value based healthcare", "timed stands", "lower extremities", "muscle strength", "muscle function">
+			misuse = <"Not to be used for recording results related to a 30 seconds chair stand test.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Csuka, M., & McCarty, D. J. (1985). Simple method for measurement of lower extremity muscle strength. The American Journal of Medicine, 78(1), 77–81.">
+		["MD5-CAM-1.0.1"] = <"9717F57087CEE5403791793FDE2C8920">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Timed stands
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Timed stands
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"s">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+													["2"] = <
+														units = <"min">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Completed rises
+										value matches {
+											DV_COUNT matches {
+												magnitude matches {|>=0|}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Average time of completed timed stands
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"s">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+													["2"] = <
+														units = <"min">
+														magnitude = <|>=0.0|>
+														precision = <|0|>
+													>
+												>
+											>
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Timed stands">
+					description = <"A simple standardized method for assesing lower extremity muscle strength which involves a patient standing 10 times from a standard chair, developed by Csuka M. and McCarty D.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Timed stands">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Completed rises">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Average time of completed timed stands">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Time stands test">
+					description = <"Ett enkel och standardizerat metod för utvärdering av patientens benmuskulatur styrkan. Testet innebär att patienten reser upp sig från ett vanligt stol under 10 minuter. Testet utvecklats av Csuka M. and McCarty D.">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Time stands test">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Kompletta uppresningar">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Medel tid för kompletta time stands test">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

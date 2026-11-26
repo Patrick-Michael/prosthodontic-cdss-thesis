@@ -1,0 +1,1083 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.svf_cancer_categories_kva.v0
+
+concept
+	[at0000]	-- Svf cancer categories KVA
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Joana Vicente">
+		["email"] = <"joana.vicente@cambio.se">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"Set Dashboard categories for SVF prostata cancer case study.">
+			use = <"Use to register patient data into Dashboard categories for the SVF prostata cancer case study.
+">
+			keywords = <"SVF", "prostate ", "cancer ", "kva">
+			misuse = <"Do not use to register data for a process other than  the SVF prostata cancer case study.
+">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"Ange Dashboard kategorier för svf cancer processen enligt kva koder. Ett initialt studie om svf cancer.">
+			use = <"För att registrera data för Dashboard studie  för svf cancer processen enligt kva koder. Ett initialt studie om svf cancer.">
+			keywords = <"SVF", "KVA", "cancer">
+			misuse = <"Används ej för annat än för att registrera data för Dashboard studie  för svf cancer processen enligt kva koder. Ett initialt studie om svf cancer.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"0">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"Socialstyrelsen (2015). Standardiserade vårdförlopp i cancervården. En baslinjestudie. Hämtad från https://www.socialstyrelsen.se/Lists/Artikelkatalog/Attachments/19926/2015-10-5.pdf Februari 2016. 
+Regionala Cancercentrum i Samverkan (2016).Prostatacancer Primärvårdsversion av standardiseradt vårdförlopp 2016. Hämtad från http://www.cancercentrum.se/globalassets/vara-uppdrag/kunskapsstyrning/varje-dag-raknas/vardforlopp/primarvardsversioner_standardiserade_vardforlopp_20151221.pdf Februari 2016. ">
+		["MD5-CAM-1.0.1"] = <"22822A1BDB1C533770824F53490904D5">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Svf cancer categories KVA
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- VP915 – Referal received at specialist care
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- 0-3
+													at0006, 	-- 4-6
+													at0007, 	-- 7-9
+													at0008, 	-- 10-13
+													at0009]	-- >14
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- VJ150 – Treatment start- surgery
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0113, 	-- 0-14
+													at0114, 	-- 15-28
+													at0115, 	-- 29-42
+													at0116, 	-- 43-56
+													at0117]	-- >57
+												}
+											}
+										}
+									}
+									ELEMENT[at0022] occurrences matches {0..1} matches {	-- VJ152 – Treatment start- medication
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0023, 	-- 0-10
+													at0024, 	-- 11-20
+													at0025, 	-- 21-30
+													at0026, 	-- 31-40
+													at0027]	-- >40
+												}
+											}
+										}
+									}
+									ELEMENT[at0041] occurrences matches {0..1} matches {	-- VJ154 – Treatment start- radiation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0042, 	-- 0-20
+													at0043, 	-- 21-40
+													at0044, 	-- 41-60
+													at0045, 	-- 61-80
+													at0046]	-- >81
+												}
+											}
+										}
+									}
+									ELEMENT[at0035] occurrences matches {0..1} matches {	-- VJ156 – Treatment start-combination 
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0036, 	-- 0-11
+													at0037, 	-- 12-22
+													at0038, 	-- 23-33
+													at0039, 	-- 34-44
+													at0040]	-- >44
+												}
+											}
+										}
+									}
+									ELEMENT[at0028] occurrences matches {0..1} matches {	-- VJ158 –Treatment start- paliative 
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0029, 	-- 0-28
+													at0030, 	-- 29-56
+													at0031, 	-- 57-84
+													at0032, 	-- 85-112
+													at0033]	-- >113
+												}
+											}
+										}
+									}
+									ELEMENT[at0047] occurrences matches {0..1} matches {	-- VJ165 – Decision not to treat
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0048, 	-- 0-28
+													at0049, 	-- 29-56
+													at0050, 	-- 57-84
+													at0051, 	-- 85-112
+													at0052]	-- >113
+												}
+											}
+										}
+									}
+									ELEMENT[at0053] occurrences matches {0..1} matches {	-- VJ170 – Criteria for grounded cancer suspection not present
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0054, 	-- 0-14
+													at0055, 	-- 15-28
+													at0056, 	-- 29-42
+													at0057, 	-- 43-56
+													at0058]	-- >57
+												}
+											}
+										}
+									}
+									ELEMENT[at0059] occurrences matches {0..1} matches {	-- VJ172 – New svf process due to new cancer diagnose
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0061, 	-- 0-20
+													at0062, 	-- 21-40
+													at0063, 	-- 41-60
+													at0064, 	-- 61-80
+													at0065]	-- >81
+												}
+											}
+										}
+									}
+									ELEMENT[at0066] occurrences matches {0..1} matches {	-- VJ174 – Svf end- other medical causes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0067, 	-- 0-28
+													at0068, 	-- 29-56
+													at0069, 	-- 57-84
+													at0070, 	-- 85-112
+													at0071]	-- >113
+												}
+											}
+										}
+									}
+									ELEMENT[at0072] occurrences matches {0..1} matches {	-- VJ176 – Svf end- patients choice
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0073, 	-- 0-3
+													at0074, 	-- 4-6
+													at0075, 	-- 7-9
+													at0076, 	-- 10-13
+													at0077]	-- >14
+												}
+											}
+										}
+									}
+									ELEMENT[at0078] occurrences matches {0..1} matches {	-- VJ178 – Svf end- cancer suspection discharges
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0079, 	-- 0-50
+													at0080, 	-- 50-100
+													at0083]	-- >100
+												}
+											}
+										}
+									}
+									ELEMENT[at0084] occurrences matches {0..1} matches {	-- VP920 – Referal handled by coordinator/doctor at specialist clinic
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0090, 	-- 0-28
+													at0091, 	-- 29-56
+													at0092, 	-- 57-84
+													at0093, 	-- 85-112
+													at0094]	-- >113
+												}
+											}
+										}
+									}
+									ELEMENT[at0095] occurrences matches {0..1} matches {	-- VP925 –First appointment within specislist care
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0096, 	-- 0-28
+													at0097, 	-- 29-60
+													at0098, 	-- 61-84
+													at0099, 	-- 85-112
+													at0100]	-- >113
+												}
+											}
+										}
+									}
+									ELEMENT[at0101] occurrences matches {0..1} matches {	-- VP943 –Treatment decision after initial check up 
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0102, 	-- 0-20
+													at0103, 	-- 21-40
+													at0104, 	-- 41-60
+													at0105, 	-- 61-80
+													at0106]	-- >81
+												}
+											}
+										}
+									}
+									ELEMENT[at0107] occurrences matches {0..1} matches {	-- VP944 –Treatment start after deeper check up 
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0108, 	-- 0-50
+													at0109, 	-- 51-100
+													at0110, 	-- 101-150
+													at0111, 	-- 151-200
+													at0112]	-- >200
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Svf cancer categories KVA">
+					description = <"Dashboard categories for the prostatacancer case study for SVF. ">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"VP915 – Referal received at specialist care">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"0-3">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"4-6">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"7-9">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"10-13">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <">14">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"VJ150 – Treatment start- surgery">
+					description = <"*">
+				>
+				["at0022"] = <
+					text = <"VJ152 – Treatment start- medication">
+					description = <"*">
+				>
+				["at0023"] = <
+					text = <"0-10">
+					description = <"*">
+				>
+				["at0024"] = <
+					text = <"11-20">
+					description = <"*">
+				>
+				["at0025"] = <
+					text = <"21-30">
+					description = <"*">
+				>
+				["at0026"] = <
+					text = <"31-40">
+					description = <"*">
+				>
+				["at0027"] = <
+					text = <">40">
+					description = <"*">
+				>
+				["at0028"] = <
+					text = <"VJ158 –Treatment start- paliative ">
+					description = <"*">
+				>
+				["at0029"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0030"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0031"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0032"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0033"] = <
+					text = <">113">
+					description = <"*">
+				>
+				["at0035"] = <
+					text = <"VJ156 – Treatment start-combination ">
+					description = <"*">
+				>
+				["at0036"] = <
+					text = <"0-11">
+					description = <"*">
+				>
+				["at0037"] = <
+					text = <"12-22">
+					description = <"*">
+				>
+				["at0038"] = <
+					text = <"23-33">
+					description = <"*">
+				>
+				["at0039"] = <
+					text = <"34-44">
+					description = <"*">
+				>
+				["at0040"] = <
+					text = <">44">
+					description = <"*">
+				>
+				["at0041"] = <
+					text = <"VJ154 – Treatment start- radiation">
+					description = <"*">
+				>
+				["at0042"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0043"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0044"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0045"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0046"] = <
+					text = <">81">
+					description = <"*">
+				>
+				["at0047"] = <
+					text = <"VJ165 – Decision not to treat">
+					description = <"*">
+				>
+				["at0048"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0049"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0050"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0051"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0052"] = <
+					text = <">113">
+					description = <"*">
+				>
+				["at0053"] = <
+					text = <"VJ170 – Criteria for grounded cancer suspection not present">
+					description = <"*">
+				>
+				["at0054"] = <
+					text = <"0-14">
+					description = <"*">
+				>
+				["at0055"] = <
+					text = <"15-28">
+					description = <"*">
+				>
+				["at0056"] = <
+					text = <"29-42">
+					description = <"*">
+				>
+				["at0057"] = <
+					text = <"43-56">
+					description = <"*">
+				>
+				["at0058"] = <
+					text = <">57">
+					description = <"*">
+				>
+				["at0059"] = <
+					text = <"VJ172 – New svf process due to new cancer diagnose">
+					description = <"*">
+				>
+				["at0061"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0062"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0063"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0064"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0065"] = <
+					text = <">81">
+					description = <"*">
+				>
+				["at0066"] = <
+					text = <"VJ174 – Svf end- other medical causes">
+					description = <"*">
+				>
+				["at0067"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0068"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0069"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0070"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0071"] = <
+					text = <">113">
+					description = <"*">
+				>
+				["at0072"] = <
+					text = <"VJ176 – Svf end- patients choice">
+					description = <"*">
+				>
+				["at0073"] = <
+					text = <"0-3">
+					description = <"*">
+				>
+				["at0074"] = <
+					text = <"4-6">
+					description = <"*">
+				>
+				["at0075"] = <
+					text = <"7-9">
+					description = <"*">
+				>
+				["at0076"] = <
+					text = <"10-13">
+					description = <"*">
+				>
+				["at0077"] = <
+					text = <">14">
+					description = <"*">
+				>
+				["at0078"] = <
+					text = <"VJ178 – Svf end- cancer suspection discharges">
+					description = <"*">
+				>
+				["at0079"] = <
+					text = <"0-50">
+					description = <"*">
+				>
+				["at0080"] = <
+					text = <"50-100">
+					description = <"*">
+				>
+				["at0083"] = <
+					text = <">100">
+					description = <"*">
+				>
+				["at0084"] = <
+					text = <"VP920 – Referal handled by coordinator/doctor at specialist clinic">
+					description = <"*">
+				>
+				["at0090"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0091"] = <
+					text = <"29-56">
+					description = <"*">
+				>
+				["at0092"] = <
+					text = <"57-84">
+					description = <"*">
+				>
+				["at0093"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0094"] = <
+					text = <">113">
+					description = <"*">
+				>
+				["at0095"] = <
+					text = <"VP925 –First appointment within specislist care">
+					description = <"*">
+				>
+				["at0096"] = <
+					text = <"0-28">
+					description = <"*">
+				>
+				["at0097"] = <
+					text = <"29-60">
+					description = <"*">
+				>
+				["at0098"] = <
+					text = <"61-84">
+					description = <"*">
+				>
+				["at0099"] = <
+					text = <"85-112">
+					description = <"*">
+				>
+				["at0100"] = <
+					text = <">113">
+					description = <"*">
+				>
+				["at0101"] = <
+					text = <"VP943 –Treatment decision after initial check up ">
+					description = <"*">
+				>
+				["at0102"] = <
+					text = <"0-20">
+					description = <"*">
+				>
+				["at0103"] = <
+					text = <"21-40">
+					description = <"*">
+				>
+				["at0104"] = <
+					text = <"41-60">
+					description = <"*">
+				>
+				["at0105"] = <
+					text = <"61-80">
+					description = <"*">
+				>
+				["at0106"] = <
+					text = <">81">
+					description = <"*">
+				>
+				["at0107"] = <
+					text = <"VP944 –Treatment start after deeper check up ">
+					description = <"*">
+				>
+				["at0108"] = <
+					text = <"0-50">
+					description = <"*">
+				>
+				["at0109"] = <
+					text = <"51-100">
+					description = <"*">
+				>
+				["at0110"] = <
+					text = <"101-150">
+					description = <"*">
+				>
+				["at0111"] = <
+					text = <"151-200">
+					description = <"*">
+				>
+				["at0112"] = <
+					text = <">200">
+					description = <"*">
+				>
+				["at0113"] = <
+					text = <"0-14">
+					description = <"*">
+				>
+				["at0114"] = <
+					text = <"15-28">
+					description = <"*">
+				>
+				["at0115"] = <
+					text = <"29-42">
+					description = <"*">
+				>
+				["at0116"] = <
+					text = <"43-56">
+					description = <"*">
+				>
+				["at0117"] = <
+					text = <">57">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Svf cancer kategorier KVA">
+					description = <"Dashboard kategorier för generisk cancer svf enligt kva koder ">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"VP915 – Remiss mottagen i specialiserad vård ">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"0-3">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"4-6">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"7-9">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"10-13">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <">14">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"VJ150 – Start av första behandling, kirurgi ">
+					description = <"**(en)">
+				>
+				["at0022"] = <
+					text = <"VJ152 – Start av första behandling, läkemedel ">
+					description = <"**(en)">
+				>
+				["at0023"] = <
+					text = <"0-10">
+					description = <"**(en)">
+				>
+				["at0024"] = <
+					text = <"11-20">
+					description = <"**(en)">
+				>
+				["at0025"] = <
+					text = <"21-30">
+					description = <"**(en)">
+				>
+				["at0026"] = <
+					text = <"31-40">
+					description = <"**(en)">
+				>
+				["at0027"] = <
+					text = <">40">
+					description = <"**(en)">
+				>
+				["at0028"] = <
+					text = <"VJ158 – Start av första behandling, palliativ ">
+					description = <"**(en)">
+				>
+				["at0029"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0030"] = <
+					text = <"29-56">
+					description = <"**(en)">
+				>
+				["at0031"] = <
+					text = <"57-84">
+					description = <"**(en)">
+				>
+				["at0032"] = <
+					text = <"85-112">
+					description = <"**(en)">
+				>
+				["at0033"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0035"] = <
+					text = <"VJ156 – Start av första behandling, kombinerad ">
+					description = <"**(en)">
+				>
+				["at0036"] = <
+					text = <"0-11">
+					description = <"**(en)">
+				>
+				["at0037"] = <
+					text = <"12-22">
+					description = <"**(en)">
+				>
+				["at0038"] = <
+					text = <"23-33">
+					description = <"**(en)">
+				>
+				["at0039"] = <
+					text = <"34-44">
+					description = <"**(en)">
+				>
+				["at0040"] = <
+					text = <">44">
+					description = <"**(en)">
+				>
+				["at0041"] = <
+					text = <"VJ154 – Start av första behandling, strålning">
+					description = <"**(en)">
+				>
+				["at0042"] = <
+					text = <"0-20">
+					description = <"**(en)">
+				>
+				["at0043"] = <
+					text = <"21-40">
+					description = <"**(en)">
+				>
+				["at0044"] = <
+					text = <"41-60">
+					description = <"**(en)">
+				>
+				["at0045"] = <
+					text = <"61-80">
+					description = <"**(en)">
+				>
+				["at0046"] = <
+					text = <">81">
+					description = <"**(en)">
+				>
+				["at0047"] = <
+					text = <"VJ165 – Beslut om ingen behandling ">
+					description = <"**(en)">
+				>
+				["at0048"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0049"] = <
+					text = <"29-56">
+					description = <"**(en)">
+				>
+				["at0050"] = <
+					text = <"57-84">
+					description = <"**(en)">
+				>
+				["at0051"] = <
+					text = <"85-112">
+					description = <"**(en)">
+				>
+				["at0052"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0053"] = <
+					text = <"VJ170 – Kriterier för välgrundad misstanke ej uppfyllda  ">
+					description = <"**(en)">
+				>
+				["at0054"] = <
+					text = <"0-14">
+					description = <"**(en)">
+				>
+				["at0055"] = <
+					text = <"15-28">
+					description = <"**(en)">
+				>
+				["at0056"] = <
+					text = <"29-42">
+					description = <"**(en)">
+				>
+				["at0057"] = <
+					text = <"43-56">
+					description = <"**(en)">
+				>
+				["at0058"] = <
+					text = <">57">
+					description = <"**(en)">
+				>
+				["at0059"] = <
+					text = <"VJ172 – P.g.a. annan cancer ">
+					description = <"**(en)">
+				>
+				["at0061"] = <
+					text = <"0-20">
+					description = <"**(en)">
+				>
+				["at0062"] = <
+					text = <"21-40">
+					description = <"**(en)">
+				>
+				["at0063"] = <
+					text = <"41-60">
+					description = <"**(en)">
+				>
+				["at0064"] = <
+					text = <"61-80">
+					description = <"**(en)">
+				>
+				["at0065"] = <
+					text = <">81">
+					description = <"**(en)">
+				>
+				["at0066"] = <
+					text = <"VJ174 – Svf slut-andra medicinska skäl">
+					description = <"**(en)">
+				>
+				["at0067"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0068"] = <
+					text = <"29-56">
+					description = <"**(en)">
+				>
+				["at0069"] = <
+					text = <"57-84">
+					description = <"**(en)">
+				>
+				["at0070"] = <
+					text = <"85-112">
+					description = <"**(en)">
+				>
+				["at0071"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0072"] = <
+					text = <"VJ176 –Svf slut-patientens val">
+					description = <"**(en)">
+				>
+				["at0073"] = <
+					text = <"0-3">
+					description = <"**(en)">
+				>
+				["at0074"] = <
+					text = <"4-6">
+					description = <"**(en)">
+				>
+				["at0075"] = <
+					text = <"7-9">
+					description = <"**(en)">
+				>
+				["at0076"] = <
+					text = <"10-13">
+					description = <"**(en)">
+				>
+				["at0077"] = <
+					text = <">14">
+					description = <"**(en)">
+				>
+				["at0078"] = <
+					text = <"VJ178 – Svf slut-misstanke om cancer avskrivs ">
+					description = <"**(en)">
+				>
+				["at0079"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0080"] = <
+					text = <"29-56">
+					description = <"**(en)">
+				>
+				["at0083"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0084"] = <
+					text = <"VP920 – Remiss bedömd av koordinator/läkare i specialiserad vård ">
+					description = <"**(en)">
+				>
+				["at0090"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0091"] = <
+					text = <"29-56">
+					description = <"**(en)">
+				>
+				["at0092"] = <
+					text = <"57-84">
+					description = <"**(en)">
+				>
+				["at0093"] = <
+					text = <"85-112">
+					description = <"**(en)">
+				>
+				["at0094"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0095"] = <
+					text = <"VP925 – Första besök i specialiserad vård ">
+					description = <"**(en)">
+				>
+				["at0096"] = <
+					text = <"0-28">
+					description = <"**(en)">
+				>
+				["at0097"] = <
+					text = <"29-60">
+					description = <"**(en)">
+				>
+				["at0098"] = <
+					text = <"61-84">
+					description = <"**(en)">
+				>
+				["at0099"] = <
+					text = <"85-112">
+					description = <"**(en)">
+				>
+				["at0100"] = <
+					text = <">113">
+					description = <"**(en)">
+				>
+				["at0101"] = <
+					text = <"VP943 – Behandlingsbeslut efter basutredning ">
+					description = <"**(en)">
+				>
+				["at0102"] = <
+					text = <"0-20">
+					description = <"**(en)">
+				>
+				["at0103"] = <
+					text = <"21-40">
+					description = <"**(en)">
+				>
+				["at0104"] = <
+					text = <"41-60">
+					description = <"**(en)">
+				>
+				["at0105"] = <
+					text = <"61-80">
+					description = <"**(en)">
+				>
+				["at0106"] = <
+					text = <">81">
+					description = <"**(en)">
+				>
+				["at0107"] = <
+					text = <"VP944 – Behandlingsbeslut efter utökad utredning ">
+					description = <"**(en)">
+				>
+				["at0108"] = <
+					text = <"0-50">
+					description = <"**(en)">
+				>
+				["at0109"] = <
+					text = <"51-100">
+					description = <"**(en)">
+				>
+				["at0110"] = <
+					text = <"101-150">
+					description = <"**(en)">
+				>
+				["at0111"] = <
+					text = <"151-200">
+					description = <"**(en)">
+				>
+				["at0112"] = <
+					text = <">200">
+					description = <"**(en)">
+				>
+				["at0113"] = <
+					text = <"0-14">
+					description = <"**(en)">
+				>
+				["at0114"] = <
+					text = <"15-28">
+					description = <"**(en)">
+				>
+				["at0115"] = <
+					text = <"29-42">
+					description = <"**(en)">
+				>
+				["at0116"] = <
+					text = <"43-56">
+					description = <"**(en)">
+				>
+				["at0117"] = <
+					text = <">57">
+					description = <"**(en)">
+				>
+			>
+		>
+	>

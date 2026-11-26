@@ -1,0 +1,28 @@
+{
+  "note": "Measured fine-scale bone density variation, this patient's own CBCT. Pattern measured, absolute scale derived -- see the header of tools/cbct/trabecular_field.py.",
+  "provenance": "pattern-measured-scale-derived",
+  "file": "trabecular.bin",
+  "dtype": "uint8",
+  "layout": "z-major, C order, width = app x",
+  "dims_zyx": [
+    146,
+    169,
+    170
+  ],
+  "spacing_mm": 0.48,
+  "origin_app_mm": [
+    -40.6448046875,
+    -40.28961011437988,
+    -36.5131545289917
+  ],
+  "zero_level": 128,
+  "units_per_lsb": 4.7888,
+  "units": "uncalibrated CBCT grey value (int16, Hounsfield-like)",
+  "sd_native": 198.5,
+  "sd_at_sampling": 152.0,
+  "amplitude_kept": 0.766,
+  "clipped_fraction": 0.000638,
+  "highpass_mm": 2.0,
+  "bone_fill_fraction": 0.0916,
+  "bytes": 4194580
+}

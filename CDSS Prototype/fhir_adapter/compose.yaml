@@ -1,0 +1,19 @@
+services:
+  fhir-adapter:
+    build: .
+    container_name: cdss-fhir-adapter
+    ports:
+      - "8200:8000"
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: openemr
+      DB_USER: cdss_adapter
+      DB_SSL_DISABLED: "true"
+    networks:
+      - openemr
+
+networks:
+  openemr:
+    external: true
+    name: open_emr_default

@@ -1,0 +1,201 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.sepsis_comorbid_conditions.v0
+
+concept
+	[at0000]	-- Sepsis comorbid conditions
+language
+	original_language = <[ISO_639-1::en]>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["date"] = <"2013-12-18">
+	>
+	details = <
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record comorbid conditions co-occuring with sepsis">
+			use = <"">
+			keywords = <"sepsis", "comorbidity">
+			misuse = <"">
+			copyright = <"">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["references"] = <"1. Brink M, Cronqvist J, Furebring M, Gårdlund B, Lanbeck P, Ljungström L, et al. Vårdprogram Svår sepsis och septisk chock - tidig identifiering och initial handläggning. Svenska Infektionsläkarföreningen; 2013.">
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems, Konstantinos.Kalliamvakos@cambio.se">
+		["MD5-CAM-1.0.1"] = <"4C290EE7E182A52B5755807327991815">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Sepsis comorbid conditions
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Diabetes
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0005] occurrences matches {0..1} matches {	-- Congestive Heart failure
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0006] occurrences matches {0..1} matches {	-- Atrial fibrillation
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Cancer
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0008] occurrences matches {0..1} matches {	-- COPD
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0009] occurrences matches {0..1} matches {	-- Renal disease
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0010] occurrences matches {0..1} matches {	-- HIV/AIDS
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0011] occurrences matches {0..1} matches {	-- Alcohol abuse
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0012, 	-- Absent
+													at0013]	-- Present
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Sepsis comorbid conditions">
+					description = <"To record comorbid conditions co-occuring with sepsis">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Diabetes">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Congestive Heart failure">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Atrial fibrillation">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Cancer">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"COPD">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"Renal disease">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"HIV/AIDS">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"Alcohol abuse">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"Present">
+					description = <"*">
+				>
+			>
+		>
+	>

@@ -1,0 +1,311 @@
+archetype (adl_version=1.4)
+	openEHR-EHR-OBSERVATION.hip_fracture_case_study.v1
+
+concept
+	[at0000]	-- Hip fracture study
+language
+	original_language = <[ISO_639-1::en]>
+	translations = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			author = <
+				["name"] = <"?">
+			>
+		>
+	>
+description
+	original_author = <
+		["name"] = <"Konstantinos Kalliamvakos">
+		["email"] = <"Konstantinos.Kalliamvakos@cambio.se">
+		["organisation"] = <"Cambio Healthcare Systems">
+		["date"] = <"2014-07-25">
+	>
+	details = <
+		["sv"] = <
+			language = <[ISO_639-1::sv]>
+			purpose = <"För att registrera resultatet vid körning av höftfrakturstudiens riktlinjer.">
+			use = <"Används endast i samband med höftfrakturstudien. Den information som produceras av riktlinjerna är resultatet av särskilda studiekriterier.">
+			keywords = <"öppna jämförelser", "dödlighet", "höftfraktur", "protesoperation", "operation", "osteosyntes", "ledprotes", "Socialstyrelsen", "väntetid">
+			misuse = <"Används inte i andra studier eller sammanhang utom när kriterierna är identiska med dem som definieras i höftfrakturstudien.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+		["en"] = <
+			language = <[ISO_639-1::en]>
+			purpose = <"To record the result from the execution of the hip fracture study guidelines.">
+			use = <"Use only in relation to the hip fracure study. The information produced by the guidelines is the result of specific study criteria.">
+			keywords = <"healthcare indicators", "mortality", "hip fracture", "prosthesis surgery", "surgery", "osteosynthesis", "joint replacement", "Socialstyrelsen", "wait time">
+			misuse = <"Do not use in other studies or context except in the case that the criteria are identical with those defined in the hip fracture study.">
+			copyright = <"Cambio Healthcare Systems">
+		>
+	>
+	lifecycle_state = <"AuthorDraft">
+	other_contributors = <>
+	other_details = <
+		["current_contact"] = <"Konstantinos Kalliamvakos, Cambio Healthcare Systems<Konstantinos.Kalliamvakos@cambio.se>">
+		["MD5-CAM-1.0.1"] = <"356C2EF5C37CE0F4036FAF6A17233C58">
+		["references"] = <"1. Socialstyrelsen. Öppna jämförelser 2013 – Hälso- och sjukvård – Jämförelser mellan landsting. Västerås: Edita Västra Aros AB; 2013.
+2. Socialstyrelsen. Bilaga 1 Beskrivning av indikatorer- Öppna jämförelser 2013: Hälso och sjukvård. 2013.">
+	>
+
+definition
+	OBSERVATION[at0000] matches {	-- Hip fracture study
+		data matches {
+			HISTORY[at0001] matches {	-- Event Series
+				events cardinality matches {1..*; unordered} matches {
+					EVENT[at0002] occurrences matches {0..1} matches {	-- Any event
+						data matches {
+							ITEM_TREE[at0003] matches {	-- Tree
+								items cardinality matches {0..*; unordered} matches {
+									ELEMENT[at0004] occurrences matches {0..1} matches {	-- Joint replacement surgery in patients with hip fracture
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0005, 	-- Absent
+													at0006]	-- Present
+												}
+											}
+										}
+									}
+									ELEMENT[at0007] occurrences matches {0..1} matches {	-- Wait time for surgery
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0008, 	-- 0-4 hours
+													at0009, 	-- 5-9 hours
+													at0010, 	-- 10-14 hours
+													at0011, 	-- 15-19 hours
+													at0012, 	-- 20-24 hours
+													at0013, 	-- 25-48 hours
+													at0014]	-- > 48 hours
+												}
+											}
+										}
+									}
+									ELEMENT[at0015] occurrences matches {0..1} matches {	-- Time in waiting
+										value matches {
+											C_DV_QUANTITY <
+												property = <[openehr::128]>
+												list = <
+													["1"] = <
+														units = <"h">
+													>
+												>
+											>
+										}
+									}
+									ELEMENT[at0016] occurrences matches {0..1} matches {	-- Date/time of first surgery
+										value matches {
+											DV_DATE_TIME matches {*}
+										}
+									}
+									ELEMENT[at0017] occurrences matches {0..1} matches {	-- Hip fracture mortality
+										value matches {
+											DV_CODED_TEXT matches {
+												defining_code matches {
+													[local::
+													at0018, 	-- Died within 28 days
+													at0019, 	-- Died within 29-90 days
+													at0020, 	-- Died after 90 days
+													at0021]	-- Alive
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+ontology
+	term_definitions = <
+		["en"] = <
+			items = <
+				["at0000"] = <
+					text = <"Hip fracture study">
+					description = <"Quality indicators for the treatment and care of hip fracture.">
+				>
+				["at0001"] = <
+					text = <"Event Series">
+					description = <"@ internal @">
+				>
+				["at0002"] = <
+					text = <"Any event">
+					description = <"*">
+				>
+				["at0003"] = <
+					text = <"Tree">
+					description = <"@ internal @">
+				>
+				["at0004"] = <
+					text = <"Joint replacement surgery in patients with hip fracture">
+					description = <"*">
+				>
+				["at0005"] = <
+					text = <"Absent">
+					description = <"*">
+				>
+				["at0006"] = <
+					text = <"Present">
+					description = <"*">
+				>
+				["at0007"] = <
+					text = <"Wait time for surgery">
+					description = <"*">
+				>
+				["at0008"] = <
+					text = <"0-4 hours">
+					description = <"*">
+				>
+				["at0009"] = <
+					text = <"5-9 hours">
+					description = <"*">
+				>
+				["at0010"] = <
+					text = <"10-14 hours">
+					description = <"*">
+				>
+				["at0011"] = <
+					text = <"15-19 hours">
+					description = <"*">
+				>
+				["at0012"] = <
+					text = <"20-24 hours">
+					description = <"*">
+				>
+				["at0013"] = <
+					text = <"25-48 hours">
+					description = <"*">
+				>
+				["at0014"] = <
+					text = <"> 48 hours">
+					description = <"*">
+				>
+				["at0015"] = <
+					text = <"Time in waiting">
+					description = <"*">
+				>
+				["at0016"] = <
+					text = <"Date/time of first surgery">
+					description = <"*">
+				>
+				["at0017"] = <
+					text = <"Hip fracture mortality">
+					description = <"*">
+				>
+				["at0018"] = <
+					text = <"Died within 28 days">
+					description = <"*">
+				>
+				["at0019"] = <
+					text = <"Died within 29-90 days">
+					description = <"*">
+				>
+				["at0020"] = <
+					text = <"Died after 90 days">
+					description = <"*">
+				>
+				["at0021"] = <
+					text = <"Alive">
+					description = <"*">
+				>
+			>
+		>
+		["sv"] = <
+			items = <
+				["at0000"] = <
+					text = <"Höftfrakturstudien">
+					description = <"Kvalitetsindikatorer för behandling och vård av höftfraktur.">
+				>
+				["at0001"] = <
+					text = <"*Event Series(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0002"] = <
+					text = <"*Any event(en)">
+					description = <"**(en)">
+				>
+				["at0003"] = <
+					text = <"*Tree(en)">
+					description = <"*@ internal @(en)">
+				>
+				["at0004"] = <
+					text = <"Ledprotesoperation hos patienter med höftfraktur">
+					description = <"**(en)">
+				>
+				["at0005"] = <
+					text = <"Nej">
+					description = <"**(en)">
+				>
+				["at0006"] = <
+					text = <"Ja">
+					description = <"**(en)">
+				>
+				["at0007"] = <
+					text = <"Väntetid inför operation">
+					description = <"**(en)">
+				>
+				["at0008"] = <
+					text = <"0-4 timmar">
+					description = <"**(en)">
+				>
+				["at0009"] = <
+					text = <"5-9 timmar">
+					description = <"**(en)">
+				>
+				["at0010"] = <
+					text = <"10-14 timmar">
+					description = <"**(en)">
+				>
+				["at0011"] = <
+					text = <"15-19 timmar">
+					description = <"**(en)">
+				>
+				["at0012"] = <
+					text = <"20-24 timmar">
+					description = <"**(en)">
+				>
+				["at0013"] = <
+					text = <"25-48 timmar">
+					description = <"**(en)">
+				>
+				["at0014"] = <
+					text = <"> 48 timmar">
+					description = <"**(en)">
+				>
+				["at0015"] = <
+					text = <"Väntetid">
+					description = <"**(en)">
+				>
+				["at0016"] = <
+					text = <"Datum/tid för första operation">
+					description = <"**(en)">
+				>
+				["at0017"] = <
+					text = <"Dödlighet vid höftfraktur">
+					description = <"**(en)">
+				>
+				["at0018"] = <
+					text = <"Avliden inom 28 dagar">
+					description = <"**(en)">
+				>
+				["at0019"] = <
+					text = <"Avliden inom 29-90 dagar">
+					description = <"**(en)">
+				>
+				["at0020"] = <
+					text = <"Avliden efter 90 dagar">
+					description = <"**(en)">
+				>
+				["at0021"] = <
+					text = <"Levande">
+					description = <"**(en)">
+				>
+			>
+		>
+	>
