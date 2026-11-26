@@ -1,0 +1,24 @@
+
+# R session files
+.Rhistory
+.RData
+.Ruserdata
+.Rproj.user/
+
+# Local environment and credentials
+.Renviron
+.env
+.env.*
+
+# Shiny deployment metadata
+rsconnect/
+
+# Temporary and backup files
+*~
+*.bak
+*.tmp
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
